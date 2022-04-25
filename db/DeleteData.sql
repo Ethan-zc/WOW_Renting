@@ -1,0 +1,15 @@
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE `zzz_address`;
+TRUNCATE TABLE `zzz_car`;
+TRUNCATE TABLE `zzz_corporate`;
+TRUNCATE TABLE `zzz_customer`;
+TRUNCATE TABLE `zzz_discount`;
+TRUNCATE TABLE `zzz_disccorp`;
+TRUNCATE TABLE `zzz_discindi`;
+TRUNCATE TABLE `zzz_individual`;
+TRUNCATE TABLE `zzz_invoice`;
+TRUNCATE TABLE `zzz_office`;
+TRUNCATE TABLE `zzz_order`;
+TRUNCATE TABLE `zzz_payment`;
+TRUNCATE TABLE `zzz_vehicle`;
+SET FOREIGN_KEY_CHECKS = 1;
