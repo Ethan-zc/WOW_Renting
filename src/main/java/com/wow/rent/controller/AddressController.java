@@ -2,6 +2,10 @@ package com.wow.rent.controller;
 
 import com.wow.rent.entry.AddressEntry;
 import com.wow.rent.service.AddressService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,14 +16,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/address")
+@Api(tags = "Address API")
 public class AddressController {
 
     @Autowired
-    private AddressService userService;
+    private AddressService addressService;
 
+    @ApiOperation(value = "Get all address entries.", notes = "directly select from db")
     @RequestMapping(value = "/addrlist",method = RequestMethod.GET)
     public List<AddressEntry> findUserList(){
-        return userService.findAddressList();
+        return addressService.findAddressList();
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)
@@ -28,7 +34,7 @@ public class AddressController {
                           @RequestParam(value = "state")String state,
                           @RequestParam(value = "country")String country,
                           @RequestParam(value = "zipcode")int zipcode){
-        int flag=userService.addAddr(addrId,street,state,country,zipcode);
+        int flag=addressService.addAddr(addrId,street,state,country,zipcode);
         if(flag>0){
             return "success";
         }
@@ -37,7 +43,7 @@ public class AddressController {
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
     public String deleteUser(@RequestParam(value = "id")int id){
-        if(userService.deleteAddr(id)>0){
+        if(addressService.deleteAddr(id)>0){
             return "success";
         }
         return "error";
