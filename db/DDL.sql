@@ -1,13 +1,33 @@
--- SQLINES DEMO *** le SQL Developer Data Modeler 21.4.1.349.1605
--- SQLINES DEMO *** -04-24 21:34:10 EDT
--- SQLINES DEMO *** le Database 21c
--- SQLINES DEMO *** le Database 21c
+-- SQLINES DEMO *** QL Developer Data Modeler 21.4.1.349.1605
+-- SQLINES DEMO *** 2022-04-25 21:00:37 EDT
+-- SQLINES DEMO *** acle Database 11g
+-- SQLINES DEMO *** acle Database 11g
 
 
 
 -- SQLINES DEMO *** no DDL - MDSYS.SDO_GEOMETRY
 
 -- SQLINES DEMO *** no DDL - XMLTYPE
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE zzz_acc_role (
+    accid BIGINT NOT NULL,
+    rid   BIGINT NOT NULL
+);
+
+ALTER TABLE zzz_acc_role ADD CONSTRAINT zzz_acc_role_pk PRIMARY KEY ( rid,
+                                                                      accid );
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE zzz_account (
+    accid    BIGINT NOT NULL,
+    accname  VARCHAR(20) NOT NULL,
+    pwd      VARCHAR(20) NOT NULL,
+    custid   INT NOT NULL,
+    custtype CHAR(1) NOT NULL
+);
+
+ALTER TABLE zzz_account ADD CONSTRAINT zzz_account_pk PRIMARY KEY ( accid );
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE zzz_address (
@@ -162,8 +182,8 @@ COMMENT ON COLUMN zzz_disccorp.disctype IS
 COMMENT ON COLUMN zzz_disccorp.setnum IS
     'Number for indentifying corporation'; */
 
-ALTER TABLE zzz_disccorp ADD CONSTRAINT zzz_disccorp_pk PRIMARY KEY ( disctype,
-                                                                      discid );
+ALTER TABLE zzz_disccorp ADD CONSTRAINT zzz_corp_pk PRIMARY KEY ( disctype,
+                                                                  discid );
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE zzz_discindi (
@@ -194,8 +214,8 @@ COMMENT ON COLUMN zzz_discindi.validstart IS
 COMMENT ON COLUMN zzz_discindi.validend IS
     'Coupon valid end date.'; */
 
-ALTER TABLE zzz_discindi ADD CONSTRAINT zzz_discindi_pk PRIMARY KEY ( disctype,
-                                                                      discid );
+ALTER TABLE zzz_discindi ADD CONSTRAINT zzz_indi_pk PRIMARY KEY ( disctype,
+                                                                  discid );
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE zzz_discount (
@@ -394,6 +414,14 @@ COMMENT ON COLUMN zzz_payment.cardnum IS
 ALTER TABLE zzz_payment ADD CONSTRAINT zzz_payment_pk PRIMARY KEY ( paymid );
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE zzz_role (
+    rid  BIGINT NOT NULL,
+    role VARCHAR(5) NOT NULL
+);
+
+ALTER TABLE zzz_role ADD CONSTRAINT zzz_role_pk PRIMARY KEY ( rid );
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE zzz_vehicle (
     vin   VARCHAR(20) NOT NULL COMMENT 'Vehicle identification number.',
     make  VARCHAR(30) NOT NULL COMMENT 'Brand of the vehicle.',
@@ -423,6 +451,20 @@ COMMENT ON COLUMN zzz_vehicle.lpn IS
     'The registration identifier is a numeric or alphanumeric ID that uniquely identifies the vehicle or vehicle owner within the issuing region''s vehicle register.'; */
 
 ALTER TABLE zzz_vehicle ADD CONSTRAINT zzz_vehicle_pk PRIMARY KEY ( vin );
+
+ALTER TABLE zzz_acc_role
+    ADD CONSTRAINT zzz_acc_role_zzz_account_fk FOREIGN KEY ( accid )
+        REFERENCES zzz_account ( accid );
+
+ALTER TABLE zzz_acc_role
+    ADD CONSTRAINT zzz_acc_role_zzz_role_fk FOREIGN KEY ( rid )
+        REFERENCES zzz_role ( rid );
+
+ALTER TABLE zzz_account
+    ADD CONSTRAINT zzz_account_zzz_customer_fk FOREIGN KEY ( custid,
+                                                             custtype )
+        REFERENCES zzz_customer ( custid,
+                                  custtype );
 
 ALTER TABLE zzz_car
     ADD CONSTRAINT zzz_car_zzz_office_fk FOREIGN KEY ( officeid )
@@ -495,172 +537,3 @@ ALTER TABLE zzz_order
 ALTER TABLE zzz_payment
     ADD CONSTRAINT zzz_payment_zzz_invoice_fk FOREIGN KEY ( invoiceid )
         REFERENCES zzz_invoice ( invoiceid );
-
-CREATE OR REPLACE TRIGGER arc_fkarc_7_zzz_individual BEFORE
-    INSERT OR UPDATE OF custid, custtype ON zzz_individual
-    FOR EACH ROW
-    DECLARE d CHAR(1);
-BEGIN
-    -- SQLINES LICENSE FOR EVALUATION USE ONLY
-    SELECT
-        a.custtype
-    INTO d
-    FROM
-        zzz_customer a
-    WHERE
-        a.custid = :new.custid
-        AND a.custtype = :new.custtype;
-
-    IF ( d IS NULL OR d <> 'I' ) THEN
-        raise_application_error(
-                               -20223,
-                               'FK ZZZ_INDIVIDUAL_ZZZ_CUSTOMER_FK in Table ZZZ_INDIVIDUAL violates Arc constraint on Table ZZZ_CUSTOMER - discriminator column CustType doesn''t have value ''I'''
-        );
-    END IF;
-
-    DECLARE EXIT HANDLER FOR not found BEGIN
-        NULL;
-    END;
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN
-        RESIGNAL;
-    END;
-END;
-/
-
-CREATE OR REPLACE TRIGGER arc_fkarc_7_zzz_corporate BEFORE
-    INSERT OR UPDATE OF custid, custtype ON zzz_corporate
-    FOR EACH ROW
-    DECLARE d CHAR(1);
-BEGIN
-    -- SQLINES LICENSE FOR EVALUATION USE ONLY
-    SELECT
-        a.custtype
-    INTO d
-    FROM
-        zzz_customer a
-    WHERE
-        a.custid = :new.custid
-        AND a.custtype = :new.custtype;
-
-    IF ( d IS NULL OR d <> 'C' ) THEN
-        raise_application_error(
-                               -20223,
-                               'FK ZZZ_CORPORATE_ZZZ_CUSTOMER_FK in Table ZZZ_CORPORATE violates Arc constraint on Table ZZZ_CUSTOMER - discriminator column CustType doesn''t have value ''C'''
-        );
-    END IF;
-
-    DECLARE EXIT HANDLER FOR not found BEGIN
-        NULL;
-    END;
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN
-        RESIGNAL;
-    END;
-END;
-/
-
-CREATE OR REPLACE TRIGGER arc_fkarc_8_zzz_discindi BEFORE
-    INSERT OR UPDATE OF disctype, discid ON zzz_discindi
-    FOR EACH ROW
-    DECLARE d CHAR(1);
-BEGIN
-    -- SQLINES LICENSE FOR EVALUATION USE ONLY
-    SELECT
-        a.disctype
-    INTO d
-    FROM
-        zzz_discount a
-    WHERE
-        a.disctype = :new.disctype
-        AND a.discid = :new.discid;
-
-    IF ( d IS NULL OR d <> 'I' ) THEN
-        raise_application_error(
-                               -20223,
-                               'FK ZZZ_INDI_ZZZ_DISCOUNT_FK in Table ZZZ_DISCINDI violates Arc constraint on Table ZZZ_DISCOUNT - discriminator column DiscType doesn''t have value ''I'''
-        );
-    END IF;
-
-    DECLARE EXIT HANDLER FOR not found BEGIN
-        NULL;
-    END;
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN
-        RESIGNAL;
-    END;
-END;
-/
-
-CREATE OR REPLACE TRIGGER arc_fkarc_8_zzz_disccorp BEFORE
-    INSERT OR UPDATE OF disctype, discid ON zzz_disccorp
-    FOR EACH ROW
-    DECLARE d CHAR(1);
-BEGIN
-    -- SQLINES LICENSE FOR EVALUATION USE ONLY
-    SELECT
-        a.disctype
-    INTO d
-    FROM
-        zzz_discount a
-    WHERE
-        a.disctype = :new.disctype
-        AND a.discid = :new.discid;
-
-    IF ( d IS NULL OR d <> 'C' ) THEN
-        raise_application_error(
-                               -20223,
-                               'FK ZZZ_CORP_ZZZ_DISCOUNT_FK in Table ZZZ_DISCCORP violates Arc constraint on Table ZZZ_DISCOUNT - discriminator column DiscType doesn''t have value ''C'''
-        );
-    END IF;
-
-    DECLARE EXIT HANDLER FOR not found BEGIN
-        NULL;
-    END;
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN
-        RESIGNAL;
-    END;
-END;
-/
-
-
-
--- SQLINES DEMO *** per Data Modeler Summary Report: 
--- 
--- SQLINES DEMO ***                        13
--- SQLINES DEMO ***                         4
--- SQLINES DEMO ***                        30
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO *** DY                      0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         4
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***  TYPE                   0
--- SQLINES DEMO ***  TYPE                   0
--- SQLINES DEMO ***  TYPE BODY              0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO *** EGMENT                  0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO *** ED VIEW                 0
--- SQLINES DEMO *** ED VIEW LOG             0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- 
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
--- 
--- SQLINES DEMO ***                         0
--- 
--- SQLINES DEMO ***                         0
--- SQLINES DEMO *** A                       0
--- SQLINES DEMO *** T                       0
--- 
--- SQLINES DEMO ***                         0
--- SQLINES DEMO ***                         0
