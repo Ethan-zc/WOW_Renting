@@ -1,4 +1,7 @@
 SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS `zzz_account`;
+DROP TABLE IF EXISTS `zzz_role`;
+DROP TABLE IF EXISTS `zzz_acc_role`;
 DROP TABLE IF EXISTS `zzz_address`;
 DROP TABLE IF EXISTS `zzz_car`;
 DROP TABLE IF EXISTS `zzz_corporate`;

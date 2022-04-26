@@ -35,3 +35,21 @@ build/
 ### Local ###
 .DS_Store
 db/Oracle
+
+### Frontend ###
+wow-web/node_modules
+wow-web/.pnp
+wow-web/.pnp.js
+# testing
+wow-web/coverage
+# production
+wow-web/build
+# misc
+wow-web/.DS_Store
+wow-web/.env.local
+wow-web/.env.development.local
+wow-web/.env.test.local
+wow-web/.env.production.local
+wow-web/npm-debug.log*
+wow-web/yarn-debug.log*
+wow-web/yarn-error.log*

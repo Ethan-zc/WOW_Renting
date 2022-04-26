@@ -1,4 +1,7 @@
 SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE `zzz_account`;
+TRUNCATE TABLE `zzz_role`;
+TRUNCATE TABLE `zzz_acc_role`;
 TRUNCATE TABLE `zzz_address`;
 TRUNCATE TABLE `zzz_car`;
 TRUNCATE TABLE `zzz_corporate`;
