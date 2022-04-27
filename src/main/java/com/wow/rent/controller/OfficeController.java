@@ -1,7 +1,7 @@
 package com.wow.rent.controller;
 
-import com.wow.rent.entry.CarEntry;
-import com.wow.rent.service.CarService;
+import com.wow.rent.entry.OfficeEntry;
+import com.wow.rent.service.OfficeService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,15 +13,16 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/cars")
-@Api(tags = "Testing car API: return all cars entry in zzz_car table")
-public class CarController {
+@RequestMapping("/office")
+@Api(tags = "Office")
+public class OfficeController {
 
     @Autowired
-    private CarService carService;
+    private OfficeService officeService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<CarEntry> findAllCars(){
-        return carService.findAllCars();
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    public List<OfficeEntry> findOfficeList(){
+        return officeService.findAllOffice();
     }
+
 }

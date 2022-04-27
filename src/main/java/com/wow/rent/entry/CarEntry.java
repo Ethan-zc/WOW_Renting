@@ -11,4 +11,5 @@ public class CarEntry {
     private double overRate;
     private int officeId;
     private String vin;
+    private String imgUrl;
 }
