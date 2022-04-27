@@ -2,6 +2,7 @@ package com.wow.rent.service.Impl;
 
 import com.wow.rent.dao.CarMapper;
 import com.wow.rent.entry.CarEntry;
+import com.wow.rent.entry.VehicleEntry;
 import com.wow.rent.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarEntry> findAllCars() {
         return carMapper.findAllCars();
+    }
+
+    @Override
+    public VehicleEntry getVehicleInfo(String vin) {
+        return carMapper.getVehicleInfo(vin);
     }
 
 }
