@@ -37,19 +37,23 @@ build/
 db/Oracle
 
 ### Frontend ###
-wow-web/node_modules
-wow-web/.pnp
-wow-web/.pnp.js
+material-kit-react-main/node_modules
+material-kit-react-main/.pnp
+material-kit-react-main/.pnp.js
 # testing
-wow-web/coverage
+material-kit-react-main/coverage
 # production
-wow-web/build
+material-kit-react-main/build
 # misc
-wow-web/.DS_Store
-wow-web/.env.local
-wow-web/.env.development.local
-wow-web/.env.test.local
-wow-web/.env.production.local
-wow-web/npm-debug.log*
-wow-web/yarn-debug.log*
-wow-web/yarn-error.log*
+material-kit-react-main/.vscode
+material-kit-react-main/.DS_Store
+material-kit-react-main/.env.local
+material-kit-react-main/.env.development.local
+material-kit-react-main/.env.test.local
+material-kit-react-main/.env.production.local
+material-kit-react-main/npm-debug.log*
+material-kit-react-main/yarn-debug.log*
+material-kit-react-main/yarn-error.log*
+material-kit-react-main/package-lock.json
+material-kit-react-main/yarn.lock
+material-kit-react-main/commit.sh
