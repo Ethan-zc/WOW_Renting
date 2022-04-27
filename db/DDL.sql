@@ -79,7 +79,8 @@ CREATE TABLE zzz_car (
     dailyrate DECIMAL(5, 2) NOT NULL COMMENT 'Regular rental rate per day of the rental service for the car.',
     overrate  DECIMAL(5, 2) NOT NULL COMMENT 'Extra fees per mile that exceeds the limit.',
     officeid  INT,
-    vin       VARCHAR(20) NOT NULL
+    vin       VARCHAR(20) NOT NULL,
+    imgurl    VARCHAR(80)
 );
 
 /* Moved to CREATE TABLE

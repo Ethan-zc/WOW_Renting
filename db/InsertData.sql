@@ -58,19 +58,19 @@ values
 ('BDU12378492112', 'Tesla', 'Tesla', 2020, '89273HJHA');
 
 -- insert data to car
-insert into zzz_car (cartype, dailyrate, overrate, officeid, vin)
+insert into zzz_car (cartype, dailyrate, overrate, officeid, vin, imgurl)
 values
-('small car', 1.0, 50.0, 1, '299J98JSJIW19923I'),
-('mid-size car', 78.28, 10.29, 2, '28WHDJW92U939282'),
-('luxury car', 28.17, 29.29, 3, '894739JUHE2932'),
-('SUV', 92.12, 82.23, 4, '283DWJEHBDU12'),
-('Premium SUV', 19.29, 28.39, 5, '1231283DHUIHU'),
-('Mini Van', 12.23, 34.72, 6, 'HIH289389223'),
-('Station Wagon', 49.38, 19.3, 7, 'PEI893904212'),
-('small car',28.34,20.0, 8, '838HIDN8929321'),
-('Premium SUV', 72.83, 22.92, 9, 'EIWDODO123871'),
-('Station Wagon', 48.20, 29.32, 10,'19HDHJ929391'),
-('SUV', 23.12, 28.23, 11, 'BDU12378492112');
+('small car', 1.0, 50.0, 1, '299J98JSJIW19923I', 'https://media.zipcar.com/images/model-image?model_id=64790058'),
+('mid-size car', 78.28, 10.29, 2, '28WHDJW92U939282', 'https://media.zipcar.com/images/model-image?model_id=94567'),
+('luxury car', 28.17, 29.29, 3, '894739JUHE2932','https://media.zipcar.com/images/model-image?model_id=1651832377'),
+('SUV', 92.12, 82.23, 4, '283DWJEHBDU12','https://media.zipcar.com/images/model-image?model_id=2297323015'),
+('Premium SUV', 19.29, 28.39, 5, '1231283DHUIHU','https://media.zipcar.com/images/model-image?model_id=475722000'),
+('Mini Van', 12.23, 34.72, 6, 'HIH289389223','https://media.zipcar.com/images/model-image?model_id=64790058'),
+('Station Wagon', 49.38, 19.3, 7, 'PEI893904212','https://media.zipcar.com/images/model-image?model_id=94567'),
+('small car',28.34,20.0, 8, '838HIDN8929321','https://media.zipcar.com/images/model-image?model_id=94567'),
+('Premium SUV', 72.83, 22.92, 9, 'EIWDODO123871','https://media.zipcar.com/images/model-image?model_id=1651832377'),
+('Station Wagon', 48.20, 29.32, 10,'19HDHJ929391','https://media.zipcar.com/images/model-image?model_id=475722000'),
+('SUV', 23.12, 28.23, 11, 'BDU12378492112','https://media.zipcar.com/images/model-image?model_id=64790058');
 
 -- insert data to customer
 insert into zzz_customer (custtype, email, phone, addrid)
