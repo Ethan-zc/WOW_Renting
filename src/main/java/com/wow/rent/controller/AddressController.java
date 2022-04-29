@@ -27,12 +27,11 @@ public class AddressController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String addUser(@RequestParam(value = "addrid")int addrId,
-                          @RequestParam(value = "street")String street,
+    public String addUser(@RequestParam(value = "street")String street,
                           @RequestParam(value = "state")String state,
                           @RequestParam(value = "country")String country,
                           @RequestParam(value = "zipcode")int zipcode){
-        int flag=addressService.addAddr(addrId,street,state,country,zipcode);
+        int flag=addressService.addAddr(street,state,country,zipcode);
         if(flag>0){
             return "success";
         }

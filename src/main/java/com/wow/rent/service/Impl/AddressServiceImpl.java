@@ -6,6 +6,7 @@ import com.wow.rent.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.websocket.OnError;
 import java.util.List;
 
 @Service
@@ -20,17 +21,22 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public int addAddr(int addrid, String street, String state, String country, int zipcode) {
+    public int addAddr(String street, String state, String country, int zipcode) {
         AddressEntry addr = new AddressEntry();
-        addr.setAddrId(addrid);
         addr.setStreet(street);
         addr.setState(state);
+        addr.setCountry(country);
         addr.setZipcode(zipcode);
         return addressMapper.add(addr);
     }
 
     @Override
     public int deleteAddr(int id) {
-        return deleteAddr(id);
+        return addressMapper.delete(id);
+    }
+
+    @Override
+    public int findAddressIdByInfo(String street, String state, String country, int zipcode) {
+        return addressMapper.findAddressIdByInfo(street, state, country, zipcode);
     }
 }

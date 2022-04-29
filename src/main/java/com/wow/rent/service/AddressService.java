@@ -8,8 +8,10 @@ public interface AddressService {
 
     List<AddressEntry> findAddressList();
 
-    int addAddr(int addrId, String street,String state,String country, int zipcode);
+    int addAddr(String street,String state,String country, int zipcode);
 
     int deleteAddr(int id);
+
+    int findAddressIdByInfo(String street, String state, String country, int zipcode);
 }
 

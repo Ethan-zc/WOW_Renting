@@ -11,10 +11,13 @@ public interface AddressMapper {
     @Select("select addrid, street, state, country, zipcode from zzz_address")
     List<AddressEntry> findAddressList();
 
-    @Insert({"insert into zzz_address(addrid, street, state, country, zipcode) values('${addr.addrid}','${addr.street}','${addr.state}','${addr.country}', '${addr.zipcode}')"})
+    @Insert({"insert into zzz_address(street, state, country, zipcode) values('${addr.street}','${addr.state}','${addr.country}', '${addr.zipcode}')"})
     int add(@Param("addr") AddressEntry addr);
 
     @Delete("delete from zzz_address where id = #{id}")
     int delete(int id);
+
+    @Select("SELECT addrid FROM zzz_address WHERE street = #{street} AND state = #{state} AND country = #{country} AND zipcode = #{zipcode}")
+    int findAddressIdByInfo(String street, String state, String country, int zipcode);
 
 }
