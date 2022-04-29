@@ -20,7 +20,8 @@ Files
 # Templates
 
 - Use [Material Kit Material-UI v4](https://www.creative-tim.com/product/material-kit-material-ui-v4) to create car rental pages
-- Use [Material Dashboard Material-UI v4](https://www.creative-tim.com/product/material-dashboard-material-ui-v4) to create account pages for users
+- Use  [Material Dashboard 2 React](https://www.creative-tim.com/product/material-dashboard-react#) to create account pages for users
+- Alternative template [Material Dashboard Material-UI v4](https://www.creative-tim.com/product/material-dashboard-material-ui-v4)
 
 # Spring boot + React + MySQL
 

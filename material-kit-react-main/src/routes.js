@@ -52,6 +52,7 @@ import ContactUs from "layouts/pages/landing-pages/contact-us";
 import Author from "layouts/pages/landing-pages/author";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
+import Trip from "layouts/pages/trip";
 // import Admin from "layouts/pages/account/admin";
 // import Corp from "layouts/pages/account/corp";
 // import User from "layouts/pages/account/user";
@@ -75,6 +76,7 @@ import Dropdowns from "layouts/sections/elements/dropdowns";
 import ProgressBars from "layouts/sections/elements/progress-bars";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
+
 
 const routes = [
   {
@@ -254,7 +256,8 @@ const routes = [
   {
     name: "trips",
     icon: <CarRentalIcon />,
-    route: "/pages/authentication/sign-in",
+    route: "/pages/trip",
+    component: <Trip />,
   },
   {
     name: "sign in",

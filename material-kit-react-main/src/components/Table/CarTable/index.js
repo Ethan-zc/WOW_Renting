@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TableHead from "@material-ui/core/TableHead";
@@ -16,6 +17,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import TableSortLabel from '@mui/material/TableSortLabel';
 import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -93,11 +95,9 @@ TablePaginationActions.propTypes = {
 
 const useStyles = makeStyles(styles);
 
-export default function CustomTable(props) {
+export default function CarTable(props) {
   const classes = useStyles();
-  const { tableHead, tableData, tableHeaderColor, imgUrls } = props;
-
-  console.log(imgUrls);
+  const { tableHead, tableData, tableHeaderColor, imgUrls, onChange } = props;
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -120,6 +120,10 @@ export default function CustomTable(props) {
     setBgImage(imgUrls[page * rowsPerPage + e]);
   };
 
+  const handleOnClick = (e) => {
+    onChange(e);
+  }
+
   return (
     <Grid container spacing={3} alignItems="center">
       <Grid item xs={12} sm={8} md={8}>
@@ -134,7 +138,12 @@ export default function CustomTable(props) {
                         className={classes.tableCell + " " + classes.tableHeadCell}
                         key={key}
                       >
-                        {prop}
+                        <TableSortLabel
+                          hideSortIcon={true}
+                          onClick={() => handleOnClick(prop)}
+                        >
+                          {prop}
+                        </TableSortLabel>
                       </TableCell>
                     );
                   })}
@@ -155,7 +164,10 @@ export default function CustomTable(props) {
                     >
                     {prop.map((prop, key) => {
                       return (
-                        <TableCell className={classes.tableCell} key={key}>
+                        <TableCell 
+                          className={classes.tableCell} 
+                          key={key}
+                          onClick={() => {handleOnClick(prop)}}>
                           {prop}
                         </TableCell>
                       );
@@ -223,11 +235,11 @@ export default function CustomTable(props) {
   );
 }
 
-CustomTable.defaultProps = {
+CarTable.defaultProps = {
   tableHeaderColor: "gray",
 };
 
-CustomTable.propTypes = {
+CarTable.propTypes = {
   tableHeaderColor: PropTypes.oneOf([
     "warning",
     "primary",

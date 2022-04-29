@@ -1,8 +1,8 @@
 import http from "../http-common";
 
 class CarDataService {
-  getAll() {
-    return http.get("/cars/list");
+  post(data) {
+      return http.post("/cars/list", data);
   }
 
   get(id) {
@@ -10,7 +10,7 @@ class CarDataService {
   }
 
   create(data) {
-    return http.post("/cars/request", data);
+    return http.post("/cars/list", data);
   }
 
   update(id, data) {

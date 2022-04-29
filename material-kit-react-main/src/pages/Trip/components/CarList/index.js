@@ -55,8 +55,6 @@ const styles = {
   },
 };
 
-const titles = ["carId", "carType", "dailyRate", "overRate", "officeId", "vin"];
-
 const offices = [
   {
     value: '1',
@@ -76,68 +74,86 @@ const offices = [
   },
 ];
 
+
+const heads = {
+  carId: "carId",
+  officeId: "officeId",
+  carType: "carType",
+  dailyRate: "dailyRate",
+  overRate: "overRate",
+  vin: "vin",
+}
+
 const useStyles = makeStyles(styles);
 
 export default function CarList() {
   const classes = useStyles();
 
+  const [pickUp, setPickUp] = React.useState("");
+  const [dropOff, setDropOff] = React.useState("");
+  const [pdate, setPdate] = React.useState("");
+  const [ddate, setDdate] = React.useState("");
+
   // TODO: need to change the following logics 
-  // bug called twice
   const [imgUrls, setImgUrls] = React.useState([]);
-  const [cars, setCars] = React.useState([]);
+  const [carList, setCarList] = React.useState([]);
   useEffect(() => {
-    retrieveCars();
+    console.log("useEffect called!")
+    getCarList(null);
   }, []);
 
-  const [pickup, setPickup] = React.useState("");
-  const [dropoff, setDropoff] = React.useState("");
-  const [pDate, setPDate] = React.useState("");
-  const [dDate, setDDate] = React.useState("");
-
-  const retrieveCars = () => {
-    return CarDataService.getAll()
-      .then(response => setCars(() => {
-        const carData = [];
-        const urlData = [];
-        Array.from(response.data).forEach(e => {
-          carData.push([e.carId.toString(), e.carType.toString(), e.dailyRate.toString(), e.overRate.toString(), e.officeId.toString(), e.vin.toString()]);
-          urlData.push(e.imgUrl.toString());
+  // TODO: could be better
+  const getCarList = (prop) => {
+    // post data
+    let postData = {
+      ddate: ddate,
+      orderBy: prop ? prop : "",
+      pdate: pdate,
+      pickUp: pickUp
+    };
+    console.log("getCarList postData: " + Object.values(postData));
+    return CarDataService.post(postData)
+      .then(response => {
+        console.log("getCarList response data: " + response.data);
+        let carData = [];
+        let urlData = [];
+        Array.from(response.data).foreach((e) => {
+          carData.push(Object.keys(heads).map((key) => {
+            return prop[key].toString();
+          }));
+          urlData.push(prop.imgUrl.toString());
         });
         setImgUrls(urlData);
-        return carData;
-      }));
+        setCarList(carData);
+      });
   };
 
-  const updateCarList = () => {
-    retrieveCars();
+  const updateCarListByOrder = (prop) => {
+    getCarList(prop);
   };
 
-  const onChangePickup = (e) => {
-    setPickup(e.target.value);
+  const onChangePickUp = (e) => {
+    setPickUp(e.target.value);
   }
 
-  const onChangeDropoff = (e) => {
-    setDropoff(e.target.value);
+  const onChangeDropOff = (e) => {
+    setDropOff(e.target.value);
   }
 
-  const onChangePDate = (e) => {
-    setPDate(new Date(e).toLocaleDateString());
+  const onChangePdate = (e) => {
+    setPdate(new Date(e).toLocaleDateString());
   }
 
-  const onChangeDDate = (e) => {
-    setDDate(new Date(e).toLocaleDateString());
+  const onChangeDdate = (e) => {
+    setDdate(new Date(e).toLocaleDateString());
+  }
+
+  const onChangeOrderBy = (e) => {
+    updateCarListByOrder(e);
   }
   
   const handleClickButton = () => {
-    let data = {
-      pickup: pickup,
-      dropoff: dropoff,
-      pDate: pDate,
-      dDate: dDate,
-    };
-    console.log(data);
-    updateCarList();
-    return CarDataService.create(data).then(response => setCars(response.data));
+    updateCarListByOrder();
   };
 
   return (
@@ -164,8 +180,8 @@ export default function CarList() {
                       placeholder="Pick-off"
                       label="Pick-up" 
                       fullWidth
-                      value={pickup}
-                      onChange={onChangePickup}
+                      value={pickUp}
+                      onChange={onChangePickUp}
                       >
                         {offices.map((option) => (
                           <MenuItem key={option.value} value={option.value} >
@@ -181,8 +197,8 @@ export default function CarList() {
                       label="Drop-off"
                       fullWidth 
                       select
-                      value={dropoff}
-                      onChange={onChangeDropoff}
+                      value={dropOff}
+                      onChange={onChangeDropOff}
                       >
                         {offices.map((option) => (
                           <MenuItem key={option.value} value={option.value} >
@@ -197,9 +213,9 @@ export default function CarList() {
                         label: "Pick-up date",
                         placeholder: "Pick-up date",
                         variant: "standard",
-                        value: pDate,
+                        value: pdate,
                       }}
-                      onChange={onChangePDate}
+                      onChange={onChangePdate}
                     />
                   </Grid>
                   <Grid item xs={12} md={3}>
@@ -208,9 +224,9 @@ export default function CarList() {
                         label: "Drop-off date",
                         placeholder: "Drop-off date",
                         variant: "standard",
-                        value: dDate,
+                        value: ddate,
                       }}
-                      onChange={onChangeDDate}
+                      onChange={onChangeDdate}
                     />
                   </Grid>
                 </Grid>
@@ -240,9 +256,11 @@ export default function CarList() {
           <CardBody>
             <CarTable 
               tableHeaderColor="primary"
-              tableHead={titles}
-              tableData={cars}
+              tableHead={Object.values(heads)}
+              tableData={carList}
               imgUrls={imgUrls}
+            //   orderBy={orderBy}
+              onChange={onChangeOrderBy}
             />
           </CardBody>
         </Card>

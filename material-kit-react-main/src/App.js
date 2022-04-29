@@ -25,9 +25,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 // Material Kit 2 React themes
 import theme from "assets/theme";
 import Welcome from "layouts/pages/welcome";
-import Trip from "layouts/pages/trip";
+// import Trip from "layouts/pages/trip";
 import Admin from "layouts/pages/account/admin";
-import RTL from "layouts/pages/account/user";
+// import RTL from "layouts/pages/account/user";
 
 // Material Kit 2 React routes
 import routes from "routes";
@@ -62,7 +62,7 @@ export default function App() {
         {getRoutes(routes)}
         {getRoutes(accRoutes)}
         <Route path="/welcome" element={<Welcome />} />
-        <Route path="/trip" element={<Trip />} />
+        {/* <Route path="/trip" element={<Trip />} /> */}
         <Route path="/admin/*" element={<Admin />} />
         <Route path="/*" element={<Navigate to="/welcome" />} />
       </Routes>

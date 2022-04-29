@@ -28,7 +28,9 @@ import GridItem from "components/Grid/GridItem";
 // Material Kit 2 React view
 import DefaultNavbar from "view/Navbars/DefaultNavbar";
 import BasicFooter from "view/Footers/BasicFooter";
-import CarList from "view/CarList";
+
+// Trip page components
+import CarList from "pages/Trip/components/CarList";
 
 // Routes
 import routes from "routes";
