@@ -20,9 +20,9 @@ import Grid from "@mui/material/Grid";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 
-// Material Kit 2 React examples
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
-import CenteredBlogCard from "examples/Cards/BlogCards/CenteredBlogCard";
+// Material Kit 2 React view
+import DefaultInfoCard from "view/Cards/InfoCards/DefaultInfoCard";
+import CenteredBlogCard from "view/Cards/BlogCards/CenteredBlogCard";
 
 function Information() {
   return (

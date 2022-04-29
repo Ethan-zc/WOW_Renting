@@ -34,6 +34,12 @@ export default [
     route: "/pages/authentication/sign-in",
   },
   {
+    image:
+      "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/signin-basic.jpg",
+    name: "Sign Up Page",
+    route: "/pages/authentication/sign-up",
+  },
+  {
     image: `${imagesPrefix}/author.jpg`,
     name: "Author Page",
     route: "/pages/landing-pages/author",

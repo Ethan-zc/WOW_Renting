@@ -22,8 +22,8 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React components
-import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
-import BackgroundBlogCard from "examples/Cards/BlogCards/BackgroundBlogCard";
+import TransparentBlogCard from "view/Cards/BlogCards/TransparentBlogCard";
+import BackgroundBlogCard from "view/Cards/BlogCards/BackgroundBlogCard";
 
 // Images
 import post1 from "assets/images/examples/testimonial-6-2.jpg";

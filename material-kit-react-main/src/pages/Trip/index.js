@@ -21,15 +21,14 @@ import Card from "@mui/material/Card";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import GridItem from "components/Grid/GridItem";
 // TODO: add a car table or list
 // import CarList from "components/CarList";
 
-// Material Kit 2 React navigation <- examples
-import DefaultNavbar from "navigation/Navbars/DefaultNavbar";
-import SimpleFooter from "navigation/Footer";
-
-// TODO: put it where? Search form tight
-import FormSearchTight from "layouts/sections/input-areas/forms/components/FormSearchTight";
+// Material Kit 2 React view
+import DefaultNavbar from "view/Navbars/DefaultNavbar";
+import BasicFooter from "view/Footers/BasicFooter";
+import CarList from "view/CarList";
 
 // Routes
 import routes from "routes";
@@ -53,29 +52,34 @@ function Trip() {
         }}
       >
         <Container>
-          <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-            <MKTypography
-              variant="h1"
-              color="white"
-              mt={-6}
-              mb={1}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              ZZZ Car Rental{" "}
-            </MKTypography>
-            <MKTypography
-              variant="body1"
-              color="white"
-              textAlign="center"
-              px={{ xs: 6, lg: 12 }}
-              mt={1}
-            >
-              Welcome to NYC!
-            </MKTypography>
+          <Grid container item xs={12} lg={12} justifycontent="center" mx="auto">
+            <GridItem xs={12} sm={12} md={12}>
+              <MKTypography
+                variant="h1"
+                color="white"
+                textAlign="center"
+                mt={-6}
+                mb={1}
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                })}
+              >
+                ZZZ Car Rental
+              </MKTypography>
+            </GridItem>
+            <GridItem xs={12} sm={12} md={12}>
+              <MKTypography
+                variant="body1"
+                color="white"
+                textAlign="center"
+                px={{ xs: 6, lg: 12 }}
+                mt={1}
+              >
+                Welcome to NYC!
+              </MKTypography>
+            </GridItem>
           </Grid>
         </Container>
       </MKBox>
@@ -90,16 +94,12 @@ function Trip() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        {/* TODO: filling form */}
         <Container>
-          <FormSearchTight />
-        </Container>
-        {/* <Container>
           <CarList />
-        </Container> */}
+        </Container>
       </Card>
       <MKBox pt={0} pb={4} px={1} mt={6}>
-        <SimpleFooter />
+        <BasicFooter />
       </MKBox>
     </>
   );

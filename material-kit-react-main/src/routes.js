@@ -44,12 +44,17 @@ import CarRentalIcon from "@mui/icons-material/CarRental";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FormatPaintIcon from "@mui/icons-material/FormatPaint";
+// import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 // Pages
 import AboutUs from "layouts/pages/landing-pages/about-us";
 import ContactUs from "layouts/pages/landing-pages/contact-us";
 import Author from "layouts/pages/landing-pages/author";
 import SignIn from "layouts/pages/authentication/sign-in";
+import SignUp from "layouts/pages/authentication/sign-up";
+// import Admin from "layouts/pages/account/admin";
+// import Corp from "layouts/pages/account/corp";
+// import User from "layouts/pages/account/user";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -238,9 +243,9 @@ const routes = [
             component: <SignIn />,
           },
           {
-            name: "sign up", // TODO: signup page
-            route: "/pages/authentication/sign-in",
-            component: <SignIn />,
+            name: "sign up",
+            route: "/pages/authentication/sign-out",
+            component: <SignUp />,
           },
         ],
       },
@@ -257,16 +262,37 @@ const routes = [
     collapse: [
       {
         name: "sign in",
-        route: "/pages/authentication/sign-in",
+        route: "/authentication/sign-in",
         component: <SignIn />,
       },
       {
-        name: "sign up", // TODO: signup page
-        route: "/pages/authentication/sign-in",
-        component: <SignIn />,
+        name: "sign up",
+        route: "/authentication/sign-up",
+        component: <SignUp />,
       },
     ],
   },
+//   {
+//     name: "account",
+//     icon: <ManageAccountsIcon />,
+//     collapse: [
+//       {
+//         name: "admin",
+//         route: "/account/admin",
+//         component: <Admin />,
+//       },
+//       {
+//         name: "corp",
+//         route: "/account/corp",
+//         component: <Corp />,
+//       },
+//       {
+//         name: "user",
+//         route: "/account/user",
+//         component: <User />,
+//       },
+//     ],
+//   },
   {
     name: "github",
     icon: <GitHubIcon />,

@@ -20,8 +20,8 @@ import Grid from "@mui/material/Grid";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 
-// Material Kit 2 React examples
-import Breadcrumbs from "examples/Breadcrumbs";
+// Material Kit 2 React view
+import Breadcrumbs from "view/Breadcrumbs";
 
 // Sections components
 import BaseLayout from "layouts/sections/components/BaseLayout";

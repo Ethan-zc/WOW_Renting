@@ -4,7 +4,7 @@ Folder
 
 - assets: save images
 - components: basic components
-- navigation(examples): copied from examples
+- view(examples): copied from examples
 - pages: main pages
   - LandingPages: sign in / out
   - Welcome(Presentation): homepage
@@ -15,7 +15,7 @@ Files
 
 - footer.routes.js: no use
 - http-common.js: config file, base url for connecting backend
-- routes.js: routes for navigation menu bar
+- routes.js: routes for view menu bar
 
 # Templates
 

@@ -20,6 +20,7 @@ import Grid from "@mui/material/Grid";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import GridItem from "components/Grid/GridItem";
 
 function BuiltByDevelopers() {
   const bgImage =
@@ -43,16 +44,22 @@ function BuiltByDevelopers() {
       }}
     >
       <Container>
-        <Grid container item xs={12} lg={6} sx={{ ml: { xs: 0, lg: 6 } }}>
-          <MKTypography variant="h4" color="white" fontWeight="bold">
-            Built by developersCall For Ads!
-          </MKTypography>
-          <MKTypography variant="h1" color="white" mb={1}>
-            Call For Ads!
-          </MKTypography>
-          <MKTypography variant="body1" color="white" opacity={0.8} mb={1}>
-            We deliver the best car rental service. Appreciate your investment!
-          </MKTypography>
+        <Grid container item xs={12} lg={12} sx={{ ml: { xs: 12, lg: 6 } }}>
+          <GridItem xs={12} sm={12} md={12}>
+            <MKTypography variant="h4" color="white" fontWeight="bold">
+              Built by developersCall For Ads!
+            </MKTypography>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={12}>
+            <MKTypography variant="h1" color="white" mb={1}>
+              Call For Ads!
+            </MKTypography>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={12}>
+            <MKTypography variant="body1" color="white" opacity={0.8} mb={1}>
+              We deliver the best car rental service. Appreciate your investment!
+            </MKTypography>
+          </GridItem>
         </Grid>
       </Container>
     </MKBox>

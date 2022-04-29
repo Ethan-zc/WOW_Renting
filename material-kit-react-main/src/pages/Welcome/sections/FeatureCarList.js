@@ -65,7 +65,7 @@ function FeatureCarList() {
           container
           item
           xs={12}
-          lg={6}
+          lg={12}
           flexDirection="column"
           alignItems="center"
           sx={{ textAlign: "center", my: 6, mx: "auto", px: 0.75 }}

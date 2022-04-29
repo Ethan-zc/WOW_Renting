@@ -22,8 +22,8 @@ import Divider from "@mui/material/Divider";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-// Material Kit 2 React examples
-import DefaultReviewCard from "examples/Cards/ReviewCards/DefaultReviewCard";
+// Material Kit 2 React view
+import DefaultReviewCard from "view/Cards/ReviewCards/DefaultReviewCard";
 
 // Images
 import appleLogo from "assets/images/logos/gray-logos/logo-apple.svg";

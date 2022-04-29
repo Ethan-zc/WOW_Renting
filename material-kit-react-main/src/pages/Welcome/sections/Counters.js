@@ -21,16 +21,16 @@ import Divider from "@mui/material/Divider";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 
-// Material Kit 2 React examples
-import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
+// Material Kit 2 React view
+import DefaultCounterCard from "view/Cards/CounterCards/DefaultCounterCard";
 
 // TODO: counters info?
 function Counters() {
   return (
-    <MKBox component="section" py={3}>
+    <MKBox component="section" py={2}>
       <Container>
-        <Grid container item xs={12} lg={9} sx={{ mx: "auto" }}>
-          <Grid item xs={12} md={4}>
+        <Grid container item xs={12} md={12} lg={12} sx={{ mx: "auto" }}>
+          <Grid item xs={12} md={4} lg={4}>
             <DefaultCounterCard
               count={3}
               suffix="+"
@@ -38,7 +38,7 @@ function Counters() {
               description="Favorite website among international customers"
             />
           </Grid>
-          <Grid item xs={12} md={4} display="flex">
+          <Grid item xs={12} md={4} lg={4} display="flex">
             <Divider orientation="vertical" sx={{ display: { xs: "none", md: "block" }, mx: 0 }} />
             <DefaultCounterCard
               count={20}
@@ -48,7 +48,7 @@ function Counters() {
             />
             <Divider orientation="vertical" sx={{ display: { xs: "none", md: "block" }, ml: 0 }} />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} lg={4}>
             <DefaultCounterCard count={0} title="Worry" description="No worries" />
           </Grid>
         </Grid>

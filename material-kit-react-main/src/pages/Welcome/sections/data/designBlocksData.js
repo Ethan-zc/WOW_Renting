@@ -14,31 +14,33 @@ Coded by www.creative-tim.com
 */
 
 const imagesPrefix =
-  "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/sections";
+  "https://media.zipcar.com/images/model-image?model_id=";
 
 // TODO: find pics of cars
+// eslint-disable-next-line
 export default [
   {
     title: "SUV",
     description: "Luxury vehicle",
     items: [
       {
-        image: `${imagesPrefix}/headers.jpg`,
+        image: `${imagesPrefix}64790058`,
         name: "Page Headers",
         count: 10,
-        route: "/sections/page-sections/page-headers",
+        route: "/trip",
       },
       {
-        image: `${imagesPrefix}/features.jpg`,
+        image: `${imagesPrefix}94567`,
         name: "Features",
         count: 14,
-        route: "/sections/page-sections/features",
+        route: "/trip",
       },
       {
-        image: `${imagesPrefix}/pricing.jpg`,
+        image: `${imagesPrefix}2297323015`,
         name: "Pricing",
         count: 8,
         pro: true,
+        route: "/trip",
       },
     ],
   },
@@ -47,52 +49,41 @@ export default [
     description: "Normal car",
     items: [
       {
-        image: `${imagesPrefix}/navbars.jpg`,
+        image: `${imagesPrefix}475722000`,
         name: "Navbars",
         count: 4,
-        route: "/sections/navigation/navbars",
+        route: "/trip",
       },
       {
-        image: `${imagesPrefix}/nav-tabs.jpg`,
+        image: `${imagesPrefix}64790058`,
         name: "Nav Tabs",
         count: 2,
-        route: "/sections/navigation/nav-tabs",
+        route: "/trip",
       },
-      {
-        image: `${imagesPrefix}/pagination.jpg`,
-        name: "Pagination",
-        count: 3,
-        route: "/sections/navigation/pagination",
-      },
-    ],
+    ]
   },
   {
     title: "Truck",
     description: "For delivering goods",
     items: [
       {
-        image: `${imagesPrefix}/alerts.jpg`,
+        image: `${imagesPrefix}94567`,
         name: "Alerts",
         count: 4,
-        route: "/sections/attention-catchers/alerts",
+        route: "/trip",
       },
       {
-        image: `${imagesPrefix}/toasts.jpg`,
+        image: `${imagesPrefix}1651832377`,
         name: "Notifications",
         count: 3,
         pro: true,
+        route: "/trip",
       },
       {
-        image: `${imagesPrefix}/popovers.jpg`,
+        image: `${imagesPrefix}475722000`,
         name: "Tooltips & Popovers",
         count: 2,
-        route: "/sections/attention-catchers/tooltips-popovers",
-      },
-      {
-        image: `${imagesPrefix}/modals.jpg`,
-        name: "Modals",
-        count: 5,
-        route: "/sections/attention-catchers/modals",
+        route: "/trip",
       },
     ],
   },

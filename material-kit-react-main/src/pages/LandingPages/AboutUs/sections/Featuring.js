@@ -20,8 +20,8 @@ import Grid from "@mui/material/Grid";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 
-// Material Kit 2 React examples
-import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
+// Material Kit 2 React view
+import DefaultCounterCard from "view/Cards/CounterCards/DefaultCounterCard";
 
 // Images
 import coinbase from "assets/images/logos/gray-logos/logo-coinbase.svg";

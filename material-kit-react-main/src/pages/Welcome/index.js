@@ -20,12 +20,14 @@ import Card from "@mui/material/Card";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
+import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
+import GridItem from "components/Grid/GridItem";
 
-// Material Kit 2 React navigation <- examples
-import DefaultNavbar from "navigation/Navbars/DefaultNavbar";
-import SimpleFooter from "navigation/Footer";
-// import FilledInfoCard from "navigation/Cards/InfoCards/FilledInfoCard";
+// Material Kit 2 React view
+import DefaultNavbar from "view/Navbars/DefaultNavbar";
+import BasicFooter from "view/Footers/BasicFooter";
+// import FilledInfoCard from "view/Cards/InfoCards/FilledInfoCard";
 
 // Welcome page sections <- Presentation
 import Counters from "pages/Welcome/sections/Counters";
@@ -36,7 +38,7 @@ import FeatureCarList from "pages/Welcome/sections/FeatureCarList";
 import AdsDisplay from "pages/Welcome/components/AdsDisplay";
 
 // TODO: put it where? Search form
-import FormSearch from "layouts/sections/input-areas/forms/components/FormSearch";
+// import FormSearch from "layouts/sections/input-areas/forms/components/FormSearch";
 
 // Routes
 import routes from "routes";
@@ -60,29 +62,34 @@ function Welcome() {
         }}
       >
         <Container>
-          <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-            <MKTypography
-              variant="h1"
-              color="white"
-              mt={-6}
-              mb={1}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              ZZZ Car Rental{" "}
-            </MKTypography>
-            <MKTypography
-              variant="body1"
-              color="white"
-              textAlign="center"
-              px={{ xs: 6, lg: 12 }}
-              mt={1}
-            >
-              Welcome to NYC!
-            </MKTypography>
+          <Grid container item xs={12} lg={12} justifycontent="center" mx="auto">
+            <GridItem xs={12} sm={12} md={12}>
+              <MKTypography
+                variant="h1"
+                color="white"
+                textAlign="center"
+                mt={-6}
+                mb={1}
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                })}
+              >
+                ZZZ Car Rental
+              </MKTypography>
+            </GridItem>
+            <GridItem xs={12} sm={12} md={12}>
+              <MKTypography
+                variant="body1"
+                color="white"
+                textAlign="center"
+                px={{ xs: 6, lg: 12 }}
+                mt={1}
+              >
+                Welcome to NYC!
+              </MKTypography>
+            </GridItem>
           </Grid>
         </Container>
       </MKBox>
@@ -97,16 +104,30 @@ function Welcome() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        {/* TODO: filling form */}
         <Container>
-          <FormSearch />
+          <MKBox component="section" py={4} coloredShadow="dark">
+            <Container>
+                <Grid container item justifyContent="center" xs={12} lg={12} mx="auto" textAlign="left">
+                  <GridItem xs={12} sm={12} md={12}>
+                    <MKTypography variant="h3" mb={4}>
+                        Let's schedule your trip!
+                    </MKTypography>
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <MKButton type="submit" variant="gradient" color="dark" fullWidth href={"/trip"}>
+                      Reserve
+                    </MKButton>
+                  </GridItem>
+                </Grid>
+              </Container>
+            </MKBox>
         </Container>
         <Counters />
         <FeatureCarList />
         <AdsDisplay />
       </Card>
       <MKBox pt={0} pb={4} px={1} mt={6}>
-        <SimpleFooter />
+        <BasicFooter />
       </MKBox>
     </>
   );

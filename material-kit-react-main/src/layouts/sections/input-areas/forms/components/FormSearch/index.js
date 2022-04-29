@@ -29,7 +29,7 @@ function FormSearch() {
     <MKBox component="section" py={4} coloredShadow="dark">
       <Container>
         <Grid container item justifyContent="left" xs={12} lg={10} mx="auto" textAlign="left">
-          <MKTypography variant="h3" mb={1}>
+          <MKTypography variant="h4" mb={1}>
             Reserve A Car
           </MKTypography>
         </Grid>
@@ -54,7 +54,7 @@ function FormSearch() {
           </MKBox>
         </Grid>
         <Grid container item justifyContent="center" lg={2} sx={{ mx: "auto" }}>
-          <MKButton type="submit" variant="gradient" color="dark" fullWidth>
+          <MKButton type="submit" variant="gradient" color="dark" fullWidth href={"/trip"}>
             Search
           </MKButton>
         </Grid>
