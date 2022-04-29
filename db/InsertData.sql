@@ -144,4 +144,16 @@ values
 (13, 'C', 0778906),
 (14, 'C', 0167890);
 
+ -- insert data to zzz_orders
+SET FOREIGN_KEY_CHECKS = 0;
+insert into zzz_order (orderid, startodo, endodo, odolimit, startdate, enddate, custid, custtype, pickup, dropoff, carid, discid, disctype)
+values
+(1234568, 1000, null, 40, '2020-03-01', '2020-03-05', 754710, 'I', 2, 3, 1, 84654, null),
+(2234568, 1000, null, 40, '2020-03-01', '2020-03-05', 754710, 'I', 2, 3, 1, 84654, null),
+(3234568, 1000, null, null, '2020-03-01', '2020-03-05', 754710, 'I', 2, 2, 1, 84657, null),
+(4234568, 1000, null, 40, '2020-03-01', '2020-03-05', 754710, 'I', 2, 3, 1, 84654, 'I'),
+(5234568, 1000, null, 40, '2021-07-01', '2021-07-05', 754710, 'I', 2, 3, 1, 84657, 'I'),
+(6234568, 1000, null, 40, '2021-07-01', '2021-07-05', 754710, 'C', 2, 3, 1, 94654, 'C');
+SET FOREIGN_KEY_CHECKS = 1;
+
 commit;
