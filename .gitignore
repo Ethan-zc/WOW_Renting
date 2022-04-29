@@ -35,7 +35,7 @@ build/
 ### Local ###
 .DS_Store
 db/Oracle
-src/main/resources/application-dev.yml
+/src/main/resources/application-dev.yml
 
 ### Frontend ###
 material-kit-react-main/node_modules

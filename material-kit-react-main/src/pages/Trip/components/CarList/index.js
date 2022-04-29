@@ -94,30 +94,28 @@ export default function CarList() {
   const [pdate, setPdate] = React.useState("");
   const [ddate, setDdate] = React.useState("");
 
-  // TODO: need to change the following logics 
   const [imgUrls, setImgUrls] = React.useState([]);
+  
+  // TODO: could be better
   const [carList, setCarList] = React.useState([]);
   useEffect(() => {
     console.log("useEffect called!")
-    getCarList(null);
+    let postData = {
+      ddate: "",
+      orderBy: "",
+      pdate: "",
+      pickUp: ""
+    };
+    getCarListData(postData);
   }, []);
 
-  // TODO: could be better
-  const getCarList = (prop) => {
-    // post data
-    let postData = {
-      ddate: ddate,
-      orderBy: prop ? prop : "",
-      pdate: pdate,
-      pickUp: pickUp
-    };
-    console.log("getCarList postData: " + Object.values(postData));
+  const getCarListData = (postData) => {
     return CarDataService.post(postData)
       .then(response => {
         console.log("getCarList response data: " + response.data);
         let carData = [];
         let urlData = [];
-        Array.from(response.data).foreach((e) => {
+        Array.from(response.data).forEach((prop) => {
           carData.push(Object.keys(heads).map((key) => {
             return prop[key].toString();
           }));
@@ -126,10 +124,18 @@ export default function CarList() {
         setImgUrls(urlData);
         setCarList(carData);
       });
-  };
-
-  const updateCarListByOrder = (prop) => {
-    getCarList(prop);
+  }
+  //
+  const updateCarListDataByOrder = (orderBy) => {
+    // post data
+    let postData = {
+      ddate: ddate,
+      orderBy: orderBy ? orderBy : "",
+      pdate: pdate,
+      pickUp: pickUp
+    };
+    console.log("updateCarListData postData: " + Object.values(postData));
+    return getCarListData(postData);
   };
 
   const onChangePickUp = (e) => {
@@ -149,11 +155,11 @@ export default function CarList() {
   }
 
   const onChangeOrderBy = (e) => {
-    updateCarListByOrder(e);
+    updateCarListDataByOrder(e);
   }
   
   const handleClickButton = () => {
-    updateCarListByOrder();
+    updateCarListDataByOrder();
   };
 
   return (
