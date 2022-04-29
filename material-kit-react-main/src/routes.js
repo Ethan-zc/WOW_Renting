@@ -44,7 +44,7 @@ import CarRentalIcon from "@mui/icons-material/CarRental";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FormatPaintIcon from "@mui/icons-material/FormatPaint";
-// import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 // Pages
 import AboutUs from "layouts/pages/landing-pages/about-us";

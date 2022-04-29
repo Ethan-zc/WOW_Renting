@@ -62,6 +62,7 @@ export default [
       },
     ]
   },
+
   {
     title: "Truck",
     description: "For delivering goods",
@@ -86,5 +87,5 @@ export default [
         route: "/trip",
       },
     ],
-  },
+  }
 ];
