@@ -7,6 +7,7 @@ import com.wow.rent.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.websocket.OnError;
 import java.util.List;
 
 @Service
@@ -16,13 +17,18 @@ public class CarServiceImpl implements CarService {
     protected CarMapper carMapper;
 
     @Override
-    public List<CarEntry> findAllCars() {
-        return carMapper.findAllCars();
+    public List<CarEntry> findAllCars(String orderBy) {
+        return carMapper.findAllCars(orderBy);
     }
 
     @Override
     public VehicleEntry getVehicleInfo(String vin) {
         return carMapper.getVehicleInfo(vin);
+    }
+
+    @Override
+    public List<CarEntry>findCarsWithPickUp(String pickup, String orderBy) {
+        return carMapper.findCarsWithPickUp(pickup, orderBy);
     }
 
 }

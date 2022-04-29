@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface CarService {
 
-    List<CarEntry> findAllCars();
+    List<CarEntry> findAllCars(String orderBy);
 
     VehicleEntry getVehicleInfo(String vin);
+
+    List<CarEntry>findCarsWithPickUp(String pickup, String orderBy);
 }
