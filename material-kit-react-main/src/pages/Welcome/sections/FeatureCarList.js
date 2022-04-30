@@ -33,7 +33,7 @@ import data from "pages/Welcome/sections/data/designBlocksData";
 
 function FeatureCarList() {
   const renderData = data.map(({ title, description, items }) => (
-    <Grid container spacing={3} sx={{ mb: 10 }} key={title}>
+    <Grid container spacing={3} sx={{ mb: 4 }} key={title}>
       <Grid item xs={12} lg={3}>
         <MKBox position="sticky" top="100px" pb={{ xs: 2, lg: 6 }}>
           <MKTypography variant="h3" fontWeight="bold" mb={1}>

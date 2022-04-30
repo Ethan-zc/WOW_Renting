@@ -26,18 +26,11 @@ import MKTypography from "components/MKTypography";
 // Material Kit 2 React view
 import DefaultNavbar from "view/Navbars/DefaultNavbar";
 import BasicFooter from "view/Footers/BasicFooter";
-// import FilledInfoCard from "view/Cards/InfoCards/FilledInfoCard";
 
 // Welcome page sections <- Presentation
 import Counters from "pages/Welcome/sections/Counters";
 import FeatureCarList from "pages/Welcome/sections/FeatureCarList";
-
-// Welcome page components
-// TODO: ads!
-import AdsDisplay from "pages/Welcome/components/AdsDisplay";
-
-// TODO: put it where? Search form
-// import FormSearch from "layouts/sections/input-areas/forms/components/FormSearch";
+import AdsDisplay from "pages/Welcome/sections/AdsDisplay";
 
 // Routes
 import routes from "routes";
