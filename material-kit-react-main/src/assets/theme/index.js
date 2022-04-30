@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Material Kit 2 React React - v2.0.0
+* Material Dashboard 2 React - v2.1.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-material-ui
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.creative-tim.com/product/material-dashboard-react
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -15,9 +15,8 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import { createTheme } from "@mui/material/styles";
-// import Fade from "@mui/material/Fade";
 
-// Material Kit 2 React base styles
+// Material Dashboard 2 React base styles
 import colors from "assets/theme/base/colors";
 import breakpoints from "assets/theme/base/breakpoints";
 import typography from "assets/theme/base/typography";
@@ -25,14 +24,15 @@ import boxShadows from "assets/theme/base/boxShadows";
 import borders from "assets/theme/base/borders";
 import globals from "assets/theme/base/globals";
 
-// Material Kit 2 React helper functions
+// Material Dashboard 2 React helper functions
 import boxShadow from "assets/theme/functions/boxShadow";
 import hexToRgb from "assets/theme/functions/hexToRgb";
 import linearGradient from "assets/theme/functions/linearGradient";
 import pxToRem from "assets/theme/functions/pxToRem";
 import rgba from "assets/theme/functions/rgba";
 
-// Material Kit 2 React components base styles for @mui material components
+// Material Dashboard 2 React components base styles for @mui material components
+import sidenav from "assets/theme/components/sidenav";
 import list from "assets/theme/components/list";
 import listItem from "assets/theme/components/list/listItem";
 import listItemText from "assets/theme/components/list/listItemText";
@@ -71,7 +71,6 @@ import formLabel from "assets/theme/components/form/formLabel";
 import checkbox from "assets/theme/components/form/checkbox";
 import radio from "assets/theme/components/form/radio";
 import autocomplete from "assets/theme/components/form/autocomplete";
-import flatpickr from "assets/theme/components/flatpickr";
 import container from "assets/theme/components/container";
 import popover from "assets/theme/components/popover";
 import buttonBase from "assets/theme/components/buttonBase";
@@ -102,10 +101,10 @@ export default createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         ...globals,
-        ...flatpickr,
         ...container,
       },
     },
+    MuiDrawer: { ...sidenav },
     MuiList: { ...list },
     MuiListItem: { ...listItem },
     MuiListItemText: { ...listItemText },

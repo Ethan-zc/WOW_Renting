@@ -1,10 +1,10 @@
 /**
 =========================================================
-* Material Kit 2 React - v2.0.0
+* Material Dashboard 2 React - v2.1.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.creative-tim.com/product/material-dashboard-react
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -13,16 +13,16 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// Material Kit 2 React base styles
+// Material Dashboard 2 React base styles
 import colors from "assets/theme/base/colors";
 
-// Material Kit 2 React helper functions
+// Material Dashboard 2 React helper functions
 import pxToRem from "assets/theme/functions/pxToRem";
 import boxShadow from "assets/theme/functions/boxShadow";
 
 const { white } = colors;
 
-export default {
+const stepIcon = {
   styleOverrides: {
     root: {
       background: "#9fc9ff",
@@ -53,3 +53,5 @@ export default {
     },
   },
 };
+
+export default stepIcon;

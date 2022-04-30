@@ -21,9 +21,6 @@ import Card from "@mui/material/Card";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
-import GridItem from "components/Grid/GridItem";
-// TODO: add a car table or list
-// import CarList from "components/CarList";
 
 // Material Kit 2 React view
 import DefaultNavbar from "view/Navbars/DefaultNavbar";
@@ -55,7 +52,7 @@ function Trip() {
       >
         <Container>
           <Grid container item xs={12} lg={12} justifycontent="center" mx="auto">
-            <GridItem xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={12}>
               <MKTypography
                 variant="h1"
                 color="white"
@@ -70,8 +67,8 @@ function Trip() {
               >
                 ZZZ Car Rental
               </MKTypography>
-            </GridItem>
-            <GridItem xs={12} sm={12} md={12}>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12}>
               <MKTypography
                 variant="body1"
                 color="white"
@@ -81,7 +78,7 @@ function Trip() {
               >
                 Welcome to NYC!
               </MKTypography>
-            </GridItem>
+            </Grid>
           </Grid>
         </Container>
       </MKBox>

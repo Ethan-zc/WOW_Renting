@@ -254,7 +254,7 @@ const routes = [
     ],
   },
   {
-    name: "trips",
+    name: "trip",
     icon: <CarRentalIcon />,
     route: "/trip",
     component: <Trip />,
@@ -275,27 +275,27 @@ const routes = [
       },
     ],
   },
-//   {
-//     name: "account",
-//     icon: <ManageAccountsIcon />,
-//     collapse: [
-//       {
-//         name: "admin",
-//         route: "/account/admin",
-//         component: <Admin />,
-//       },
-//       {
-//         name: "corp",
-//         route: "/account/corp",
-//         component: <Corp />,
-//       },
-//       {
-//         name: "user",
-//         route: "/account/user",
-//         component: <User />,
-//       },
-//     ],
-//   },
+  // {
+  //   name: "account",
+  //   icon: <ManageAccountsIcon />,
+  //   collapse: [
+  //     {
+  //       name: "admin",
+  //       route: "/account/admin",
+  //       component: <Admin />,
+  //     },
+  //     // {
+  //     //   name: "corp",
+  //     //   route: "/account/corp",
+  //     //   component: <Corp />,
+  //     // },
+  //     // {
+  //     //   name: "user",
+  //     //   route: "/account/user",
+  //     //   component: <User />,
+  //     // },
+  //   ],
+  // },
   {
     name: "github",
     icon: <GitHubIcon />,

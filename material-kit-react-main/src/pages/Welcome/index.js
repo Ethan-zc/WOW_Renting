@@ -22,7 +22,6 @@ import Card from "@mui/material/Card";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-import GridItem from "components/Grid/GridItem";
 
 // Material Kit 2 React view
 import DefaultNavbar from "view/Navbars/DefaultNavbar";
@@ -63,7 +62,7 @@ function Welcome() {
       >
         <Container>
           <Grid container item xs={12} lg={12} justifycontent="center" mx="auto">
-            <GridItem xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={12}>
               <MKTypography
                 variant="h1"
                 color="white"
@@ -78,8 +77,8 @@ function Welcome() {
               >
                 ZZZ Car Rental
               </MKTypography>
-            </GridItem>
-            <GridItem xs={12} sm={12} md={12}>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12}>
               <MKTypography
                 variant="body1"
                 color="white"
@@ -89,7 +88,7 @@ function Welcome() {
               >
                 Welcome to NYC!
               </MKTypography>
-            </GridItem>
+            </Grid>
           </Grid>
         </Container>
       </MKBox>
@@ -108,16 +107,16 @@ function Welcome() {
           <MKBox component="section" py={4} coloredShadow="dark">
             <Container>
                 <Grid container item justifyContent="center" xs={12} lg={12} mx="auto" textAlign="left">
-                  <GridItem xs={12} sm={12} md={12}>
+                  <Grid item xs={12} sm={12} md={12}>
                     <MKTypography variant="h3" mb={4}>
                         Let's schedule your trip!
                     </MKTypography>
-                  </GridItem>
-                  <GridItem xs={12} sm={12} md={12}>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={12}>
                     <MKButton type="submit" variant="gradient" color="dark" fullWidth href={"/trip"}>
                       Reserve
                     </MKButton>
-                  </GridItem>
+                  </Grid>
                 </Grid>
               </Container>
             </MKBox>
