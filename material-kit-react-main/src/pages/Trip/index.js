@@ -26,8 +26,8 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "view/Navbars/DefaultNavbar";
 import BasicFooter from "view/Footers/BasicFooter";
 
-// Trip page components
-import CarList from "pages/Trip/components/CarList";
+// Trip page sections
+import SearchCars from "pages/Trip/sections/SearchCars";
 
 // Routes
 import routes from "routes";
@@ -94,7 +94,7 @@ function Trip() {
         }}
       >
         <Container>
-          <CarList />
+          <SearchCars />
         </Container>
       </Card>
       <MKBox pt={0} pb={4} px={1} mt={6}>

@@ -6,9 +6,8 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-// @mui/material components
-import { useTheme } from '@mui/material/styles';
+// import TableCell from "@material-ui/core/TableCell";
+
 // import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Grid from "@mui/material/Grid";
@@ -17,6 +16,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
@@ -24,7 +24,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
-import ExampleCar from "pages/Welcome/components/ExampleCar";
+import ExampleCar from "pages/Trip/components/ExampleCar";
 import MKTypography from "components/MKTypography";
 import MKBox from "components/MKBox";
 
@@ -33,7 +33,6 @@ import styles from "assets/jss/material-dashboard-react/components/tableStyle.js
 
 // custom table pagination
 function TablePaginationActions(props) {
-  const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
   const handleFirstPageButtonClick = (event) => {
@@ -59,28 +58,28 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+      <FirstPageIcon />
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+      <KeyboardArrowLeft />
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+      <KeyboardArrowRight />
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+      <LastPageIcon />
       </IconButton>
     </Box>
   );
@@ -95,13 +94,23 @@ TablePaginationActions.propTypes = {
 
 const useStyles = makeStyles(styles);
 
-export default function CarTable(props) {
+export default function TableViewCars(props) {
   const classes = useStyles();
-  const { tableHead, tableData, tableHeaderColor, imgUrls, onChange } = props;
+  const { 
+    tableHead,
+    tableData,
+    tableHeaderColor,
+    imgUrls,
+    imgNames,
+    imgInfos,
+    onChangeOrderBy
+  } = props;
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [bgImage, setBgImage] = React.useState("");
+  const [imgBg, setImageBg] = React.useState("");
+  const [imgName, setImageName] = React.useState("");
+  const [imgInfo, setImageInfo] = React.useState("");
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -117,32 +126,34 @@ export default function CarTable(props) {
   };
 
   const handleClickOnRow = (e) => {
-    setBgImage(imgUrls[page * rowsPerPage + e]);
+    setImageBg(imgUrls[page * rowsPerPage + e]);
+    setImageName(imgNames[page * rowsPerPage + e]);
+    setImageInfo(imgInfos[page * rowsPerPage + e]);
   };
 
-  const handleOnClick = (e) => {
-    onChange(e);
+  const handleOnChangeOrderBy = (e) => {
+    console.log("[TableViewCars] handleOnChangeOrderBy: " + e)
+    onChangeOrderBy(e);
   }
 
   return (
     <Grid container spacing={3} alignItems="center">
       <Grid item xs={12} sm={8} md={8}>
-        <TableContainer className={classes.tableResponsive}>
-          <Table className={classes.table}>
+        <TableContainer>
+          <Table>
             {tableHead !== undefined ? (
               <TableHead className={classes[tableHeaderColor + "TableHeader"]}>
-                <TableRow className={classes.tableHeadRow}>
-                  {tableHead.map((prop, key) => {
+                <TableRow>
+                  {Object.keys(tableHead).map((prop, index) => {
                     return (
-                      <TableCell
-                        className={classes.tableCell + " " + classes.tableHeadCell}
-                        key={key}
-                      >
+                      <TableCell 
+                        size="medium"
+                        key={index}>
                         <TableSortLabel
                           hideSortIcon={true}
-                          onClick={() => handleOnClick(prop)}
+                          onClick={() => handleOnChangeOrderBy(prop)}
                         >
-                          {prop}
+                          {tableHead[prop]}
                         </TableSortLabel>
                       </TableCell>
                     );
@@ -165,9 +176,9 @@ export default function CarTable(props) {
                     {prop.map((prop, key) => {
                       return (
                         <TableCell 
-                          className={classes.tableCell} 
+                          size="small"
                           key={key}
-                          onClick={() => {handleOnClick(prop)}}>
+                        >
                           {prop}
                         </TableCell>
                       );
@@ -206,7 +217,7 @@ export default function CarTable(props) {
         </TableContainer>
       </Grid>
       <Grid item xs={12} sm={4} md={4}>
-        {bgImage === "" ?
+        {imgBg === "" ?
           <MKBox
             bgColor="white"
             borderRadius="xl"
@@ -226,8 +237,9 @@ export default function CarTable(props) {
             </MKTypography>
           </MKBox>
           :
-          <Link to={"/welcome"}>
-            <ExampleCar image={bgImage} name={"hi"} />
+          <Link to={"/authentication-sign-in"}>
+            {/* FIXME: check authentication */}
+            <ExampleCar image={imgBg} name={imgName} info={imgInfo}/>
           </Link>
         }
       </Grid>
@@ -235,11 +247,11 @@ export default function CarTable(props) {
   );
 }
 
-CarTable.defaultProps = {
+TableViewCars.defaultProps = {
   tableHeaderColor: "gray",
 };
 
-CarTable.propTypes = {
+TableViewCars.propTypes = {
   tableHeaderColor: PropTypes.oneOf([
     "warning",
     "primary",
@@ -249,6 +261,9 @@ CarTable.propTypes = {
     "rose",
     "gray",
   ]),
-  tableHead: PropTypes.arrayOf(PropTypes.string),
+  tableHead: PropTypes.object,
   tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  imgUrls: PropTypes.arrayOf(PropTypes.string),
+  imgNames: PropTypes.arrayOf(PropTypes.string),
+  imgInfos: PropTypes.arrayOf(PropTypes.string),
 };

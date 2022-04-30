@@ -27,7 +27,7 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "view/Navbars/DefaultNavbar";
 import BasicFooter from "view/Footers/BasicFooter";
 
-// Welcome page sections <- Presentation
+// Welcome page sections
 import Counters from "pages/Welcome/sections/Counters";
 import FeatureCarList from "pages/Welcome/sections/FeatureCarList";
 import AdsDisplay from "pages/Welcome/sections/AdsDisplay";
@@ -99,13 +99,13 @@ function Welcome() {
         <Container>
           <MKBox component="section" py={4} coloredShadow="dark">
             <Container>
-                <Grid container item justifyContent="center" xs={12} lg={12} mx="auto" textAlign="left">
+                <Grid container item justifyContent="center" alignContent="center" xs={12} lg={12} mx="auto" textAlign="left">
                   <Grid item xs={12} sm={12} md={12}>
                     <MKTypography variant="h3" mb={4}>
                         Let's schedule your trip!
                     </MKTypography>
                   </Grid>
-                  <Grid item xs={12} sm={12} md={12}>
+                  <Grid item xs={12} sm={12} md={4}>
                     <MKButton type="submit" variant="gradient" color="dark" fullWidth href={"/trip"}>
                       Reserve
                     </MKButton>
