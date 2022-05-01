@@ -1,35 +1,13 @@
-import React, { useEffect } from "react";
-
-// @mui material components
-import Grid from "@mui/material/Grid";
-
-// Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-
-// Trip page components
-import FormSearchCars from "pages/Trip/components/FormSearchCars";
-import TableViewCars from "pages/Trip/components/TableViewCars";
-
-// FIXME: use another table if have time
-// import TableCars from "pages/Trip/components/TableCars";
-// import TableSample from "pages/Trip/components/TableSample";
-
-// Services
-import CarDataService from "services/trip.service";
-
 /*
-@parms: data package
-
-@postData:
+* Data package
+* @dataFilter
 {
   "ddate": "string",
   "orderBy": "string",
   "pdate": "string",
   "pickUp": "string"
 }
-
-@responseData:
+* @responseData
 [
   {
     "addrId": 0,
@@ -49,6 +27,26 @@ import CarDataService from "services/trip.service";
 ]
 */
 
+import React, { useState, useEffect } from "react";
+
+// @mui material components
+import Grid from "@mui/material/Grid";
+
+// Material Kit 2 React components
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
+
+// Trip page components
+import FormSearchCars from "pages/Trip/components/FormSearchCars";
+import TableViewCars from "pages/Trip/components/TableViewCars";
+
+// FIXME: use another table if have time
+// import TableCars from "pages/Trip/components/TableCars";
+// import TableSample from "pages/Trip/components/TableSample";
+
+// Services
+import CarDataService from "services/trip.service";
+
 const dataHead = {
   carId: "Car ID",
   carType: "Car Type",
@@ -58,29 +56,27 @@ const dataHead = {
 }
 
 export default function SearchCars() {
-  const [pickUp, setPickUp] = React.useState("");
-  const [pdate, setPdate] = React.useState("");
-  const [ddate, setDdate] = React.useState("");
+  const [dataFilter, setDataFilters] = useState({
+    ddate: "",
+    orderBy: "",
+    pdate: "",
+    pickUp: ""
+  });
 
   const [dataImgUrls, setDataImgUrls] = React.useState([]);
   const [dataImgNames, setDataImgNames] = React.useState([]);
   const [dataImgInfos, setDataImgInfos] = React.useState([]);
   const [dataCars, setDataCars] = React.useState([]);
   useEffect(() => {
-    console.log("[SearchCars] useEffect called!")
-    let postData = {
-      ddate: "",
-      orderBy: "",
-      pdate: "",
-      pickUp: ""
-    };
-    postTableCarData(postData);
+    // console.log("[SearchCars] useEffect called!")
+    postGetCarData(dataFilter);
   }, []);
 
-  const postTableCarData = (postData) => {
-    return CarDataService.post(postData)
+  const postGetCarData = (dataFilter) => {
+    return CarDataService.post(dataFilter)
       .then(response => {
-        console.log("[SearchCars] postTableCarData response data: " + response.data);
+        console.log("[SearchCars] postGetCarData dataFilter: " + Object.values(dataFilter));
+        // console.log("[SearchCars] postGetCarData response data: " + response.data);
         let carData = [];
         let imgUrlData = [];
         let imgNameData = [];
@@ -93,7 +89,6 @@ export default function SearchCars() {
           imgNameData.push(e.carType);
           imgInfoData.push(`This is ${e.carType}!`);
         });
-
         setDataCars(carData);
         setDataImgUrls(imgUrlData);
         setDataImgNames(imgNameData);
@@ -102,26 +97,32 @@ export default function SearchCars() {
   }
 
   const updateTableCarByOrder = (orderBy) => {
-    let postData = {
-      ddate: ddate,
-      orderBy: orderBy ? orderBy : "",
-      pdate: pdate,
-      pickUp: pickUp
-    };
-    console.log("[SearchCars] updateTableCarByOrder postData: " + Object.values(postData));
-    return postTableCarData(postData);
+    setDataFilters({
+      ...dataFilter,
+      orderBy: orderBy,
+    })
+    return postGetCarData(dataFilter);
   };
 
   const onChangePickUp = (e) => {
-    setPickUp(e.target.value);
+    setDataFilters({
+      ...dataFilter,
+      pickUp: e.target.value,
+    })
   }
 
   const onChangePdate = (e) => {
-    setPdate(new Date(e).toLocaleDateString());
+    setDataFilters({
+      ...dataFilter,
+      pdate: new Date(e).toLocaleDateString(),
+    })
   }
 
   const onChangeDdate = (e) => {
-    setDdate(new Date(e).toLocaleDateString());
+    setDataFilters({
+      ...dataFilter,
+      ddate: new Date(e).toLocaleDateString(),
+    })
   }
 
   const onClickButton = () => {

@@ -36,13 +36,13 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Authentication layout components
-import BasicLayout from "pages/Authentication/components/BasicLayout";
+import SignInLayout from "pages/Authentication/components/SignInLayout";
 
 // Images
-import bgImage from "assets/images/bg-sign-in-out.jpeg";
+import bgImage from "assets/images/bg-sign-in-cover.jpeg";
 
 export default function SignIn() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [rememberMe, setRememberMe] = useState(false);
   const [account, setAccount] = useState("");
@@ -88,7 +88,7 @@ export default function SignIn() {
   }
 
   return (
-    <BasicLayout image={bgImage}>
+    <SignInLayout image={bgImage}>
       <Card>
         <MDBox
           variant="gradient"
@@ -131,7 +131,7 @@ export default function SignIn() {
                 fullWidth
                 value={account}
                 onChange={handleOnChangeAccount}
-                autocomplete="off"
+                autoComplete="off"
               >
                 {account}
               </MDInput>
@@ -179,6 +179,6 @@ export default function SignIn() {
           </MDBox>
         </MDBox>
       </Card>
-    </BasicLayout>
+    </SignInLayout>
   );
 }
