@@ -1,11 +1,11 @@
 import http from "../http-common";
 
 class AuthDataService {
-  postCorp(data) {
+  postCorpRegister(data) {
       return http.post("/account/corp/register", data);
   }
 
-  postIndi(data) {
+  postIndiRegister(data) {
       return http.post("/account/indi/register", data);
   }
 

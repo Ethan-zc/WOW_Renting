@@ -168,7 +168,7 @@ export default function SignUp() {
   const postCorpData = () => {
     console.log("[SignUp] postCorpData data package");
     console.log(dataCorp);
-    return AuthDataService.postCorp(dataCorp)
+    return AuthDataService.postCorpRegister(dataCorp)
       .then((response) => {
         // TODO: some work left here
         console.log(response.data.message);
@@ -182,7 +182,7 @@ export default function SignUp() {
   const postIndiData = () => {
     console.log("[SignUp] postIndiData data package");
     console.log(dataIndi);
-    return AuthDataService.postIndi(dataIndi)
+    return AuthDataService.postIndiRegister(dataIndi)
       .then((response) => {
         // TODO: if success, pop out message
         // TODO: how to deal with message?
