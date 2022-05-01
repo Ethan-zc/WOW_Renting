@@ -12,7 +12,6 @@
   "street": "string",
   "state": "string",
   "country": "string",
-  ! where to confine its data type?
   "zipcode": null
 }
 * @postData: indiUser
@@ -21,17 +20,14 @@
   "pwd": "string",
   "fname": "string",
   "lname": "string",
-  ! where to confine its data type?
   "licensenum": 0,
   "insname": "string",
-  ! probably contains character
   "insnum": 0,
   "email": "string",
   "phone": "string",
   "street": "string",
   "country": "string",
   "state": "string",
-  ! where to confine its data type?
   "zipcode": "0"
 }
 * @responseData
@@ -41,7 +37,7 @@
 import { useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -50,8 +46,6 @@ import Grid from "@mui/material/Grid";
 
 // @mui icons
 import CloseIcon from "@mui/icons-material/Close";
-
-import Container from "@mui/material/Container";
 import Modal from "@mui/material/Modal";
 import Divider from "@mui/material/Divider";
 import Slide from "@mui/material/Slide";
@@ -107,6 +101,7 @@ const labelIndi = {
 };
 
 export default function SignUp() {
+  // const navigate = useNavigate();
 
   // corp data package
   const initCorpData = {
@@ -122,7 +117,6 @@ export default function SignUp() {
     country: "",
     zipcode: "",
   };
-
   // corp numeric values
   const initCorpNum = {
     licensenum: true,
@@ -146,7 +140,6 @@ export default function SignUp() {
     country: "",
     zipcode: "",
   };
-
   // indi numeric values
   const initIndiNum = {
     licensenum: true,
@@ -161,8 +154,6 @@ export default function SignUp() {
   const [isNumCorp, setIsNumCorp] = useState(initCorpNum);
   const [isNumIndi, setIsNumIndi] = useState(initIndiNum);
   const [isSubmit, setIsSubmit] = useState(false);
-
-  const toggleModal = () => setIsSubmit(!isSubmit);
 
   const clearCorp = () => {
     setDataCorp(initCorpData);
@@ -182,7 +173,6 @@ export default function SignUp() {
         // TODO: some work left here
         console.log(response.data.message);
         setIsSubmit(!isSubmit);
-        clearCorp();
       })
       .catch(error => {
         console.error("[SignUp] postCorpData ERROR ", error);
@@ -194,10 +184,10 @@ export default function SignUp() {
     console.log(dataIndi);
     return AuthDataService.postIndi(dataIndi)
       .then((response) => {
-        // TODO: success to pop out a window for confirmation
+        // TODO: if success, pop out message
+        // TODO: how to deal with message?
         console.log(response.data.message);
         setIsSubmit(!isSubmit);
-        clearIndi();
       })
       .catch(error => {
         console.error("[SignUp] postIndiData ERROR ", error);
@@ -245,12 +235,9 @@ export default function SignUp() {
 
     if (!isFilled) {
       setIsComplete(false);
-      console.log("[SignUp] handleOnClickRegister: Some forms are empty!");
     }
     else {
       setIsComplete(true);
-      console.log("[SignUp] handleOnClickRegister: Filled all forms!");
-
       // check if required blanks are number
       if (isCorp && !Object.values(isNumCorp).includes(false)) {
         postCorpData();
@@ -258,6 +245,13 @@ export default function SignUp() {
         postIndiData();
       }
     }
+  }
+
+  const handleCloseModal = () => {
+    // TODO: login account with tonken
+    console.log("[SignUp] handleCloseModal");
+    setIsSubmit(!isSubmit);
+    // navigate("/dashboard");
   }
 
   return (
@@ -450,41 +444,36 @@ export default function SignUp() {
             </MDBox>
           </MDBox>
         </MDBox>
-        {/* TODO: move it to another place */}
-        <MKBox component="section" py={6}>
-          <Container>
-            <Modal open={isSubmit} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
-              <Slide direction="down" in={isSubmit} timeout={500}>
-                <MKBox
-                  position="relative"
-                  width="500px"
-                  display="flex"
-                  flexDirection="column"
-                  borderRadius="xl"
-                  bgColor="white"
-                  shadow="xl"
-                >
-                  <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
-                    <MKTypography variant="h5">Success</MKTypography>
-                    <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
-                  </MKBox>
-                  <Divider sx={{ my: 0 }} />
-                  <MKBox p={2}>
-                    <MKTypography variant="body2" color="secondary" fontWeight="regular">
-                      Thank your for your registration
-                    </MKTypography>
-                  </MKBox>
-                  <Divider sx={{ my: 0 }} />
-                  <MKBox display="flex" justifyContent="center" p={1.5}>
-                    <MKButton variant="gradient" color="info">
-                      enter
-                    </MKButton>
-                  </MKBox>
-                </MKBox>
-              </Slide>
-            </Modal>
-          </Container>
-        </MKBox>
+        <Modal open={isSubmit} onClose={handleCloseModal} sx={{ display: "grid", placeItems: "center" }}>
+          <Slide direction="down" in={isSubmit} timeout={400}>
+            <MKBox
+              position="relative"
+              width="500px"
+              display="flex"
+              flexDirection="column"
+              borderRadius="xl"
+              bgColor="white"
+              shadow="xl"
+            >
+              <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
+                <MKTypography variant="h5">Success</MKTypography>
+                <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={handleCloseModal} />
+              </MKBox>
+              <Divider sx={{ my: 0 }} />
+              <MKBox p={2}>
+                <MKTypography variant="body2" color="secondary" fontWeight="regular">
+                  Thank your for your registration
+                </MKTypography>
+              </MKBox>
+              <Divider sx={{ my: 0 }} />
+              <MKBox display="flex" justifyContent="center" p={1.5}>
+                <MKButton variant="gradient" color="info" onClick={handleCloseModal}>
+                  enter
+                </MKButton>
+              </MKBox>
+            </MKBox>
+          </Slide>
+        </Modal>
       </Card>
     </SignUpLayout>
   );

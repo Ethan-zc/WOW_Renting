@@ -75,7 +75,6 @@ export default function SignIn() {
     setRememberMe(!rememberMe);
   }
 
-  // TODO: remember me => https://programmingwithmosh.com/react/localstorage-react/
   const handleOnClickSignIn = () => {
     console.log("[SignIn] clicked! account: " + account);
     localStorage.setItem("isSubmit", true);

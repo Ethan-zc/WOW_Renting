@@ -49,7 +49,6 @@ function SimpleFooter({ company, links, light }) {
       </MKBox>
     ));
 
-  // TODO: change footer
   return (
     <Container>
       <MKBox
