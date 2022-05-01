@@ -47,9 +47,6 @@ import FormatPaintIcon from "@mui/icons-material/FormatPaint";
 // import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 // Pages
-import AboutUs from "layouts/pages/landing-pages/about-us";
-import ContactUs from "layouts/pages/landing-pages/contact-us";
-import Author from "layouts/pages/landing-pages/author";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
 import Trip from "layouts/pages/trip";
@@ -80,7 +77,7 @@ import Typography from "layouts/sections/elements/typography";
 
 const routes = [
   {
-    name: "Materials1",
+    name: "Materials",
     icon: <FormatPaintIcon />,
     collapse: [
       {
@@ -205,49 +202,6 @@ const routes = [
             name: "typography",
             route: "/sections/elements/typography",
             component: <Typography />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "materials2",
-    icon: <FormatPaintIcon />,
-    columns: 1,
-    rowsPerColumn: 2,
-    collapse: [
-      {
-        name: "landing pages",
-        collapse: [
-          {
-            name: "about us",
-            route: "/pages/landing-pages/about-us",
-            component: <AboutUs />,
-          },
-          {
-            name: "contact us",
-            route: "/pages/landing-pages/contact-us",
-            component: <ContactUs />,
-          },
-          {
-            name: "author",
-            route: "/pages/landing-pages/author",
-            component: <Author />,
-          },
-        ],
-      },
-      {
-        name: "account",
-        collapse: [
-          {
-            name: "sign in",
-            route: "/pages/authentication/sign-in",
-            component: <SignIn />,
-          },
-          {
-            name: "sign up",
-            route: "/pages/authentication/sign-out",
-            component: <SignUp />,
           },
         ],
       },

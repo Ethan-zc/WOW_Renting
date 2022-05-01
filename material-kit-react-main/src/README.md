@@ -2,20 +2,37 @@
 
 Folder
 
-- assets: save images
+- assets: images, theme, formatting etc.
 - components: basic components
-- view(examples): copied from examples
+- view: common components used among pages
 - pages: main pages
-  - LandingPages: sign in / out
-  - Welcome(Presentation): homepage
+  - Authentication: sign in / out
+  - Welcome: homepage
   - Trip: make a reservation
-- services: services for connecting backend
+- services: configurations for communicating with the backend
 
 Files
 
-- footer.routes.js: no use
-- http-common.js: config file, base url for connecting backend
-- routes.js: routes for view menu bar
+- http-common.js: base url
+- routes.js: routes props
+
+# Functions
+
+Navigation
+
+- Pages
+- Menu bar, side bar
+- Button, link
+
+Interact with the backend
+
+- Send GET request
+- Send POST request, for example, display suitable cars for users by their preferences (pick up location, etc.)
+
+Authentication
+
+- Use local storage to achieve remember me option
+- Probably workable in storing token
 
 # Templates
 
@@ -31,3 +48,6 @@ Files
 - Frontend codes: [react-crud-web-api](https://github.com/bezkoder/react-crud-web-api)
 - Tut for overall project: [react-spring-boot-crud](https://www.bezkoder.com/react-spring-boot-crud/)
 
+# Resources
+
+- [Material UI Documents](https://mui.com/material-ui/getting-started/installation/)

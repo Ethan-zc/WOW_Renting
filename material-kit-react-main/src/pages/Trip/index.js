@@ -29,16 +29,13 @@ import BasicFooter from "view/Footers/BasicFooter";
 // Trip page sections
 import SearchCars from "pages/Trip/sections/SearchCars";
 
-// Routes
-import routes from "routes";
-
 // Images
 import bgImage from "assets/images/bg-welcome.jpg";
 
 function Trip() {
   return (
     <>
-      <DefaultNavbar routes={routes} sticky />
+      <DefaultNavbar sticky />
       <MKBox
         minHeight="70vh"
         width="100%"

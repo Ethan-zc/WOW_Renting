@@ -43,6 +43,8 @@ import DefaultNavbarMobile from "view/Navbars/DefaultNavbar/DefaultNavbarMobile"
 // Material Kit 2 React base styles
 import breakpoints from "assets/theme/base/breakpoints";
 
+import routes from "routes";
+
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
@@ -552,6 +554,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
   brand: "ZZZ",
+  routes: routes,
   transparent: false,
   light: false,
   action: false,
@@ -563,7 +566,7 @@ DefaultNavbar.defaultProps = {
 // Typechecking props for the DefaultNavbar
 DefaultNavbar.propTypes = {
   brand: PropTypes.string,
-  routes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  routes: PropTypes.arrayOf(PropTypes.object),
   transparent: PropTypes.bool,
   light: PropTypes.bool,
   action: PropTypes.oneOfType([

@@ -13,10 +13,10 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -36,15 +36,56 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Authentication layout components
-import BasicLayout from "layouts/authentication/components/BasicLayout";
+import BasicLayout from "pages/Authentication/components/BasicLayout";
 
 // Images
-import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import bgImage from "assets/images/bg-sign-in-out.jpeg";
 
-function Basic() {
+export default function SignIn() {
+  let navigate = useNavigate();
+
   const [rememberMe, setRememberMe] = useState(false);
+  const [account, setAccount] = useState("");
+  // const [password, setPassword] = useState("");
 
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  useEffect(() => {
+    let isSubmit = localStorage.getItem("isSubmit");
+    let isRM = localStorage.getItem("rememberMe");
+    let rm = false;
+    let acc = "";
+    if (isSubmit && isSubmit === "true") {
+      rm = (isRM && isRM === "true") ? true : false;
+      acc = rm ? localStorage.getItem("account") : "";
+    }
+    setRememberMe(rm);
+    setAccount(acc);
+    localStorage.setItem("rememberMe", rm);
+    localStorage.setItem("account", acc);
+    if (!acc) {
+      localStorage.setItem("isSubmit", false);
+    }
+  }, []);
+
+  const handleOnChangeAccount = (e) => { 
+    setAccount(e.target.value);
+  }
+
+  const handleSetRememberMe = () => { 
+    localStorage.setItem("rememberMe", !rememberMe);
+    setRememberMe(!rememberMe);
+  }
+
+  // TODO: remember me => https://programmingwithmosh.com/react/localstorage-react/
+  const handleOnClickSignIn = () => {
+    console.log("[SignIn] clicked! account: " + account);
+    localStorage.setItem("isSubmit", true);
+    localStorage.setItem("rememberMe", rememberMe);
+    localStorage.setItem("account", rememberMe ? account : "");
+
+    // TODO: authentication verification
+  //   let path = "/dashboard";
+  //   navigate(path);
+  }
 
   return (
     <BasicLayout image={bgImage}>
@@ -84,7 +125,16 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput 
+                type="email" 
+                label="Account"
+                fullWidth
+                value={account}
+                onChange={handleOnChangeAccount}
+                autocomplete="off"
+              >
+                {account}
+              </MDInput>
             </MDBox>
             <MDBox mb={2}>
               <MDInput type="password" label="Password" fullWidth />
@@ -102,7 +152,12 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton 
+                variant="gradient"
+                color="info"
+                fullWidth
+                onClick={handleOnClickSignIn}
+              >
                 sign in
               </MDButton>
             </MDBox>
@@ -127,5 +182,3 @@ function Basic() {
     </BasicLayout>
   );
 }
-
-export default Basic;

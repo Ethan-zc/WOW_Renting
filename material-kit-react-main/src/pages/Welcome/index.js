@@ -32,16 +32,13 @@ import Counters from "pages/Welcome/sections/Counters";
 import FeatureCarList from "pages/Welcome/sections/FeatureCarList";
 import AdsDisplay from "pages/Welcome/sections/AdsDisplay";
 
-// Routes
-import routes from "routes";
-
 // Images
 import bgImage from "assets/images/bg-welcome.jpg";
 
 function Welcome() {
   return (
     <>
-      <DefaultNavbar routes={routes} sticky />
+      <DefaultNavbar sticky />
       <MKBox
         minHeight="70vh"
         width="100%"

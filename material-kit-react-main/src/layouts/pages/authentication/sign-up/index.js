@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 React pages
-import SignUp from "pages/LandingPages/SignUp";
+import SignUp from "pages/Authentication/SignUp";
 
 export default function SignUpPage() {
   return <SignUp />;

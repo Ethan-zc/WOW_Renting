@@ -237,7 +237,7 @@ export default function TableViewCars(props) {
             </MKTypography>
           </MKBox>
           :
-          <Link to={"/authentication-sign-in"}>
+          <Link to={"/authentication/sign-in"}>
             {/* FIXME: check authentication */}
             <ExampleCar image={imgBg} name={imgName} info={imgInfo}/>
           </Link>
