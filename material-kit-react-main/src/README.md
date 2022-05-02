@@ -78,6 +78,10 @@ Authentication
 - Use local storage to achieve remember me option, probably workable in storing token
 - Filling form check if they are valid
 
+# Authentication flow
+- [React-Navigation with Login Screen](https://stackoverflow.com/questions/42876690/react-navigation-with-login-screen)
+- [React-Navigation Authentication flows](https://reactnavigation.org/docs/auth-flow/)
+
 # Templates
 
 - Use [Material Kit Material-UI v4](https://www.creative-tim.com/product/material-kit-material-ui-v4) to create car rental pages
