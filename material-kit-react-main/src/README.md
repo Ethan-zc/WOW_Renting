@@ -7,16 +7,16 @@ material-kit-react-main
 ├── README.md
 ├── jsconfig.json
 ├── package-lock.json
-├── package.json						<-- to install node_modules
+├── package.json                <-- to install node_modules
 ├── public
-└── src									<-- source codes
-    ├── App.js							<-- main
+└── src                         <-- source codes
+    ├── App.js                  <-- main
     ├── README.md
-    ├── assets							<-- resources: images, theme etc.
-    ├── components					    <-- basic components in two templates
-    ├── context							<-- [unknown] used in dashboard
+    ├── assets                  <-- resources: images, theme etc.
+    ├── components              <-- basic components in two templates
+    ├── context                 <-- [unknown] used in dashboard
     │   └── index.js
-    ├── examples						<-- [remove] examples to show how to use comps
+    ├── examples                <-- [remove] examples to show how to use comps
     │   ├── Breadcrumbs
     │   ├── Cards
     │   ├── Charts
@@ -29,9 +29,9 @@ material-kit-react-main
     │   ├── Sidenav
     │   ├── Tables
     │   └── Timeline
-    ├── http-common.js			        <-- config backend url to connect with
-    ├── index.js						<-- main entry
-    ├── layouts							<-- [remove] pages entry: pages, sections
+    ├── http-common.js          <-- config backend url to connect with
+    ├── index.js                <-- main entry
+    ├── layouts                 <-- [remove] pages entry: pages, sections
     │   ├── billing
     │   ├── dashboard
     │   ├── notifications
@@ -40,18 +40,18 @@ material-kit-react-main
     │   ├── rtl
     │   ├── sections
     │   └── tables
-    ├── pages							<-- pages
+    ├── pages                   <-- pages
     │   ├── Account
     │   ├── Authentication
     │   ├── Dashboard
     │   ├── Trip
     │   └── Welcome
-    ├── routes.js						<-- config routing urls
-    ├── services						<-- handle request and backend interface
+    ├── routes.js               <-- config routing urls
+    ├── services                <-- handle request and backend interface
     │   ├── authentication.service.js
     │   └── trip.service.js
-    ├── user.routes.js			        <-- config routing urls for specific users
-    └── view							<-- commonly used tools?
+    ├── user.routes.js          <-- config routing urls for specific users
+    └── view                    <-- commonly used tools?
         ├── Breadcrumbs
         ├── Cards
         ├── Footers
