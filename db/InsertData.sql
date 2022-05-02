@@ -76,10 +76,10 @@ values
 insert into zzz_customer (custtype, email, phone, addrid)
 values
 ('I', 'erte@nyu.edu', '(162)-472-844', 13),
-('I', 'cxbd@nyu.edu', '(162)-472-845', 14),
-('I', 'yijj@nyu.edu', '(162)-472-846', 15),
-('I', 'cvfh@nyu.edu', '(162)-472-847', 16),
-('I', 'nyif@nyu.edu', '(162)-472-848', 17),
+('I', 'cxbd@nyu.edu', '(162)-472-845', 13),
+('I', 'yijj@nyu.edu', '(162)-472-846', 14),
+('I', 'cvfh@nyu.edu', '(162)-472-847', 15),
+('I', 'nyif@nyu.edu', '(162)-472-848', 16),
 ('C', 'xcxg@nyu.edu', '(162)-472-849', 18),
 ('C', 'iygj@nyu.edu', '(162)-472-850', 19),
 ('C', 'xzzz@nyu.edu', '(162)-472-851', 20),
@@ -144,16 +144,14 @@ values
 (13, 'C', 0778906),
 (14, 'C', 0167890);
 
- -- insert data to zzz_orders
-SET FOREIGN_KEY_CHECKS = 0;
-insert into zzz_order (orderid, startodo, endodo, odolimit, startdate, enddate, custid, custtype, pickup, dropoff, carid, discid, disctype)
+-- insert data to zzz_orders
+insert into zzz_order (startodo, endodo, odolimit, startdate, enddate, custid, custtype, pickup, dropoff, carid, discid, disctype)
 values
-(1234568, 1000, null, 40, '2020-03-01', '2020-03-05', 754710, 'I', 2, 3, 1, 84654, null),
-(2234568, 1000, null, 40, '2020-03-01', '2020-03-05', 754710, 'I', 2, 3, 1, 84654, null),
-(3234568, 1000, null, null, '2020-03-01', '2020-03-05', 754710, 'I', 2, 2, 1, 84657, null),
-(4234568, 1000, null, 40, '2020-03-01', '2020-03-05', 754710, 'I', 2, 3, 1, 84654, 'I'),
-(5234568, 1000, null, 40, '2021-07-01', '2021-07-05', 754710, 'I', 2, 3, 1, 84657, 'I'),
-(6234568, 1000, null, 40, '2021-07-01', '2021-07-05', 754710, 'C', 2, 3, 1, 94654, 'C');
-SET FOREIGN_KEY_CHECKS = 1;
+(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, null),
+(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, null),
+(1000, null, null, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, null),
+(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, 'I'),
+(1000, null, 40, '2021-07-01', '2021-07-05', 1, 'I', 2, 3, 1, 4, 'I'),
+(1000, null, 40, '2021-07-01', '2021-07-05', 6, 'C', 2, 3, 1, 8, 'C');
 
 commit;

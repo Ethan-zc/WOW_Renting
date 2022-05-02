@@ -79,16 +79,12 @@ ALTER TABLE zzz_acc_role ADD CONSTRAINT zzz_acc_role_pk PRIMARY KEY ( rid,
 CREATE TABLE zzz_customer (
     custid   INT NOT NULL COMMENT 'Unique ID for customer.',
     custtype CHAR(1) NOT NULL COMMENT 'Customer type.',
-    email    VARCHAR(20) NOT NULL COMMENT 'Email address for customer.',
+    email    VARCHAR(30) NOT NULL COMMENT 'Email address for customer.',
     phone    VARCHAR(20) NOT NULL COMMENT 'Phone number for customers.',
     addrid   BIGINT NOT NULL
 );
 ALTER TABLE zzz_customer
     ADD CONSTRAINT ch_inh_zzz_customer CHECK ( custtype IN ( 'C', 'I' ) );
-CREATE UNIQUE INDEX zzz_customer__idx ON
-    zzz_customer (
-        addrid
-    ASC );
 ALTER TABLE zzz_customer ADD CONSTRAINT zzz_customer_pk PRIMARY KEY ( custid,
                                                                       custtype );
 ALTER TABLE zzz_customer MODIFY custid INT AUTO_INCREMENT;
