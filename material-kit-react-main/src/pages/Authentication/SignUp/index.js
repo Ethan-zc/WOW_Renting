@@ -34,7 +34,7 @@
 ? what is it?
 */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // react-router-dom components
 import { Link, useNavigate } from "react-router-dom";
@@ -100,46 +100,25 @@ const labelIndi = {
   zipcode: "Zipcode",
 };
 
+const labelUnique = {
+  accname: "Account",
+  email: "Email",
+};
+
 export default function SignUp() {
   // const navigate = useNavigate();
 
   // corp data package
-  const initCorpData = {
-    accname: "",
-    pwd: "",
-    email: "",
-    phone: "",
-    corpname: "",
-    regnum: "",
-    empid: "",
-    street: "",
-    state: "",
-    country: "",
-    zipcode: "",
-  };
+  const initCorpData = JSON.parse(JSON.stringify(labelCorp));
+  Object.keys(initCorpData).forEach((prop) => initCorpData[prop] = "");
   // corp numeric values
   const initCorpNum = {
-    licensenum: true,
-    insnum: true,
     zipcode: true,
   };
 
   // indi data package
-  const initIndiData = {
-    accname: "",
-    pwd: "",
-    fname: "",
-    lname: "",
-    licensenum: "",
-    insname: "",
-    insnum: "",
-    email: "",
-    phone: "",
-    street: "",
-    state: "",
-    country: "",
-    zipcode: "",
-  };
+  const initIndiData = JSON.parse(JSON.stringify(labelIndi));
+  Object.keys(initIndiData).forEach((prop) => initIndiData[prop] = "");
   // indi numeric values
   const initIndiNum = {
     licensenum: true,
@@ -147,32 +126,54 @@ export default function SignUp() {
     zipcode: true,
   };
 
+  // indi unique values
+  const initUnique = JSON.parse(JSON.stringify(labelUnique));
+  Object.keys(initUnique).forEach((prop) => initUnique[prop] = true);
+
   const [isCorp, setIsCorp] = useState(false);
   const [dataCorp, setDataCorp] = useState(initCorpData);
   const [dataIndi, setDataIndi] = useState(initIndiData);
   const [isComplete, setIsComplete] = useState(null);
   const [isNumCorp, setIsNumCorp] = useState(initCorpNum);
   const [isNumIndi, setIsNumIndi] = useState(initIndiNum);
+  const [isUnique, setIsUnique] = useState(initUnique);
   const [isSubmit, setIsSubmit] = useState(false);
 
   const clearCorp = () => {
     setDataCorp(initCorpData);
     setIsNumCorp(initCorpNum);
+    setIsUnique(initUnique);
   }
 
   const clearIndi = () => {
     setDataIndi(initIndiData);
     setIsNumIndi(initIndiNum);
+    setIsUnique(initUnique);
   }
 
   const postCorpData = () => {
     console.log("[SignUp] postCorpData data package");
     console.log(dataCorp);
+
     return AuthDataService.postCorpRegister(dataCorp)
       .then((response) => {
-        // TODO: some work left here
-        console.log(response.data.message);
-        setIsSubmit(!isSubmit);
+        if (response.data.status.includes("success")) {
+          console.info("[SignUp] postCorpData success");
+          setIsSubmit(!isSubmit);
+          setIsUnique(initUnique);
+        } else {
+          console.info("[SignUp] postCorpData fail");
+          console.error(response.data.status);
+          console.error(response.data.message);
+          let currState = Object.assign({}, isUnique);
+          Array.from(Object.keys(labelUnique)).forEach((prop) => {
+            console.error(response.data.message.toLowerCase());
+            if (response.data.message.toLowerCase().includes(labelUnique[prop].toLowerCase())) {
+              if (currState[prop]) { currState[prop] = false };
+            } else { currState[prop] = true; }
+          });
+          setIsUnique(currState);
+        }
       })
       .catch(error => {
         console.error("[SignUp] postCorpData ERROR ", error);
@@ -182,12 +183,27 @@ export default function SignUp() {
   const postIndiData = () => {
     console.log("[SignUp] postIndiData data package");
     console.log(dataIndi);
+
     return AuthDataService.postIndiRegister(dataIndi)
       .then((response) => {
         // TODO: if success, pop out message
-        // TODO: how to deal with message?
-        console.log(response.data.message);
-        setIsSubmit(!isSubmit);
+        if (response.data.status.includes("success")) {
+          console.info("[SignUp] postIndiData success");
+          setIsSubmit(!isSubmit);
+          setIsUnique(initUnique);
+        } else {
+          console.info("[SignUp] postIndiData fail");
+          console.error(response.data.status);
+          console.error(response.data.message);
+          let currState = Object.assign({}, isUnique);
+          Array.from(Object.keys(labelUnique)).forEach((prop) => {
+            console.error(response.data.message.toLowerCase());
+            if (response.data.message.toLowerCase().includes(labelUnique[prop].toLowerCase())) {
+              if (currState[prop]) { currState[prop] = false };
+            } else { currState[prop] = true; }
+          });
+          setIsUnique(currState);
+        }
       })
       .catch(error => {
         console.error("[SignUp] postIndiData ERROR ", error);
@@ -284,6 +300,17 @@ export default function SignUp() {
               </MDTypography>
             </MDBox>
             : null}
+            {Object.keys(labelUnique).map((prop) => {
+              return (
+                !isUnique[prop] ? 
+                <MDBox display="flex" justifyContent="left" alignItems="center" mt={-1} mb={1} key={prop}>
+                  <MDTypography variant="caption" color="error" >
+                    *{labelUnique[prop]} is used
+                  </MDTypography>
+                </MDBox>
+                : null
+              )})
+            }
             {isCorp ?
               (
                 Object.keys(isNumCorp).map((prop) => {
@@ -339,6 +366,10 @@ export default function SignUp() {
                                 (
                                   (prop in isNumCorp) && !isNumCorp[prop]
                                 )
+                                ||
+                                (
+                                  (prop in isUnique) && !isUnique[prop]
+                                )
                               )
                               ? true : false}
                             variant="standard"
@@ -377,6 +408,10 @@ export default function SignUp() {
                                 ||
                                 (
                                   (prop in isNumIndi) && !isNumIndi[prop]
+                                )
+                                ||
+                                (
+                                  (prop in isUnique) && !isUnique[prop]
                                 )
                               )
                               ? true : false}
