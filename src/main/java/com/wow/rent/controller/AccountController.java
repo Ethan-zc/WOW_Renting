@@ -155,6 +155,9 @@ public class AccountController {
     @RequestMapping(value = "/islogin", method = RequestMethod.GET)
     public Result<AccountEntry> isLogin(HttpServletRequest request) {
         HttpSession session = request.getSession();
+
+        System.out.println(request.getSession().getId());
+
         Result<AccountEntry> result = new Result<>();
         // get user info from session
         AccountEntry sessionUser = (AccountEntry) session.getAttribute(SESSION_NAME);

@@ -40,7 +40,7 @@ public class AccountServiceImpl implements AccountServie {
             return result;
         }
         if (!getAccount.getPwd().equals(DigestUtils.md5Hex(loginRequest.getPwd()))) {
-            result.setResultFailed("Accout Name or password error！");
+            result.setResultFailed("Account Name or password error！");
             return result;
         }
         result.setResultSuccess("Login Successfully！", getAccount);
