@@ -1,20 +1,63 @@
 # Directory
 
-Folder
-
-- assets: images, theme, formatting etc.
-- components: basic components
-- view: common components used among pages
-- pages: main pages
-  - Authentication: sign in / out
-  - Welcome: homepage
-  - Trip: make a reservation
-- services: configurations for communicating with the backend
-
-Files
-
-- http-common.js: base url
-- routes.js: routes props
+```
+material-kit-react-main
+├── CHANGELOG.md
+├── ISSUE_TEMPLATE.md
+├── README.md
+├── jsconfig.json
+├── package-lock.json
+├── package.json						<-- to install node_modules
+├── public
+└── src											<-- source codes
+    ├── App.js							<-- main
+    ├── README.md
+    ├── assets							<-- resources: images, theme etc.
+    ├── components					<-- basic components in two templates
+    ├── context							<-- [unknown] used in dashboard
+    │   └── index.js
+    ├── examples						<-- [remove] examples to show how to use comps
+    │   ├── Breadcrumbs
+    │   ├── Cards
+    │   ├── Charts
+    │   ├── Configurator
+    │   ├── Footer
+    │   ├── Items
+    │   ├── LayoutContainers
+    │   ├── Lists
+    │   ├── Navbars
+    │   ├── Sidenav
+    │   ├── Tables
+    │   └── Timeline
+    ├── http-common.js			<-- config backend url to connect with
+    ├── index.js						<-- main entry
+    ├── layouts							<-- [remove] pages entry: pages, sections
+    │   ├── billing
+    │   ├── dashboard
+    │   ├── notifications
+    │   ├── pages
+    │   ├── profile
+    │   ├── rtl
+    │   ├── sections
+    │   └── tables
+    ├── pages								<-- pages
+    │   ├── Account
+    │   ├── Authentication
+    │   ├── Dashboard
+    │   ├── Trip
+    │   └── Welcome
+    ├── routes.js						<-- config routing urls
+    ├── services						<-- handle request and backend interface
+    │   ├── authentication.service.js
+    │   └── trip.service.js
+    ├── user.routes.js			<-- config routing urls for specific users
+    └── view								<-- commonly used tools?
+        ├── Breadcrumbs
+        ├── Cards
+        ├── Footers
+        ├── Navbars
+        └── TableList
+```
 
 # Functions
 
@@ -31,8 +74,9 @@ Interact with the backend
 
 Authentication
 
-- Use local storage to achieve remember me option
-- Probably workable in storing token
+- Sign in & sign up
+- Use local storage to achieve remember me option, probably workable in storing token
+- Filling form check if they are valid
 
 # Templates
 
@@ -51,3 +95,4 @@ Authentication
 # Resources
 
 - [Material UI Documents](https://mui.com/material-ui/getting-started/installation/)
+

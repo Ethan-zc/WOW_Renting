@@ -82,8 +82,7 @@ export default function SignIn() {
     localStorage.setItem("account", rememberMe ? account : "");
 
     // TODO: authentication verification
-  //   let path = "/dashboard";
-  //   navigate(path);
+    navigate("/dashboard");
   }
 
   return (

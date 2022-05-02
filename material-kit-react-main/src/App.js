@@ -110,7 +110,7 @@ import theme from "assets/theme";
 import themeDark from "assets/theme-dark";
 
 // Material Dashboard 2 React routes
-import dashboardRoutes from "dashboard.routes";
+import userRoutes from "user.routes";
 import routes from "routes";
 
 // Material Dashboard 2 React contexts
@@ -211,7 +211,7 @@ export default function App() {
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="ZZZ Car Rental"
-            routes={dashboardRoutes}
+            routes={userRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
@@ -222,7 +222,7 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        {getRoutes(dashboardRoutes)}
+        {getRoutes(userRoutes)}
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/dashboard" element={<Navigate to="/dashboard" />} />
         <Route path="/*" element={<Navigate to="/welcome" />} />
