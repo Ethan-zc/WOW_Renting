@@ -1,14 +1,22 @@
 package com.wow.rent.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wow.rent.entry.AccountEntry;
 import com.wow.rent.entry.CorpRegisterRequestEntry;
 import com.wow.rent.entry.IndiRegisterRequestEntry;
+import com.wow.rent.entry.LoginRequestEntry;
 import com.wow.rent.service.AccountServie;
 import com.wow.rent.service.AddressService;
 import com.wow.rent.service.CustomerService;
 import io.swagger.annotations.Api;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.wow.rent.model.Result;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.xml.ws.RequestWrapper;
 
 @CrossOrigin
 @RestController
@@ -16,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "Account")
 public class AccountController {
 
+    public static final String SESSION_NAME = "userInfo";
     @Autowired
     private AccountServie accountServie;
     @Autowired
@@ -26,15 +35,15 @@ public class AccountController {
     @RequestMapping(value = "/indi/register", method = RequestMethod.POST)
     public Object indiRegister(@RequestBody IndiRegisterRequestEntry request) {
         String accName = request.getAccname();
-        String pwd = request.getPwd();
+        String pwd = DigestUtils.md5Hex(request.getPwd());
         JSONObject jsonObject = new JSONObject();
-        if (accName == null || pwd == null || accName.equals("") || pwd.equals("")) {
+        if (accName == null || accName.equals("") || pwd.equals("")) {
             jsonObject.put("message","Account Name or password could not be empty. ");
             return jsonObject;
         } else {
             if (accountServie.findAccountByAccName(accName) != null) {
                 jsonObject.put("status", "fail");
-                jsonObject.put("message","Account Name has been used. ");
+                jsonObject.put("message","accname");
                 return jsonObject;
             }
             String street = request.getStreet();
@@ -52,7 +61,7 @@ public class AccountController {
             // When email is duplicated.
             if (customerService.findCustomerIdByEmail(email) != null) {
                 jsonObject.put("status", "fail");
-                jsonObject.put("message","email has been used. ");
+                jsonObject.put("message","email");
                 return jsonObject;
             }
 
@@ -75,9 +84,9 @@ public class AccountController {
     @RequestMapping(value = "/corp/register", method = RequestMethod.POST)
     public Object corpRegister(@RequestBody CorpRegisterRequestEntry request) {
         String accName = request.getAccname();
-        String pwd = request.getPwd();
+        String pwd = DigestUtils.md5Hex(request.getPwd());
         JSONObject jsonObject = new JSONObject();
-        if (accName == null || pwd == null || accName.equals("") || pwd.equals("")) {
+        if (accName == null || accName.equals("") || pwd.equals("")) {
             jsonObject.put("message","Account Name or password could not be empty. ");
             return jsonObject;
         } else {
@@ -121,6 +130,53 @@ public class AccountController {
             return jsonObject;
             
         }
-
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Object login(@RequestBody LoginRequestEntry loginRequest, HttpServletRequest httpRequest) {
+        Result<AccountEntry> result;
+
+        result = accountServie.login(loginRequest);
+        // if login successfully, set session.
+        if (result.isSuccess()) {
+            httpRequest.getSession().setAttribute(SESSION_NAME, result.getData());
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public Object logout(HttpServletRequest request) {
+        Result result = new Result();
+        request.getSession().setAttribute(SESSION_NAME, null);
+        result.setResultSuccess("Successfully logged out！", null);
+        return result;
+    }
+
+    @RequestMapping(value = "/islogin", method = RequestMethod.GET)
+    public Result<AccountEntry> isLogin(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Result<AccountEntry> result = new Result<>();
+        // get user info from session
+        AccountEntry sessionUser = (AccountEntry) session.getAttribute(SESSION_NAME);
+        // if get null from session, is not logged.
+        if (sessionUser == null) {
+            result.setResultFailed("No login info！");
+            return result;
+        }
+        // if logged, verify password using db info.
+        AccountEntry getUser = null;
+        try {
+            getUser = accountServie.findAccountByAccName(sessionUser.getAccName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (getUser == null || !getUser.getPwd().equals(sessionUser.getPwd())) {
+            result.setResultFailed("Account info error！");
+            return result;
+        }
+        result.setResultSuccess("Login！", getUser);
+        return result;
+    }
+
+
 }
