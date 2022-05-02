@@ -8,4 +8,6 @@ import java.util.List;
 public interface OrderService {
 
     List<OrderEntry> findAllOrders();
+    OrderEntry findAllOrderById(int orderId);
+    void updateEndOdo(int orderId, double endOdo);
 }

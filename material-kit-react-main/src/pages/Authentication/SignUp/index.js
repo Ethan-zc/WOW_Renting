@@ -325,7 +325,7 @@ export default function SignUp() {
                       xs={prop === "corpname" ? 6 : 3}
                       >
                         <MDBox>
-                          <MDInput 
+                          <MDInput
                             type={prop === "pwd" ? "password" : "text"}
                             label={labelCorp[prop]}
                             error={

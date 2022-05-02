@@ -24,6 +24,8 @@ update zzz_order set endodo=1500 where orderid=4; -- 17004
 update zzz_order set endodo=1500 where orderid=5; -- 17004 * 0.8 = 13603.2
 update zzz_order set endodo=1500 where orderid=6; -- 17004 * 0.6 = 10202.4
 
+
+update zzz_order set endodo=1200 where orderid=1234568; -- 2004
 select * from zzz_order;
 select * from zzz_invoice;
 

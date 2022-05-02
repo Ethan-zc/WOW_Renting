@@ -12,4 +12,10 @@ public interface OrderMapper {
     @Select("select * from zzz_order")
     List<OrderEntry> findAllOrders();
 
+    @Select("select * from zzz_order where orderid = #{orderId}")
+    OrderEntry findAllOrderById(int orderId);
+
+    @Select("update zzz_order set endodo = #{endOdo} where orderid = #{orderId}")
+    void updateEndOdo(int orderId, double endOdo);
+
 }
