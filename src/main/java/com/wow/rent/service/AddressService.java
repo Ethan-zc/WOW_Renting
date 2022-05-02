@@ -12,6 +12,6 @@ public interface AddressService {
 
     int deleteAddr(int id);
 
-    int findAddressIdByInfo(String street, String state, String country, int zipcode);
+    Integer findAddressIdByInfo(String street, String state, String country, int zipcode);
 }
 

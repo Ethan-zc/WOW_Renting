@@ -18,6 +18,6 @@ public interface AddressMapper {
     int delete(int id);
 
     @Select("SELECT addrid FROM zzz_address WHERE street = #{street} AND state = #{state} AND country = #{country} AND zipcode = #{zipcode}")
-    int findAddressIdByInfo(String street, String state, String country, int zipcode);
+    Integer findAddressIdByInfo(String street, String state, String country, int zipcode);
 
 }

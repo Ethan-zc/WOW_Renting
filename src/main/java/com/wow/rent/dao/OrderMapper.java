@@ -3,6 +3,7 @@ package com.wow.rent.dao;
 import com.wow.rent.entry.OrderEntry;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 

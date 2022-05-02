@@ -12,7 +12,7 @@ public class IndiRegisterRequestEntry {
     private String street;
     private String state;
     private String country;
-    private String zipcode;
+    private int zipcode;
     private String lname;
     private String fname;
     private int licensenum;

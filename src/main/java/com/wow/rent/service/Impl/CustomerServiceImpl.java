@@ -24,8 +24,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int findCustomerByInfo(String custType, String email, String phone) {
+    public Integer findCustomerByInfo(String custType, String email, String phone) {
         return customerMapper.findCustomerByInfo(custType, email, phone);
+    }
+
+    @Override
+    public Integer findCustomerIdByEmail(String email) {
+        return customerMapper.findCustomerByEmail(email);
     }
 
     @Override

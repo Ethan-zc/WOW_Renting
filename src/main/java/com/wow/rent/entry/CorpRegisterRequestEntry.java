@@ -12,7 +12,7 @@ public class CorpRegisterRequestEntry {
     private String street;
     private String state;
     private String country;
-    private String zipcode;
+    private int zipcode;
     private String corpname;
     private String regnum;
     private String empid;

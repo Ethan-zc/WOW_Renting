@@ -33,18 +33,29 @@ public class AccountController {
             return jsonObject;
         } else {
             if (accountServie.findAccountByAccName(accName) != null) {
+                jsonObject.put("status", "fail");
                 jsonObject.put("message","Account Name has been used. ");
                 return jsonObject;
             }
             String street = request.getStreet();
             String state = request.getState();
             String country = request.getCountry();
-            int zipcode = Integer.parseInt(request.getZipcode());
-            addressService.addAddr(street,state,country,zipcode);
+            int zipcode = request.getZipcode();
+            if (addressService.findAddressIdByInfo(street, state, country, zipcode) == null) {
+                addressService.addAddr(street,state,country,zipcode);
+            }
             int addrId = addressService.findAddressIdByInfo(street, state, country, zipcode);
             String custType = "I";
             String email = request.getEmail();
             String phone = request.getPhone();
+
+            // When email is duplicated.
+            if (customerService.findCustomerIdByEmail(email) != null) {
+                jsonObject.put("status", "fail");
+                jsonObject.put("message","email has been used. ");
+                return jsonObject;
+            }
+
             customerService.addNewCustomer(custType, email, phone, addrId);
             int custId = customerService.findCustomerByInfo(custType, email, phone);
             String lName = request.getLname();
@@ -54,6 +65,7 @@ public class AccountController {
             String insNum = String.valueOf(request.getInsnum());
             customerService.addIndividualCustomer(custId, lName, fName, licenseNum, insName, insNum);
             accountServie.Register(accName, pwd, custId, "I");
+            jsonObject.put("status", "success");
             jsonObject.put("message","Account registered successfully. ");
             return jsonObject;
         }
@@ -70,25 +82,41 @@ public class AccountController {
             return jsonObject;
         } else {
             if (accountServie.findAccountByAccName(accName) != null) {
+                jsonObject.put("status", "fail");
                 jsonObject.put("message","Account Name has been used. ");
                 return jsonObject;
             }
             String street = request.getStreet();
             String state = request.getState();
             String country = request.getCountry();
-            int zipcode = Integer.parseInt(request.getZipcode());
-            addressService.addAddr(street,state,country,zipcode);
+            int zipcode = request.getZipcode();
+
+            if (addressService.findAddressIdByInfo(street, state, country, zipcode) == null) {
+                addressService.addAddr(street,state,country,zipcode);
+            }
             int addrId = addressService.findAddressIdByInfo(street, state, country, zipcode);
             String custType = "C";
             String email = request.getEmail();
             String phone = request.getPhone();
+
+            if (customerService.findCustomerIdByEmail(email) != null) {
+                jsonObject.put("status", "fail");
+                jsonObject.put("message","email has been used. ");
+                return jsonObject;
+            }
+
             customerService.addNewCustomer(custType, email, phone, addrId);
             int custId = customerService.findCustomerByInfo(custType, email, phone);
             String corpName = request.getCorpname();
             String regNum = request.getRegnum();
             String empId = request.getEmpid();
-            customerService.addCorpCustomer(custId, corpName, regNum, empId);
+            if (customerService.addCorpCustomer(custId, corpName, regNum, empId)>0) {
+                System.out.println("success");
+            } else {
+                System.out.println("failed");
+            }
             accountServie.Register(accName, pwd, custId, "C");
+            jsonObject.put("status", "success");
             jsonObject.put("message","Account registered successfully. ");
             return jsonObject;
             
