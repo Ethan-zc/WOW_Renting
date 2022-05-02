@@ -144,7 +144,7 @@ public class AccountController {
             httpRequest.getSession().setAttribute(SESSION_NAME, result.getData());
         }
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Origin",request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Origin",httpRequest.getHeader("Origin"));
         return result;
     }
 
