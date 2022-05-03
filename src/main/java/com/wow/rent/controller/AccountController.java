@@ -145,6 +145,7 @@ public class AccountController {
         }
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Origin",httpRequest.getHeader("Origin"));
+        result.setData(null);
         return result;
     }
 
@@ -161,16 +162,18 @@ public class AccountController {
 
     @CrossOrigin(origins = {"http://localhost:3000", "null"})
     @RequestMapping(value = "/islogin", method = RequestMethod.GET)
-    public Result<AccountEntry> isLogin(HttpServletRequest request,HttpServletResponse response) {
+    public Result<AccountEntry> isLogin(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Origin",request.getHeader("Origin"));
         HttpSession session = request.getSession();
+        System.out.println(session);
 
         System.out.println(request.getSession().getId());
 
         Result<AccountEntry> result = new Result<>();
         // get user info from session
         AccountEntry sessionUser = (AccountEntry) session.getAttribute(SESSION_NAME);
+
         // if get null from session, is not logged.
         if (sessionUser == null) {
             result.setResultFailed("No login info！");
@@ -187,7 +190,7 @@ public class AccountController {
             result.setResultFailed("Account info error！");
             return result;
         }
-        result.setResultSuccess("Login！", getUser);
+        result.setResultSuccess("Login！", null);
         return result;
     }
 

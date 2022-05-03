@@ -34,8 +34,7 @@ public class CustomerController {
 //        System.out.println(state);
 //        System.out.println(country);
 //        System.out.println(zipcode);
-        // TODO: verify if email is used
-        // TODO: verify if address is registered
+
         addressService.addAddr(street,state,country,zipcode);
         int addrId = addressService.findAddressIdByInfo(street, state, country, zipcode);
         customerService.addNewCustomer(custType, email, phone, addrId);
@@ -58,8 +57,7 @@ public class CustomerController {
 //        System.out.println(state);
 //        System.out.println(country);
 //        System.out.println(zipcode);
-        // TODO: verify if email is used
-        // TODO: verify if address is registered
+
         addressService.addAddr(street,state,country,zipcode);
         int addrId = addressService.findAddressIdByInfo(street, state, country, zipcode);
         customerService.addNewCustomer(custType, email, phone, addrId);

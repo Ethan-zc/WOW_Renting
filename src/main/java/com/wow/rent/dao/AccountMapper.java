@@ -15,4 +15,6 @@ public interface AccountMapper {
     @Select("SELECT * FROM zzz_account WHERE accname = #{accName}")
     AccountEntry findAccountByAccName(String accName);
 
+
+
 }

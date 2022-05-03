@@ -26,7 +26,7 @@ public class SessionConfig {
         // 设置是否只能服务器修改，浏览器端不能修改
         serializer.setUseHttpOnlyCookie(false);
         // 最大生命周期的单位是分钟
-        serializer.setCookieMaxAge(24 * 60 * 60);
+        serializer.setCookieMaxAge(60*60*2);
         return serializer;
     }
     /**
