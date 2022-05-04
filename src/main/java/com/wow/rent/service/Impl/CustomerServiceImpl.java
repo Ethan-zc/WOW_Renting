@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
     protected CustomerMapper customerMapper;
 
     @Override
-    public CustomerEntry findCustomerById(long custId) {
+    public CustomerEntry findCustomerById(int custId) {
         return customerMapper.findCustomerById(custId);
     }
 
@@ -34,12 +34,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int addIndividualCustomer(long custId, String lName, String fName, String licenseNum, String insName, String insNum) {
+    public int addIndividualCustomer(int custId, String lName, String fName, String licenseNum, String insName, String insNum) {
         return customerMapper.addIndividualCustomer(custId, "I", lName, fName, licenseNum, insName, insNum);
     }
 
     @Override
-    public int addCorpCustomer(long custId, String corpName, String regNum, String empId) {
+    public int addCorpCustomer(int custId, String corpName, String regNum, String empId) {
         return customerMapper.addCorpCustomer(custId, "C", corpName, regNum, empId);
     }
 }

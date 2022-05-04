@@ -23,6 +23,9 @@ public interface OrderMapper {
     @Select("SELECT * from zzz_order WHERE discid = #{discId} AND disctype = #{discType}")
     OrderEntry findOrderByDiscount(Integer discId, String discType);
 
+    @Select("SELECT * from zzz_order WHERE custid = #{custId}")
+    List<OrderEntry> findOrderByCustId(int custId);
+
     @Select("update zzz_order set endodo = #{endOdo} where orderid = #{orderId}")
     void updateEndOdo(int orderId, double endOdo);
 
