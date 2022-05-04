@@ -22,7 +22,7 @@ public class InterceptorRegister implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> pathPatterns = new ArrayList<>();
-        pathPatterns.add("/order/updateOrder");
+        pathPatterns.add("/customer/addindi");
         registry.addInterceptor(getInterceptor()).addPathPatterns(pathPatterns);
     }
 }

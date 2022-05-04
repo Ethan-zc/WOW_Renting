@@ -73,26 +73,26 @@ public class OrderController {
     public Result<OrderEntry> createOrder(@RequestBody OrderCreateRequestEntry orderRequest, HttpServletRequest httpRequest,
                                           HttpServletResponse response) {
         Result<OrderEntry> result = new Result<>();
-        HttpSession session = httpRequest.getSession();
+//        HttpSession session = httpRequest.getSession();
         // get user info from session
-        AccountEntry sessionUser = (AccountEntry) session.getAttribute(SESSION_NAME);
+//        AccountEntry sessionUser = (AccountEntry) session.getAttribute(SESSION_NAME);
 
         // if get null from session, is not logged.
-        if (sessionUser == null) {
-            result.setResultFailed("No login info！");
-            return result;
-        }
+//        if (sessionUser == null) {
+//            result.setResultFailed("No login info！");
+//            return result;
+//        }
         // if logged, verify password using db info.
         AccountEntry getUser = null;
         try {
-            getUser = accountServie.findAccountByAccName(sessionUser.getAccName());
+            getUser = accountServie.findAccountByAccName(orderRequest.getAccName());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (getUser == null || !getUser.getPwd().equals(sessionUser.getPwd())) {
-            result.setResultFailed("Account info error！");
-            return result;
-        }
+//        if (getUser == null || !getUser.getPwd().equals(sessionUser.getPwd())) {
+//            result.setResultFailed("Account info error！");
+//            return result;
+//        }
 
         long custId = getUser.getCustId();
         String custType = getUser.getCustType();
