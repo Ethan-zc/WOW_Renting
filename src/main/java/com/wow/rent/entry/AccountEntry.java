@@ -8,7 +8,7 @@ public class AccountEntry {
     private long accId;
     private String accName;
     private String pwd;
-    private long custId;
+    private int custId;
     private String custType;
 
 }

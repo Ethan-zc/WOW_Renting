@@ -4,7 +4,7 @@ import com.wow.rent.entry.CustomerEntry;
 
 public interface CustomerService {
 
-    CustomerEntry findCustomerById(long custId);
+    CustomerEntry findCustomerById(int custId);
 
     int addNewCustomer(String custType, String email, String phone, int addrId);
 
@@ -12,8 +12,8 @@ public interface CustomerService {
 
     Integer findCustomerIdByEmail(String email);
 
-    int addIndividualCustomer(long custId, String lName, String fName, String licenseNum, String insName, String insNum);
+    int addIndividualCustomer(int custId, String lName, String fName, String licenseNum, String insName, String insNum);
 
-    int addCorpCustomer(long custId, String corpName, String regNum, String empId);
+    int addCorpCustomer(int custId, String corpName, String regNum, String empId);
 
 }

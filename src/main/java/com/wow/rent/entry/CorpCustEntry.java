@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class CorpCustEntry {
 
-    private long custId;
+    private int custId;
     private String custType;
     private String corpName;
     private String regNum;

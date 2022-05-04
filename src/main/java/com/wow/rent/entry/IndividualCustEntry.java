@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class IndividualCustEntry {
 
-    private long custId;
+    private int custId;
     private String custType;
     private String lName;
     private String fName;
