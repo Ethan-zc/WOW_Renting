@@ -1,7 +1,9 @@
 package com.wow.rent.entry;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.internal.NotNull;
 import lombok.Data;
+import lombok.NonNull;
 
 import java.util.Date;
 
@@ -18,5 +20,7 @@ public class OrderCreateRequestEntry {
     private int dropOff;
     private int carId;
     private String distNum;
+
+    private String accName;
 
 }
