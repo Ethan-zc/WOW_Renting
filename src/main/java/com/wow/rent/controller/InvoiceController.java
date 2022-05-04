@@ -25,32 +25,11 @@ public class InvoiceController {
     @Autowired
     OrderService orderService;
     @Autowired
-    CustomerService customerService;
-    @Autowired
     AccountServie accountServie;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Result<List<InvoiceEntry>> getInvoiceList(@RequestParam(value = "accName")String accName) {
-        Result<List<InvoiceEntry>> result = new Result<>();
-        if (accountServie.findAccountByAccName(accName) == null) {
-            result.setResultFailed("Account does not exist!");
-            return result;
-        }
-        int custId = accountServie.findAccountByAccName(accName).getCustId();
-        List<OrderEntry> orderList = orderService.findOrderByCustId(custId);
-        List<InvoiceEntry> invoiceList = new ArrayList<>();
-        for (OrderEntry order : orderList) {
-            InvoiceEntry invoice = invoiceService.findInvoiceByOrderId(order.getOrderId());
-            if (invoice != null) {
-                invoiceList.add(invoice);
-            }
-        }
-        if (invoiceList.isEmpty()) {
-            result.setResultFailed("empty");
-            return result;
-        }
-        result.setResultSuccess("Success!", invoiceList);
-        return result;
+        return invoiceService.findInvoiceListByAccName(accName);
     }
 
 }
