@@ -155,7 +155,6 @@ values
 (1000, null, 40, '2021-07-01', '2021-07-05', 6, 'C', 2, 3, 1, 8, 'C');
 
 -- insert data to zzz_account
-show columns from zzz_account;
 insert into zzz_account (accname, pwd, custid, custtype)
 values
 ('aa', '11', 1, 'I');
