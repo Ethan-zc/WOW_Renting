@@ -53,7 +53,7 @@ ALTER TABLE zzz_vehicle ADD CONSTRAINT zzz_vehicle_pk PRIMARY KEY ( vin );
 CREATE TABLE zzz_account (
     accid    BIGINT NOT NULL COMMENT 'Unique ID for account.',
     accname  VARCHAR(20) NOT NULL COMMENT 'Account name.',
-    pwd      VARCHAR(100) NOT NULL COMMENT 'Password.',
+    pwd      VARCHAR(50) NOT NULL COMMENT 'Password.',
     custid   INT NOT NULL,
     custtype CHAR(1) NOT NULL
 );

@@ -76,6 +76,7 @@ export default function SearchCars() {
     return CarDataService.post(dataFilter)
       .then(response => {
         console.log("[SearchCars] postGetCarData dataFilter: " + Object.values(dataFilter));
+        console.log(response);
         // console.log("[SearchCars] postGetCarData response data: " + response.data);
         let carData = [];
         let imgUrlData = [];

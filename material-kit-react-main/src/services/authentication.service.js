@@ -2,13 +2,36 @@ import http from "../http-common";
 
 class AuthDataService {
   postCorpRegister(data) {
-      return http.post("/account/corp/register", data);
+    return http.post("/account/corp/register", data);
   }
 
   postIndiRegister(data) {
-      return http.post("/account/indi/register", data);
+    return http.post("/account/indi/register", data);
   }
 
+  login(data) {
+    return http.post("/account/login", data);
+  }
+
+  isLogin() {
+    return http.get("/account/islogin");
+  }
+
+  logout() {
+    return http.get("/account/logout");
+  }
+
+  loginCookie(data, header) {
+    return http.post("/account/login", data, header);
+  }
+
+  isLoginCookie(header) {
+    return http.get("/account/islogin", header);
+  }
+
+  logoutCookie(header) {
+    return http.get("/account/logout", header);
+  }
   // get(id) {
   //   return http.get(`/cars/carid/${id}`);
   // }

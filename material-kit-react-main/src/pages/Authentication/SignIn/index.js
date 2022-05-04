@@ -41,12 +41,14 @@ import SignInLayout from "pages/Authentication/components/SignInLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-cover.jpeg";
 
+import AuthDataService from "services/authentication.service";
+
 export default function SignIn() {
   const navigate = useNavigate();
 
   const [rememberMe, setRememberMe] = useState(false);
   const [account, setAccount] = useState("");
-  // const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     let isSubmit = localStorage.getItem("isSubmit");
@@ -66,13 +68,43 @@ export default function SignIn() {
     }
   }, []);
 
+  const deleteAllCookies = () => {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
   const handleOnChangeAccount = (e) => { 
     setAccount(e.target.value);
   }
 
+  const handleOnChangePassword = (e) => { 
+    setPassword(e.target.value);
+  }
+
   const handleSetRememberMe = () => { 
-    localStorage.setItem("rememberMe", !rememberMe);
-    setRememberMe(!rememberMe);
+    deleteAllCookies();
+
+    let data ={
+      accName: "cc",
+      pwd: "11"
+    }
+    console.log(data);
+
+    console.log("cookie before ", document.cookie);
+    AuthDataService.login(data)
+      .then((response) => {
+        console.log(response);
+      });
+    console.log("cookie after ", document.cookie);
+
+    // localStorage.setItem("rememberMe", !rememberMe);
+    // setRememberMe(!rememberMe);
   }
 
   const handleOnClickSignIn = () => {
@@ -81,8 +113,23 @@ export default function SignIn() {
     localStorage.setItem("rememberMe", rememberMe);
     localStorage.setItem("account", rememberMe ? account : "");
 
+    console.log("islogin cookie ", document.cookie);
+    
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        "Cookie": "JSESSIONID=MTZjZTgzYTYtMDY2OS00N2I5LWIyMDAtMTgxZDVkMTEwMjZm",
+        },
+      withCredentials: true
+    };
+    
+    AuthDataService.iisLogin(config)
+      .then((response) => {
+        console.log(response);
+      });
+
     // TODO: authentication verification
-    navigate("/dashboard");
+    // navigate("/dashboard");
   }
 
   return (
@@ -124,7 +171,7 @@ export default function SignIn() {
           <MDBox component="form" role="form">
             <MDBox mb={2}>
               <MDInput 
-                type="email" 
+                type="text" 
                 label="Account"
                 fullWidth
                 value={account}
@@ -135,7 +182,15 @@ export default function SignIn() {
               </MDInput>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput 
+                type="password"
+                label="Password"
+                value={password}
+                onChange={handleOnChangePassword}
+                fullWidth
+              >
+                {password}
+              </MDInput>
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />

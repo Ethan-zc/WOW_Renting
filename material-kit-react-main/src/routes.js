@@ -49,6 +49,7 @@ import FormatPaintIcon from "@mui/icons-material/FormatPaint";
 // Pages
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
+import TestLogin from "layouts/pages/authentication/TestLogin.js";
 import Trip from "layouts/pages/trip";
 // import Admin from "layouts/pages/account/admin";
 // import Corp from "layouts/pages/account/corp";
@@ -226,6 +227,11 @@ const routes = [
         name: "sign up",
         route: "/authentication/sign-up",
         component: <SignUp />,
+      },
+      {
+        name: "sign up",
+        route: "/authentication/test-login",
+        component: <TestLogin />,
       },
     ],
   },
