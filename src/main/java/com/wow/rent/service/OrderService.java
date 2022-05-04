@@ -16,6 +16,8 @@ public interface OrderService {
 
     OrderEntry findOrderByDiscount(Integer discId, String discType);
 
+    List<OrderEntry> findOrderByCustId(int custId);
+
     void updateEndOdo(int orderId, double endOdo);
 
     Integer createNewOrder(int startOdo, int odoLimit, Date startDate, Date endDate, long custId, String custType,

@@ -34,6 +34,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderEntry> findOrderByCustId(int custId) {
+        return orderMapper.findOrderByCustId(custId);
+    }
+
+    @Override
     public void updateEndOdo(int orderId, double endOdo) { orderMapper.updateEndOdo(orderId, endOdo); }
 
     @Override
