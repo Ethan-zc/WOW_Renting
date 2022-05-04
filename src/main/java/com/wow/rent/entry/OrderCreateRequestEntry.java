@@ -8,9 +8,6 @@ import java.util.Date;
 @Data
 public class OrderCreateRequestEntry {
 
-    private int startOdo;
-    private int odoLimit;
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
@@ -20,7 +17,6 @@ public class OrderCreateRequestEntry {
     private int pickUp;
     private int dropOff;
     private int carId;
-    private String distType;
-    private int distId;
+    private String distNum;
 
 }

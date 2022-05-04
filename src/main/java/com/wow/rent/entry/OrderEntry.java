@@ -9,7 +9,6 @@ public class OrderEntry {
     private long startOdo;
     private long endOdo;
     private long odoLimit;
-//    TODO: parse Time？
     private String startDate;
     private String endDate;
     private String custId;

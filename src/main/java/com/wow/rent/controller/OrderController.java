@@ -96,28 +96,59 @@ public class OrderController {
 
         long custId = getUser.getCustId();
         String custType = getUser.getCustType();
-        int startOdo;
-        int odoLimit;
+        int startOdo = 0;
+        int odoLimit = 100;
         Date startDate;
         Date endDate;
         int pickUp;
         int dropOff;
         int carId;
-        String distType;
-        int distId;
+        String distNum;
+        Integer distId = null;
+        String distType = null;
 
         try {
-            startOdo = orderRequest.getStartOdo();
-            odoLimit = orderRequest.getOdoLimit();
             startDate = orderRequest.getStartDate();
             endDate = orderRequest.getEndDate();
             pickUp = orderRequest.getPickUp();
             dropOff = orderRequest.getDropOff();
             carId = orderRequest.getCarId();
-            distId = orderRequest.getDistId();
-            distType = orderRequest.getDistType();
+            distNum = orderRequest.getDistNum();
         } catch (Exception e) {
             result.setResultFailed("Parse Error!");
+            return result;
+        }
+
+        if (custType.equals("I") && distNum != null) {
+            IndiDiscountEntry indiDiscount = orderService.findIndiDiscountByCoupNum(distNum);
+            if (indiDiscount == null) {
+                result.setResultFailed("Discount not valid!");
+                return result;
+            } else {
+                Date current = new Date();
+                if (current.after(indiDiscount.getValidStart()) && current.before(indiDiscount.getValidEnd())) {
+                    distId = indiDiscount.getDiscId();
+                    distType = indiDiscount.getDiscType();
+                } else {
+                    result.setResultFailed("Discount not valid!");
+                    return result;
+                }
+            }
+        }
+
+        if (custType.equals("C") && distNum != null ) {
+            CorpDiscountEntry corpDiscountEntry = orderService.findCorpDiscountBySetNum(distNum);
+            if (corpDiscountEntry == null) {
+                result.setResultFailed("Discount not valid!");
+                return result;
+            } else {
+                distId = corpDiscountEntry.getDiscId();
+                distType = corpDiscountEntry.getDiscType();
+            }
+        }
+
+        if (orderService.findOrderByDiscount(distId, distType) != null && distId != null && distType != null) {
+            result.setResultFailed("Discount has been used!");
             return result;
         }
 

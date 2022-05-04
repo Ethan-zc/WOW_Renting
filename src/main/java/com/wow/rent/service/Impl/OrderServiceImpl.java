@@ -1,6 +1,8 @@
 package com.wow.rent.service.Impl;
 
 import com.wow.rent.dao.OrderMapper;
+import com.wow.rent.entry.CorpDiscountEntry;
+import com.wow.rent.entry.IndiDiscountEntry;
 import com.wow.rent.entry.OrderEntry;
 import com.wow.rent.service.OrderService;
 import org.apache.ibatis.annotations.Select;
@@ -27,11 +29,26 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public OrderEntry findOrderByDiscount(Integer discId, String discType) {
+        return orderMapper.findOrderByDiscount(discId, discType);
+    }
+
+    @Override
     public void updateEndOdo(int orderId, double endOdo) { orderMapper.updateEndOdo(orderId, endOdo); }
 
     @Override
     public Integer createNewOrder(int startOdo, int odoLimit, Date startDate, Date endDate, long custId, String custType,
-                           int pickUp, int dropOff, int carId, String distType, int distId) {
+                           int pickUp, int dropOff, int carId, String distType, Integer distId) {
         return orderMapper.createNewOrder(startOdo, odoLimit, startDate, endDate, custId, custType, pickUp, dropOff, carId, distType, distId);
+    }
+
+    @Override
+    public IndiDiscountEntry findIndiDiscountByCoupNum(String couponNum) {
+        return orderMapper.findIndiDiscountByCoupNum(couponNum);
+    }
+
+    @Override
+    public CorpDiscountEntry findCorpDiscountBySetNum(String setNum) {
+        return orderMapper.findCorpDiscountBySetNum(setNum);
     }
 }
