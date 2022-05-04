@@ -2,7 +2,6 @@ package com.wow.rent.entry;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.NonNull;
 
 import java.util.Date;
 

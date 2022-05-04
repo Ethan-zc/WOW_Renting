@@ -33,6 +33,25 @@ public class OrderController {
         return orderService.findAllOrders();
     }
 
+    @RequestMapping(value = "/custlist", method = RequestMethod.GET)
+    public Result<List<OrderEntry>> findOrderByAccName(@RequestParam(value = "accName")String accName) {
+        Result<List<OrderEntry>> result = new Result<>();
+        AccountEntry account = accountServie.findAccountByAccName(accName);
+        if (account == null) {
+            result.setResultFailed("Account does not exist!");
+            return result;
+        }
+        int custId = account.getCustId();
+        List<OrderEntry> orderList = orderService.findOrderByCustId(custId);
+        if (orderList == null) {
+            result.setResultSuccess("empty", null);
+            return result;
+        }
+        result.setResultSuccess("Success!", orderList);
+        return result;
+
+    }
+
     @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
     public Object updateEndOdo(@RequestBody OrderUpdateRequestEntry request) {
         JSONObject jsonObject = new JSONObject();

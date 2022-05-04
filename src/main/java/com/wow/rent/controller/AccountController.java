@@ -1,10 +1,7 @@
 package com.wow.rent.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wow.rent.entry.AccountEntry;
-import com.wow.rent.entry.CorpRegisterRequestEntry;
-import com.wow.rent.entry.IndiRegisterRequestEntry;
-import com.wow.rent.entry.LoginRequestEntry;
+import com.wow.rent.entry.*;
 import com.wow.rent.service.AccountServie;
 import com.wow.rent.service.AddressService;
 import com.wow.rent.service.CustomerService;
@@ -18,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.RequestWrapper;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -194,5 +192,13 @@ public class AccountController {
         return result;
     }
 
+//    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+//    public Result<AccountEntry> getProfile(@RequestParam(value = "accName")String accName) {
+//        Result<List<PaymentEntry>> result = new Result<>();
+//        if (accountServie.findAccountByAccName(accName) == null) {
+//            result.setResultFailed("Account does not exist!");
+//            return result;
+//        }
+//    }
 
 }

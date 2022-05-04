@@ -1,5 +1,6 @@
 package com.wow.rent.dao;
 
+import com.wow.rent.entry.CorpCustEntry;
 import com.wow.rent.entry.CustomerEntry;
 import com.wow.rent.entry.IndividualCustEntry;
 import org.apache.ibatis.annotations.Insert;
@@ -11,6 +12,12 @@ public interface CustomerMapper {
 
     @Select("SELECT * FROM zzz_customer WHERE custid = #{custid}")
     CustomerEntry findCustomerById(int custid);
+
+    @Select("SELECT * FROM zzz_individual WHERE cusid = #{cusiId}")
+    IndividualCustEntry findIndiCustById(int custId);
+
+    @Select("SELECT * FROM zzz_corporative WHERE custid = #{custId}")
+    CorpCustEntry findCorpCustById(int custId);
 
     @Insert("INSERT INTO zzz_customer (custtype, email, phone, addrid) VALUES (#{custType}, #{email}, #{phone}, #{addrid})")
     int addCustomer(String custType, String email, String phone, int addrid);
