@@ -33,7 +33,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Authentication layout components
-import SignInLayout from "pages/Authentication/components/SignInLayout";
+import SignInLayout from "pages/authentication/components/SignInLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-cover.jpeg";

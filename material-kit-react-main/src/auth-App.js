@@ -13,12 +13,12 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 
 // Material Kit 2 React pages
-import Welcome from "layouts/pages/welcome";
-import Dashboard from "layouts/dashboard";
+import Welcome from "pages/welcome";
+import Dashboard from "pages/dashboard";
 
 // Material Dashboard 2 React example components
-import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
+import Sidenav from "layouts/Sidenav";
+import Configurator from "layouts/Configurator";
 
 // Material Dashboard 2 React themes
 import theme from "assets/theme";
@@ -27,8 +27,8 @@ import theme from "assets/theme";
 import themeDark from "assets/theme-dark";
 
 // Material Dashboard 2 React routes
-import userRoutes from "user.routes";
-import routes from "routes";
+import authRoutes from "routes/auth.routes";
+import unauthRoutes from "routes/unauth.routes";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
@@ -82,16 +82,25 @@ export default function AuthenticatedApp() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  const getRoutes = (allRoutes) =>
+  const getAuthRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {
-        return getRoutes(route.collapse);
+        return getAuthRoutes(route.collapse);
       }
-
       if (route.route) {
         return <Route exact path={route.route} element={route.component} key={route} />;
       }
+      return null;
+    });
 
+  const getUnauthRoutes = (allRoutes) =>
+    allRoutes.map((route) => {
+      if (route.collapse) {
+        return getUnauthRoutes(route.collapse);
+      }
+      if (route.route) {
+        return <Route exact path={route.route} element={route.component} key={route} />;
+      }
       return null;
     });
 
@@ -128,7 +137,7 @@ export default function AuthenticatedApp() {
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="ZZZ Car Rental"
-            routes={userRoutes}
+            routes={authRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
@@ -138,11 +147,11 @@ export default function AuthenticatedApp() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {getRoutes(routes)}
-        {getRoutes(userRoutes)}
-        <Route path="/welcomee" element={<Welcome />} />
+        {getUnauthRoutes(unauthRoutes)}
+        {getAuthRoutes(authRoutes)}
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/*" element={<Navigate to="/dashboard" />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/*/dashboard/*" element={<Dashboard />} />
       </Routes>
     </ThemeProvider>
   );

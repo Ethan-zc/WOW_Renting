@@ -37,8 +37,8 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Trip page components
-import FormSearchCars from "pages/Trip/components/FormSearchCars";
-import TableViewCars from "pages/Trip/components/TableViewCars";
+import FormSearchCars from "pages/trip/components/FormSearchCars";
+import TableViewCars from "pages/trip/components/TableViewCars";
 
 // FIXME: use another table if have time
 // import TableCars from "pages/Trip/components/TableCars";

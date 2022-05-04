@@ -26,10 +26,10 @@ import MKBadge from "components/MKBadge";
 import MKTypography from "components/MKTypography";
 
 // Welcome page components
-import ExampleCar from "pages/Welcome/components/ExampleCar";
+import ExampleCar from "pages/welcome/components/ExampleCar";
 
 // Data
-import data from "pages/Welcome/sections/data/designBlocksData";
+import data from "pages/welcome/sections/data/designBlocksData";
 
 function FeatureCarList() {
   const renderData = data.map(({ title, description, items }) => (

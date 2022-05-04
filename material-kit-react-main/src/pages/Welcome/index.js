@@ -24,13 +24,13 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React view
-import DefaultNavbar from "view/Navbars/DefaultNavbar";
-import BasicFooter from "view/Footers/BasicFooter";
+import DefaultNavbar from "layouts/NavbarsUnauth/DefaultNavbar";
+import BasicFooter from "layouts/Footers/BasicFooter";
 
 // Welcome page sections
-import Counters from "pages/Welcome/sections/Counters";
-import FeatureCarList from "pages/Welcome/sections/FeatureCarList";
-import AdsDisplay from "pages/Welcome/sections/AdsDisplay";
+import Counters from "pages/welcome/sections/Counters";
+import FeatureCarList from "pages/welcome/sections/FeatureCarList";
+import AdsDisplay from "pages/welcome/sections/AdsDisplay";
 
 // Images
 import bgImage from "assets/images/bg-welcome.jpg";

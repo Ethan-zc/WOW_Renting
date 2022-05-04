@@ -23,11 +23,11 @@ import Grid from "@mui/material/Grid";
 import MDBox from "components/MDBox";
 
 // Material Kit 2 React view
-import DefaultNavbar from "view/Navbars/DefaultNavbar";
-import AuthFooter from "view/Footers/AuthFooter";
+import DefaultNavbar from "layouts/NavbarsUnauth/DefaultNavbar";
+import AuthFooter from "layouts/Footers/AuthFooter";
 
 // Authentication components
-import PageLayout from "pages/Authentication/components/PageLayout";
+import PageLayout from "pages/authentication/components/PageLayout";
 
 export default function SignInLayout({ image, children }) {
   return (

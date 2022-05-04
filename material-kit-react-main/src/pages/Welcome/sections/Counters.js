@@ -22,7 +22,7 @@ import Divider from "@mui/material/Divider";
 import MKBox from "components/MKBox";
 
 // Material Kit 2 React view
-import DefaultCounterCard from "view/Cards/CounterCards/DefaultCounterCard";
+import DefaultCounterCard from "layouts/Cards/CounterCards/DefaultCounterCard";
 
 // TODO: counters info?
 function Counters() {

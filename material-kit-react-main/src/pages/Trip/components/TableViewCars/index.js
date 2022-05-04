@@ -24,7 +24,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
-import ExampleCar from "pages/Trip/components/ExampleCar";
+import ExampleCar from "pages/trip/components/ExampleCar";
 import MKTypography from "components/MKTypography";
 import MKBox from "components/MKBox";
 

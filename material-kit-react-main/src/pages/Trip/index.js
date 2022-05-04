@@ -23,11 +23,11 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React view
-import DefaultNavbar from "view/Navbars/DefaultNavbar";
-import BasicFooter from "view/Footers/BasicFooter";
+import DefaultNavbar from "layouts/NavbarsUnauth/DefaultNavbar";
+import BasicFooter from "layouts/Footers/BasicFooter";
 
 // Trip page sections
-import SearchCars from "pages/Trip/sections/SearchCars";
+import SearchCars from "pages/trip/sections/SearchCars";
 
 // Images
 import bgImage from "assets/images/bg-welcome.jpg";

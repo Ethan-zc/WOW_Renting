@@ -62,7 +62,7 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
 // Authentication layout components
-import SignUpLayout from "pages/Authentication/components/SignUpLayout";
+import SignUpLayout from "pages/authentication/components/SignUpLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";

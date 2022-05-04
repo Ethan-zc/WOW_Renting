@@ -20,20 +20,20 @@ import Grid from "@mui/material/Grid";
 import MDBox from "components/MDBox";
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import DashboardLayout from "layouts/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "layouts/Navbars/DashboardNavbar";
+import Footer from "layouts/Footers/FooterAuth";
+import ReportsBarChart from "layouts/Charts/BarCharts/ReportsBarChart";
+import ReportsLineChart from "layouts/Charts/LineCharts/ReportsLineChart";
+import ComplexStatisticsCard from "layouts/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import reportsBarChartData from "pages/account/dashboard/data/reportsBarChartData";
+import reportsLineChartData from "pages/account/dashboard/data/reportsLineChartData";
 
 // Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import Projects from "pages/account/dashboard/components/Projects";
+import OrdersOverview from "pages/account/dashboard/components/OrdersOverview";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;

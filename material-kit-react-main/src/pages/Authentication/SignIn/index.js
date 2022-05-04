@@ -36,7 +36,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Authentication layout components
-import SignInLayout from "pages/Authentication/components/SignInLayout";
+import SignInLayout from "pages/authentication/components/SignInLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-cover.jpeg";
@@ -68,17 +68,6 @@ export default function SignIn() {
     }
   }, []);
 
-  const deleteAllCookies = () => {
-    var cookies = document.cookie.split(";");
-
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-}
-
   const handleOnChangeAccount = (e) => { 
     setAccount(e.target.value);
   }
@@ -88,23 +77,8 @@ export default function SignIn() {
   }
 
   const handleSetRememberMe = () => { 
-    deleteAllCookies();
-
-    let data ={
-      accName: "cc",
-      pwd: "11"
-    }
-    console.log(data);
-
-    console.log("cookie before ", document.cookie);
-    AuthDataService.login(data)
-      .then((response) => {
-        console.log(response);
-      });
-    console.log("cookie after ", document.cookie);
-
-    // localStorage.setItem("rememberMe", !rememberMe);
-    // setRememberMe(!rememberMe);
+    localStorage.setItem("rememberMe", !rememberMe);
+    setRememberMe(!rememberMe);
   }
 
   const handleOnClickSignIn = () => {
@@ -113,23 +87,27 @@ export default function SignIn() {
     localStorage.setItem("rememberMe", rememberMe);
     localStorage.setItem("account", rememberMe ? account : "");
 
-    console.log("islogin cookie ", document.cookie);
-    
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-        "Cookie": "JSESSIONID=MTZjZTgzYTYtMDY2OS00N2I5LWIyMDAtMTgxZDVkMTEwMjZm",
-        },
-      withCredentials: true
-    };
-    
-    AuthDataService.iisLogin(config)
-      .then((response) => {
-        console.log(response);
-      });
-
     // TODO: authentication verification
-    // navigate("/dashboard");
+
+    console.log("[SignIn] handleOnClickSignIn account: ");
+    let data = {
+      accName: account,
+      pwd: password
+    }
+    console.log(data);
+    AuthDataService.login(data)
+      .then((response) => {
+        if (response.success === "true") {
+          // login success
+          localStorage.setItem("__account__", account);
+          // navigate("/dashboard");
+        } else {
+          // login fail
+
+        }
+
+      });
+    
   }
 
   return (

@@ -11,10 +11,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "assets/theme";
 
 // Material Kit 2 React pages
-import Welcome from "layouts/pages/welcome";
+import Welcome from "pages/welcome";
 
 // Material Dashboard 2 React routes
-import routes from "routes";
+import unauthRoutes from "routes/unauth.routes";
 
 export default function UnauthenticatedApp() {
  
@@ -26,16 +26,14 @@ export default function UnauthenticatedApp() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  const getRoutes = (allRoutes) =>
+  const getUnauthRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {
-        return getRoutes(route.collapse);
+        return getUnauthRoutes(route.collapse);
       }
-
       if (route.route) {
         return <Route exact path={route.route} element={route.component} key={route} />;
       }
-
       return null;
     });
 
@@ -43,7 +41,7 @@ export default function UnauthenticatedApp() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-        {getRoutes(routes)}
+        {getUnauthRoutes(unauthRoutes)}
         <Route path="/welcome" element={<Welcome />} />
         {/* <Route path="/dashboard" element={<Navigate to="/dashboard" />} /> */}
         <Route path="/*" element={<Navigate to="/welcome" />} />
