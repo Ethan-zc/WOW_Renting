@@ -23,19 +23,27 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React view
-import DefaultNavbar from "layouts/NavbarsUnauth/DefaultNavbar";
-import BasicFooter from "layouts/Footers/BasicFooter";
+import DefaultNavbar from "sections/NavbarsUnauth/DefaultNavbar";
+import BasicFooter from "sections/Footers/BasicFooter";
 
 // Trip page sections
 import SearchCars from "pages/trip/sections/SearchCars";
 
+// Trip layout components
+import PageLayout from "pages/welcome/components/PageLayout";
+
 // Images
 import bgImage from "assets/images/bg-welcome.jpg";
 
+import { useAuth } from "context/auth-context";
+import unauthRoutes from "routes/unauth.routes";
+import authNavRoutes from "routes/auth.nav.routes";
+
 function Trip() {
+  const user = useAuth();
   return (
-    <>
-      <DefaultNavbar sticky />
+    <PageLayout>
+      <DefaultNavbar routes={user?authNavRoutes:unauthRoutes} sticky />
       <MKBox
         minHeight="70vh"
         width="100%"
@@ -97,7 +105,7 @@ function Trip() {
       <MKBox pt={0} pb={4} px={1} mt={6}>
         <BasicFooter />
       </MKBox>
-    </>
+    </PageLayout>
   );
 }
 

@@ -35,17 +35,21 @@ Coded by www.creative-tim.com
   10. The `component` key is used to store the component of its route.
 */
 
-// Material Dashboard 2 React layouts
+// Material Dashboard 2 React sections
 import Dashboard from "pages/account/dashboard";
 import Tables from "pages/account/tables";
+import OrderUser from "pages/account/orderuser";
 import Billing from "pages/account/billing";
 import RTL from "pages/account/rtl";
 import Notifications from "pages/account/notifications";
 import Profile from "pages/account/profile";
 import Logout from "pages/account/logout";
+import Trip from "pages/trip";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import CarRentalIcon from "@mui/icons-material/CarRental";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const authRoutes = [
   {
@@ -63,6 +67,14 @@ const authRoutes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
     component: <Tables />,
+  },
+  {
+    type: "collapse",
+    name: "Order",
+    key: "tables",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/user/order",
+    component: <OrderUser />,
   },
   {
     type: "collapse",
@@ -98,12 +110,22 @@ const authRoutes = [
   },
   {
     type: "collapse",
+    name: "Trip",
+    key: "trip",
+    icon: <CarRentalIcon />,
+    route: "/trip",
+    component: <Trip />,
+  },
+  {
+    type: "collapse",
     name: "Logout",
     key: "logout",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/profile",
+    icon: <Icon fontSize="small">logout</Icon>,
+    route: "/logout",
     component: <Logout />,
   },
+
 ];
 
 export default authRoutes;
+

@@ -21,13 +21,13 @@ import Grid from "@mui/material/Grid";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 
-// Material Dashboard 2 React layouts components
-import DashboardLayout from "layouts/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "layouts/Navbars/DashboardNavbar";
-import Footer from "layouts/Footers/AuthFooter";
-import ReportsBarChart from "layouts/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "layouts/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "layouts/Cards/StatisticsCards/ComplexStatisticsCard";
+// Material Dashboard 2 React sections components
+import DashboardLayout from "sections/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "sections/Navbars/DashboardNavbar";
+import Footer from "sections/Footers/AuthFooter";
+import ReportsBarChart from "sections/Charts/BarCharts/ReportsBarChart";
+import ReportsLineChart from "sections/Charts/LineCharts/ReportsLineChart";
+import ComplexStatisticsCard from "sections/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
 import reportsBarChartData from "pages/account/rtl/data/reportsBarChartData";
@@ -38,7 +38,7 @@ import Projects from "pages/account/rtl/components/Projects";
 import OrdersOverview from "pages/account/rtl/components/OrdersOverview";
 
 // Material Dashboard 2 React contexts
-import { useMaterialUIController, setDirection } from "context";
+import { useMaterialUIController, setDirection } from "context/mui-provider";
 
 function RTL() {
   const [, dispatch] = useMaterialUIController();

@@ -21,8 +21,8 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-// Material Dashboard 2 React layouts components
-import TimelineItem from "layouts/Timeline/TimelineItem";
+// Material Dashboard 2 React sections components
+import TimelineItem from "sections/Timeline/TimelineItem";
 
 function OrdersOverview() {
   return (

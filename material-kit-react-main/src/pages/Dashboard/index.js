@@ -20,12 +20,12 @@ import Grid from "@mui/material/Grid";
 import MDBox from "components/MDBox";
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "layouts/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "layouts/Navbars/DashboardNavbar";
-import Footer from "layouts/Footers/FooterAuth";
-import ReportsBarChart from "layouts/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "layouts/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "layouts/Cards/StatisticsCards/ComplexStatisticsCard";
+import DashboardLayout from "sections/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "sections/Navbars/DashboardNavbar";
+import Footer from "sections/Footers/FooterAuth";
+import ReportsBarChart from "sections/Charts/BarCharts/ReportsBarChart";
+import ReportsLineChart from "sections/Charts/LineCharts/ReportsLineChart";
+import ComplexStatisticsCard from "sections/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
 import reportsBarChartData from "pages/account/dashboard/data/reportsBarChartData";

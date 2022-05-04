@@ -1,7 +1,6 @@
 package com.wow.rent.entry;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import lombok.NonNull;
 

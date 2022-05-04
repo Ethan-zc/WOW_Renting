@@ -36,7 +36,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Authentication layout components
-import SignInLayout from "pages/authentication/components/SignInLayout";
+import SignInUpLayout from "pages/authentication/components/SignInUpLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-cover.jpeg";
@@ -88,30 +88,30 @@ export default function SignIn() {
     localStorage.setItem("account", rememberMe ? account : "");
 
     // TODO: authentication verification
+    localStorage.setItem("__account__", account);
+    navigate("/dashboard");
 
-    console.log("[SignIn] handleOnClickSignIn account: ");
-    let data = {
-      accName: account,
-      pwd: password
-    }
-    console.log(data);
-    AuthDataService.login(data)
-      .then((response) => {
-        if (response.success === "true") {
-          // login success
-          localStorage.setItem("__account__", account);
-          // navigate("/dashboard");
-        } else {
-          // login fail
-
-        }
-
-      });
+    // console.log("[SignIn] handleOnClickSignIn account: ");
+    // let data = {
+    //   accName: account,
+    //   pwd: password
+    // }
+    // console.log(data);
+    // AuthDataService.login(data)
+    //   .then((response) => {
+    //     if (response.success === "true") {
+    //       // login success
+    //       localStorage.setItem("__account__", account);
+    //       // navigate("/dashboard");
+    //     } else {
+    //       // login fail
+    //     }
+    //   });
     
   }
 
   return (
-    <SignInLayout image={bgImage}>
+    <SignInUpLayout image={bgImage}>
       <Card>
         <MDBox
           variant="gradient"
@@ -210,6 +210,6 @@ export default function SignIn() {
           </MDBox>
         </MDBox>
       </Card>
-    </SignInLayout>
+    </SignInUpLayout>
   );
 }

@@ -3,27 +3,25 @@ import React, { useState, useEffect } from "react";
 import UnauthenticatedApp from "unauth-App";
 import AuthenticatedApp from "auth-App";
 
+// import { useMaterialUIController } from "context/mui-provider";
 
-const AuthContext = React.createContext()
+// import { useClient } from "context/auth-context";
 
-const useAuth = () => {
-  const context = React.useContext(AuthContext)
-  if (context === undefined) {
-    throw new Error(`useAuth must be used within a AuthProvider`)
-  }
-  return context
-}
+import { useAuth } from "context/auth-context";
 
 export default function App() {
-  // const {user} = useAuth();
-
-  const user = false;
+  // const {test} = useMaterialUIController();
+  // const {test} = useClient();
+  let user = useAuth();
+  // console.log(test);
+  // const user = true;
   // document.cookie;
   // localStorige
   // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
-
+    //   console.log(user);
+    // }, [user]);
+  // let user = false;
+  console.log(user);
   return (
     <>
       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}

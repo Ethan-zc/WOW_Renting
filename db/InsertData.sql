@@ -125,7 +125,7 @@ values
 -- insert data to discindi
 insert into zzz_discindi (discid, disctype, validstart, validend, coupnum)
 values
-(1, 'I', '2022-03-03', '2022-03-31', 9675731),
+(1, 'I', '2022-03-03', '2023-03-31', 9675731),
 (2, 'I', '2022-02-01', '2022-03-01', 5760897),
 (3, 'I', '2019-05-31', '2019-06-30', 0903232),
 (4, 'I', '2021-07-01', '2021-07-31', 5881648),
@@ -147,11 +147,17 @@ values
 -- insert data to zzz_orders
 insert into zzz_order (startodo, endodo, odolimit, startdate, enddate, custid, custtype, pickup, dropoff, carid, discid, disctype)
 values
-(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, null),
-(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, null),
-(1000, null, null, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, null),
-(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 1, 'I'),
+(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, null, null),
+(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, null, null),
+(1000, null, null, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, null, null),
+(1000, null, 40, '2020-03-01', '2020-03-05', 1, 'I', 2, 3, 1, 2, 'I'),
 (1000, null, 40, '2021-07-01', '2021-07-05', 1, 'I', 2, 3, 1, 4, 'I'),
 (1000, null, 40, '2021-07-01', '2021-07-05', 6, 'C', 2, 3, 1, 8, 'C');
+
+-- insert data to zzz_account
+show columns from zzz_account;
+insert into zzz_account (accname, pwd, custid, custtype)
+values
+('aa', '11', 1, 'I');
 
 commit;

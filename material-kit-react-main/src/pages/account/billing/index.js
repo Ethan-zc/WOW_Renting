@@ -19,12 +19,12 @@ import Grid from "@mui/material/Grid";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 
-// Material Dashboard 2 React layouts
-import DashboardLayout from "layouts/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "layouts/Navbars/DashboardNavbar";
-import Footer from "layouts/Footers/AuthFooter";
-import MasterCard from "layouts/Cards/MasterCard";
-import DefaultInfoCard from "layouts/Cards/InfoCards/DefaultInfoCard";
+// Material Dashboard 2 React sections
+import DashboardLayout from "sections/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "sections/Navbars/DashboardNavbar";
+import Footer from "sections/Footers/AuthFooter";
+import MasterCard from "sections/Cards/MasterCard";
+import DefaultInfoCard from "sections/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
 import PaymentMethod from "pages/account/billing/components/PaymentMethod";

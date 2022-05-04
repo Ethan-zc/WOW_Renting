@@ -62,7 +62,7 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
 // Authentication layout components
-import SignUpLayout from "pages/authentication/components/SignUpLayout";
+import SignInUpLayout from "pages/authentication/components/SignInUpLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
@@ -271,7 +271,7 @@ export default function SignUp() {
   }
 
   return (
-    <SignUpLayout image={bgImage}>
+    <SignInUpLayout image={bgImage}>
       <Card sx={{ minWidth: 400 }}>
         <MDBox
           variant="gradient"
@@ -510,6 +510,6 @@ export default function SignUp() {
           </Slide>
         </Modal>
       </Card>
-    </SignUpLayout>
+    </SignInUpLayout>
   );
 }

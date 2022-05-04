@@ -35,14 +35,14 @@ Coded by www.creative-tim.com
   10. The `component` key is used to store the component of its route.
 */
 
-// Material Dashboard 2 React layouts
-import Dashboard from "layouts/pages/account/dashboard";
-import Tables from "layouts/pages/account/tables";
-import Billing from "layouts/pages/account/billing";
-import RTL from "layouts/pages/account/rtl";
-import Notifications from "layouts/pages/account/notifications";
-import Profile from "layouts/pages/account/profile";
-import Logout from "layouts/pages/account/logout";
+// Material Dashboard 2 React sections
+import Dashboard from "sections/pages/account/dashboard";
+import Tables from "sections/pages/account/tables";
+import Billing from "sections/pages/account/billing";
+import RTL from "sections/pages/account/rtl";
+import Notifications from "sections/pages/account/notifications";
+import Profile from "sections/pages/account/profile";
+import Logout from "sections/pages/account/logout";
 
 // @mui icons
 import Icon from "@mui/material/Icon";

@@ -26,10 +26,10 @@ export default function UnauthenticatedApp() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  const getUnauthRoutes = (allRoutes) =>
+  const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.collapse) {
-        return getUnauthRoutes(route.collapse);
+        return getRoutes(route.collapse);
       }
       if (route.route) {
         return <Route exact path={route.route} element={route.component} key={route} />;
@@ -41,7 +41,7 @@ export default function UnauthenticatedApp() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-        {getUnauthRoutes(unauthRoutes)}
+        {getRoutes(unauthRoutes)}
         <Route path="/welcome" element={<Welcome />} />
         {/* <Route path="/dashboard" element={<Navigate to="/dashboard" />} /> */}
         <Route path="/*" element={<Navigate to="/welcome" />} />

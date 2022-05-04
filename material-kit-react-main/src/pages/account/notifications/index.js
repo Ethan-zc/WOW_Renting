@@ -26,10 +26,10 @@ import MDAlert from "components/MDAlert";
 import MDButton from "components/MDButton";
 import MDSnackbar from "components/MDSnackbar";
 
-// Material Dashboard 2 React layouts components
-import DashboardLayout from "layouts/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "layouts/Navbars/DashboardNavbar";
-import Footer from "layouts/Footers/AuthFooter";
+// Material Dashboard 2 React sections components
+import DashboardLayout from "sections/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "sections/Navbars/DashboardNavbar";
+import Footer from "sections/Footers/AuthFooter";
 
 function Notifications() {
   const [successSB, setSuccessSB] = useState(false);

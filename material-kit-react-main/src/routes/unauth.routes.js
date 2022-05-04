@@ -50,9 +50,9 @@ import SignIn from "pages/authentication/signin";
 import SignUp from "pages/authentication/signup";
 import TestLogin from "pages/authentication/TestLogin.js";
 import Trip from "pages/trip";
-// import Admin from "layouts/pages/account/admin";
-// import Corp from "layouts/pages/account/corp";
-// import User from "layouts/pages/account/user";
+// import Admin from "sections/pages/account/admin";
+// import Corp from "sections/pages/account/corp";
+// import User from "sections/pages/account/user";
 
 const unauthRoutes = [
   {

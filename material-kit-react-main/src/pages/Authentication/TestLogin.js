@@ -33,7 +33,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Authentication layout components
-import SignInLayout from "pages/authentication/components/SignInLayout";
+import SignInUpLayout from "pages/authentication/components/SignInUpLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-cover.jpeg";
@@ -175,7 +175,7 @@ export default function TestLogin() {
   }
 
   return (
-    <SignInLayout image={bgImage}>
+    <SignInUpLayout image={bgImage}>
       <Card>
         <MDBox
           variant="gradient"
@@ -309,6 +309,6 @@ export default function TestLogin() {
           </MDBox>
         </MDBox>
       </Card>
-    </SignInLayout>
+    </SignInUpLayout>
   );
 }

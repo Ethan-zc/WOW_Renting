@@ -7,6 +7,5 @@ public class OrderUpdateRequestEntry {
 
     private int orderId;
     private double endOdo;
-    private double startOdo;
 
 }
