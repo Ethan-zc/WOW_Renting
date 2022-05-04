@@ -10,5 +10,7 @@ public interface AccountServie {
 
     AccountEntry findAccountByAccName(String accName);
 
+    String findCustTypeByAccName(String accName);
+
     Result<AccountEntry> login(LoginRequestEntry loginRequest);
 }

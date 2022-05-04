@@ -31,6 +31,18 @@ public class AccountController {
     @Autowired
     private CustomerService customerService;
 
+    @RequestMapping(value = "/type", method = RequestMethod.GET)
+    public Result<String> getAccountType(@RequestParam(value = "accName")String accName) {
+        Result<String> result = new Result<>();
+        if (accountServie.findAccountByAccName(accName) == null) {
+            result.setResultFailed("Account does not exist!");
+            return result;
+        }
+        String custType = accountServie.findCustTypeByAccName(accName);
+        result.setResultSuccess("Success!", custType);
+        return result;
+    }
+
     @RequestMapping(value = "/indi/register", method = RequestMethod.POST)
     public Object indiRegister(@RequestBody IndiRegisterRequestEntry request) {
         String accName = request.getAccname();

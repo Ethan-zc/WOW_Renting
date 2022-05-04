@@ -27,6 +27,11 @@ public class AccountServiceImpl implements AccountServie {
     }
 
     @Override
+    public String findCustTypeByAccName(String accName) {
+        return accountMapper.findCustTypeByAccName(accName);
+    }
+
+    @Override
     public Result<AccountEntry> login(LoginRequestEntry loginRequest) {
         Result<AccountEntry> result = new Result<>();
         AccountEntry getAccount = null;
