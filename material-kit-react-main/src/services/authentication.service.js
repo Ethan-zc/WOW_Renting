@@ -36,6 +36,10 @@ class AuthDataService {
   getCustType(data) {
     return http.get("/account/type?accName=" + data);
   }
+
+  getCustInfo(data) {
+    return http.get("/account/profile?accName=" + data);
+  }
   // get(id) {
   //   return http.get(`/cars/carid/${id}`);
   // }

@@ -40,7 +40,6 @@ import Dashboard from "pages/account/dashboard";
 import Tables from "pages/account/tables";
 import OrderUser from "pages/account/orderuser";
 import Billing from "pages/account/billing";
-import RTL from "pages/account/rtl";
 import Notifications from "pages/account/notifications";
 import Profile from "pages/account/profile";
 import Logout from "pages/account/logout";
@@ -83,14 +82,6 @@ const authRoutes = [
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
     component: <Billing />,
-  },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
   },
   {
     type: "collapse",
