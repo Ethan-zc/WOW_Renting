@@ -22,66 +22,27 @@ import MDBox from "components/MDBox";
 // Material Dashboard 2 React sections
 import DashboardLayout from "sections/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "sections/Navbars/DashboardNavbar";
-import Footer from "sections/Footers/AuthFooter";
-import MasterCard from "sections/Cards/MasterCard";
-import DefaultInfoCard from "sections/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
-import PaymentMethod from "pages/account/billing/components/PaymentMethod";
 import Invoices from "pages/account/billing/components/Invoices";
-import BillingInformation from "pages/account/billing/components/BillingInformation";
 import Transactions from "pages/account/billing/components/Transactions";
 
 function Billing() {
   return (
     <DashboardLayout>
-      <DashboardNavbar absolute isMini />
-      <MDBox mt={8}>
+      <DashboardNavbar isMini />
+      <MDBox mt={2}>
         <MDBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={8}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} xl={6}>
-                  <MasterCard number={4562112245947852} holder="jack peterson" expires="11/22" />
-                </Grid>
-                <Grid item xs={12} md={6} xl={3}>
-                  <DefaultInfoCard
-                    icon="account_balance"
-                    title="salary"
-                    description="Belong Interactive"
-                    value="+$2000"
-                  />
-                </Grid>
-                <Grid item xs={12} md={6} xl={3}>
-                  <DefaultInfoCard
-                    icon="paypal"
-                    title="paypal"
-                    description="Freelance Payment"
-                    value="$455.00"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <PaymentMethod />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} lg={7}>
               <Invoices />
             </Grid>
-          </Grid>
-        </MDBox>
-        <MDBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={7}>
-              <BillingInformation />
-            </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} lg={5}>
               <Transactions />
             </Grid>
           </Grid>
         </MDBox>
       </MDBox>
-      <Footer />
     </DashboardLayout>
   );
 }

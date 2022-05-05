@@ -51,9 +51,16 @@ const authRoutes = [
   {
     type: "collapse",
     name: "Order",
-    key: "tables",
+    key: "userOrder",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/user/order",
+  },
+  {
+    type: "collapse",
+    name: "OrderAdmin",
+    key: "adminOrder",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/user/admin",
   },
   {
     type: "collapse",

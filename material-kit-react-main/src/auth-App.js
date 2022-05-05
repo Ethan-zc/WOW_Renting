@@ -14,7 +14,7 @@ import MDBox from "components/MDBox";
 
 // Material Kit 2 React pages
 import Welcome from "pages/welcome";
-import Dashboard from "pages/dashboard";
+import Profile from "pages/account/profile";
 
 // Material Dashboard 2 React example components
 import Sidenav from "sections/Sidenav";
@@ -139,7 +139,7 @@ export default function AuthenticatedApp() {
         {getRoutes(authRoutes)}
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/*" element={<Navigate to="/welcome" />} />
-        <Route path="/*/dashboard/*" element={<Dashboard />} />
+        <Route path="/*/profile/*" element={<Profile />} />
       </Routes>
     </ThemeProvider>
   );

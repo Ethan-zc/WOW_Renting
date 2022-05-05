@@ -23,7 +23,7 @@ import Grid from "@mui/material/Grid";
 import MDBox from "components/MDBox";
 
 // Material Kit 2 React view
-import DefaultNavbar from "sections/NavbarsUnauth/DefaultNavbar";
+import DefaultNavbar from "sections/Navbars/DefaultNavbar";
 import AuthFooter from "sections/Footers/AuthFooter";
 
 // Authentication components

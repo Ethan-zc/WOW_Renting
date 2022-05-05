@@ -159,4 +159,7 @@ insert into zzz_account (accname, pwd, custid, custtype)
 values
 ('aa', '11', 1, 'I');
 
+-- add an invoice
+update zzz_order set endodo=1500 where orderid=1;
+
 commit;

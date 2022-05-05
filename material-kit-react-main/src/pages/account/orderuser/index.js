@@ -25,7 +25,6 @@ import MDSnackbar from "components/MDSnackbar";
 // Material Dashboard 2 React sections components
 import DashboardLayout from "sections/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "sections/Navbars/DashboardNavbar";
-import Footer from "sections/Footers/FooterAuth";
 
 // sessions
 import OrderDetail from "pages/account/orderuser/sessions/OrderDetail";
@@ -74,7 +73,6 @@ function Tables() {
           </Grid>
         </Grid>
       </MDBox>
-      <Footer />
     </DashboardLayout>
   );
 }

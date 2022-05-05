@@ -5,6 +5,10 @@ class OrderDataService {
     return http.post("/order/createOrder", data);
   }
 
+  getCustOrderList(data) {
+    return http.get("/order/custlist?accName=" + data);
+  }
+
 }
 
 export default new OrderDataService();

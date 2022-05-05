@@ -44,10 +44,10 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 const authNavRoutes = [
   {
     type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
+    name: "User:"+localStorage.getItem("__account__"),
+    key: "profile",
     icon: <FaceIcon />,
-    route: "/dashboard",
+    route: "/profile",
   },
   {
     type: "collapse",

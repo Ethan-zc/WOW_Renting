@@ -36,9 +36,9 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React sections
-import Dashboard from "pages/account/dashboard";
 import Tables from "pages/account/tables";
 import OrderUser from "pages/account/orderuser";
+import OrderAdmin from "pages/account/orderadmin";
 import Billing from "pages/account/billing";
 import Notifications from "pages/account/notifications";
 import Profile from "pages/account/profile";
@@ -53,14 +53,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 const authRoutes = [
   {
     type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
-  },
-  {
-    type: "collapse",
     name: "Tables",
     key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
@@ -70,10 +62,18 @@ const authRoutes = [
   {
     type: "collapse",
     name: "Order",
-    key: "tables",
+    key: "orderUser",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/user/order",
     component: <OrderUser />,
+  },
+  {
+    type: "collapse",
+    name: "OrderAdmin",
+    key: "orderAdmin",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/user/admin",
+    component: <OrderAdmin />,
   },
   {
     type: "collapse",

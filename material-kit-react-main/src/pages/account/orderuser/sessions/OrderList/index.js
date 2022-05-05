@@ -1,117 +1,124 @@
 /*
 * Data package
-* @postData: orderInfo
-{
-  "carId": 0,
-  "distNum": "string",
-  "dropOff": 0,
-  "endDate": "2022-05-04T18:10:30.225Z",
-  "pickUp": 0,
-  "startDate": "2022-05-04T18:10:30.225Z"
-}
 * @responseData: 
 {
-  "data": {
-    "carId": 0,
-    "custId": "string",
-    "discId": 0,
-    "discType": "string",
-    "dropOff": 0,
-    "endDate": "string",
-    "endOdo": 0,
-    "odoLimit": 0,
-    "orderId": 0,
-    "pickUp": 0,
-    "startDate": "string",
-    "startOdo": 0
-  },
-  "message": "string",
-  "success": true
+  "message": "Success!",
+  "success": true,
+  "data": [
+    {
+      "orderId": 1,
+      "startOdo": 1000,
+      "endOdo": 1500,
+      "odoLimit": 40,
+      "startDate": "2020-03-01 00:00:00",
+      "endDate": "2020-03-05 00:00:00",
+      "custId": "1",
+      "pickUp": 2,
+      "dropOff": 3,
+      "carId": 1,
+      "discType": null,
+      "discId": 0
+    },
+  ]
 }
 */
 
 import { useEffect, useState } from "react";
 
-// react-router-dom components
-import { Link, useNavigate } from "react-router-dom";
-
 // @mui material components
 import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
-
-// @mui icons
-import CloseIcon from "@mui/icons-material/Close";
-import Modal from "@mui/material/Modal";
-import Divider from "@mui/material/Divider";
-import Slide from "@mui/material/Slide";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
+import MDBadge from "components/MDBadge";
 
-// Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-
-import DataTable from "sections/Tables/DataTable";
+import DataTable from "pages/account/orderuser/sessions/DataTable";
 
 // Services
 import OrderDataService from "services/order.service";
-import data from "pages/dashboard/components/Projects/data";
-
-import orderTableData from "pages/account/orderuser/data/orderTableData";
 
 export default function OrderList() {
-  const { columns, rows } = orderTableData();
-  // const navigate = useNavigate();
+  const [account] = useState(localStorage.getItem("__account__"));
+  const initColumns= [
+    { Header: "Order#", accessor: "order",  align: "left"},
+    { Header: "StartOdo", accessor: "startOdo", align: "center" },
+    { Header: "EndOdo", accessor: "endOdo", align: "center"},
+    { Header: "OdoLimit", accessor: "odoLimit", align: "center"},
+    { Header: "Startdate", accessor: "startdate", align: "center" },
+    { Header: "EndDate", accessor: "endDate", align: "center" },
+    { Header: "status", accessor: "status", align: "center" },
+  ];
+  const [custTable, setCustTable] = useState({
+    columns: initColumns,
+    rows: [],
+  });
 
-  // let orderDetail = JSON.parse(sessionStorage.getItem("orderDetail"));
-  // sessionStorage.removeItem("orderDetail");
-  // order data package
-//   const [labelOrder, setlabelOrder] = useState(orderDetail.dataHead);
-//   const [dataOrder, setDataOrder] = useState(orderDetail.data);
-  const [distNum, setDistNum] = useState("");
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    getCustOrderData();
+  }, []);
 
-  const handleOnChangeDiscount = (e) => {
-    setDistNum(e.target.value)
+  const getCustOrderData = () => {
+    OrderDataService.getCustOrderList(account)
+      .then((response) => {
+        console.log(response.data.data);
+        let newRows = [];
+        // TODO: check if succeed
+        response.data.data.forEach((order) => {
+          console.log(order.endOdo)
+          newRows.push({
+            order: ( 
+              <MDTypography component="a" variant="text" color="text" fontWeight="regular">
+                {order.orderId} 
+              </MDTypography>
+            ),
+            startOdo: (
+              <MDTypography component="a" variant="text" color="text" fontWeight="regular">
+                {order.startOdo} 
+              </MDTypography>
+            ),
+            endOdo: (
+              <MDTypography component="a" variant="text" color="text" fontWeight="regular">
+                {order.endOdo} 
+              </MDTypography>
+            ),
+            odoLimit: (
+              <MDTypography component="a" variant="text" color="text" fontWeight="regular">
+                  {order.odoLimit} 
+                </MDTypography>
+            ),
+            startdate: (
+              <MDTypography component="a" variant="text" color="text" fontWeight="regular">
+                {order.startDate} 
+              </MDTypography>
+            ),
+            endDate: (
+              <MDTypography component="a" variant="text" color="text" fontWeight="regular">
+                {order.endDate} 
+              </MDTypography>
+            ),
+            status: (
+              <MDBox ml={-1}>
+                {/* TODO: get invoice remains by order? */}
+                <MDBadge 
+                  badgeContent={(order.endOdo !== 0) ? "completed": "in progress" } 
+                  color={(order.endOdo !== 0) ? "success" : "info"} 
+                  variant="gradient" 
+                  size="sm"/>
+              </MDBox>
+            ),
+          });
+        });
+
+        setCustTable({
+          ...custTable,
+          rows: newRows,
+        });
+    });
   }
 
-  const handleOnClickSubmit = () => {
-    // check if filled all blanks
-    console.log("[OrderDetail] post data package");
-
-    // let dataPost = {
-    //   accName: localStorage.getItem("__account__"),
-    //   carId: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("carId")],
-    //   distNum: distNum,
-    //   dropOff: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("officeId")],
-    //   endDate: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("ddate")],
-    //   pickUp: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("officeId")],
-    //   startDate: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("pdate")],
-    // }
-    // console.log(dataPost);
-
-    // return OrderDataService.postCreateOrder(dataPost)
-    //   .then((response) => {
-    //     console.info(response.data);
-    //     if (response.data.success == true) {
-    //       console.info("[OrderDetail] postCreateOrder success");
-    //       // setIsSubmit(true);
-    //     } else {
-    //       console.error("[OrderDetail] postCreateOrder fail");
-    //       setErrorMessage(response.data.message);
-    //       console.error(response.data.message)
-    //     }
-    //   })
-    //   .catch(error => {
-    //     console.error("[OrderDetail] postCorpData ERROR ", error);
-    //   });
-  }
+  const columns = custTable.columns;
+  const rows = custTable.rows;
 
   return (
     <Card>
@@ -126,13 +133,13 @@ export default function OrderList() {
         coloredShadow="info"
       >
         <MDTypography variant="h6" color="white">
-          Authors Table
+          Order List
         </MDTypography>
       </MDBox>
       <MDBox pt={3}>
         <DataTable
           table={{ columns, rows }}
-          isSorted={false}
+          isSorted={true}
           entriesPerPage={false}
           showTotalEntries={false}
           noEndBorder

@@ -24,7 +24,6 @@ import MDBox from "components/MDBox";
 // Material Dashboard 2 React sections components
 import DashboardLayout from "sections/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "sections/Navbars/DashboardNavbar";
-import Footer from "sections/Footers/AuthFooter";
 import ProfileInfoCard from "sections/Cards/InfoCards/ProfileInfoCard";
 
 // Overview page components
@@ -83,7 +82,6 @@ export default function Profile() {
           </Grid>
         </MDBox>
       </Header>
-      <Footer light={false}/>
     </DashboardLayout>
   );
 }

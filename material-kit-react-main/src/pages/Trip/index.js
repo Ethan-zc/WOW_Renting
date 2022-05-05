@@ -23,7 +23,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React view
-import DefaultNavbar from "sections/NavbarsUnauth/DefaultNavbar";
+import DefaultNavbar from "sections/Navbars/DefaultNavbar";
 import BasicFooter from "sections/Footers/BasicFooter";
 
 // Trip page sections
