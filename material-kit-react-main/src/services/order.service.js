@@ -4,6 +4,7 @@ class OrderDataService {
   postCreateOrder(data) {
     return http.post("/order/createOrder", data);
   }
+
 }
 
 export default new OrderDataService();

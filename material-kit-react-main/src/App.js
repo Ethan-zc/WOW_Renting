@@ -12,7 +12,7 @@ import { useAuth } from "context/auth-context";
 export default function App() {
   // const {test} = useMaterialUIController();
   // const {test} = useClient();
-  let user = useAuth();
+  let user = localStorage.getItem("__account__");
   // console.log(test);
   // const user = true;
   // document.cookie;
@@ -24,7 +24,7 @@ export default function App() {
   console.log(user);
   return (
     <>
-      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      {user && user !== "" ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </>
   );
 }

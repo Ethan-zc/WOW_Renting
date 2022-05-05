@@ -56,84 +56,70 @@ import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
+
 // Services
 import OrderDataService from "services/order.service";
+import AuthDataService from "services/authentication.service";
 
-const labelOrder = {
-  carId: "Car ID",
-  custId: "Customer ID",
-  discId: "Discount ID",
-  discType: "Discount type",
-  dropOff: "Drop off",
-  endDate: "End date",
-  endOdo: "End odometer",
-  odoLimit: "Odometer limit",
-  orderId: "Order ID",
-  pickUp: "Pick up",
-  startDate: "Start date",
-  startOdo: "Start odometer"
-}
-
-const dataPost = {
-  accName: "aa",
-  carId: 1,
-  distNum: "9675731",
-  dropOff: 2,
-  endDate: "2022-05-04T18:10:30.225Z",
-  pickUp: 2,
-  startDate: "2022-05-04T18:10:30.225Z"
-}
-
-export default function OrderDetail() {
+export default function OrderDetail(props) {
   // const navigate = useNavigate();
+  const {orderDetail, handleOnSubmit} = props;
 
+  // let orderDetail = JSON.parse(sessionStorage.getItem("orderDetail"));
+  // sessionStorage.removeItem("orderDetail");
   // order data package
-  const initOrderData = JSON.parse(JSON.stringify(labelOrder));
-  Object.keys(initOrderData).forEach((prop) => initOrderData[prop] = "1");
-
-  const [dataOrder, setDataCorp] = useState(initOrderData);
+  const [labelOrder] = useState(orderDetail.dataHead);
+  const [dataOrder] = useState(orderDetail.data);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [distNum, setDistNum] = useState("");
+  const [custType, setCustType] = useState("");
 
-  // const handleOnChangeCorp = (e, prop) => {
-  //   setDataCorp({
-  //     ...dataCorp,
-  //     [prop]: e.target.value,
-  //   });
-  //   if (prop in isNumCorp) {
-  //     isNaN(e.target.value) 
-  //     ? setIsNumCorp({...isNumCorp, [prop]: false})
-  //     : setIsNumCorp({...isNumCorp, [prop]: true});
-  //   }
-  // }
+  useEffect(() => {
+    AuthDataService.getCustType(localStorage.getItem("__account__"))
+      .then((response) => {
+        console.log(response.data);
+        setCustType(response.data.data)})
+  }, []);
+
+  const handleOnChangeDiscount = (e) => {
+    setDistNum(e.target.value)
+  }
 
   const handleOnClickSubmit = () => {
     // check if filled all blanks
     console.log("[OrderDetail] post data package");
+    console.log();
+
+    // TODO:date formate error
+    let dataPost = {
+      accName: localStorage.getItem("__account__"),
+      carId: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("carId")],
+      distNum: distNum,
+      dropOff: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("officeId")],
+      endDate: new Date(dataOrder[Array.from(Object.keys(labelOrder)).indexOf("ddate")]).toISOString(),
+      pickUp: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("officeId")],
+      startDate: new Date(dataOrder[Array.from(Object.keys(labelOrder)).indexOf("pdate")]).toISOString(),
+    }
     console.log(dataPost);
 
+    // TODO: cannot identify empty coupon
     return OrderDataService.postCreateOrder(dataPost)
       .then((response) => {
-        if (response.success === "true") {
+        console.info(response.data);
+        if (response.data.success === true) {
           console.info("[OrderDetail] postCreateOrder success");
-          setIsSubmit(!isSubmit);
+          sessionStorage.removeItem("orderDetail");
+          handleOnSubmit();
         } else {
-          console.info("[SignUp] postCreateOrder fail");
-          console.error(response.data.status);
-          console.error(response.data.message);
+          console.error("[OrderDetail] postCreateOrder fail");
+          setErrorMessage(response.data.message);
+          console.error(response.data.message)
         }
       })
       .catch(error => {
-        console.error("[SignUp] postCorpData ERROR ", error);
+        console.error("[OrderDetail] postCorpData ERROR ", error);
       });
-
-    setIsSubmit(true);
-  }
-
-  const handleCloseModal = () => {
-    // TODO: login account with tonken
-    console.log("[SignUp] handleCloseModal");
-    setIsSubmit(!isSubmit);
-    // navigate("/dashboard");
   }
 
   return (
@@ -154,10 +140,18 @@ export default function OrderDetail() {
       </MDBox>
       <MDBox pt={3} pb={2} px={5}>
         <MDBox component="form" role="form">
+          {errorMessage ?
+          <MDBox display="flex" justifyContent="left" alignItems="center" mt={-1} mb={1}>
+            <MDTypography variant="caption" color="error" >
+              *{errorMessage}
+            </MDTypography>
+          </MDBox>
+          : null}
           <MDBox>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
               {Object.keys(labelOrder).map((prop, index) => {
                 return (
+                  labelOrder[prop].includes("ID") ? null :
                   <Grid
                   item
                   key={index}
@@ -170,12 +164,23 @@ export default function OrderDetail() {
                         variant="standard"
                         disabled
                         fullWidth
-                        value={dataOrder[prop]}
+                        value={dataOrder[index]}
                       />
                     </MDBox>
                   </Grid>
                 );
               })}
+              <Grid item xs={6} >
+                <MDInput
+                  type="text"
+                  label={custType === "I" ? "Individual Coupon" : "Corporation Set Number"}
+                  variant="standard"
+                  fullWidth
+                  error={errorMessage ? true : false}
+                  value={distNum}
+                  onChange={handleOnChangeDiscount}
+                />
+              </Grid>
             </Grid>
           </MDBox>
           <MDBox mt={3} mb={1}>
@@ -188,36 +193,6 @@ export default function OrderDetail() {
           </MDBox>
         </MDBox>
       </MDBox>
-      <Modal open={isSubmit} onClose={handleCloseModal} sx={{ display: "grid", placeItems: "center" }}>
-        <Slide direction="down" in={isSubmit} timeout={400}>
-          <MKBox
-            position="relative"
-            width="500px"
-            display="flex"
-            flexDirection="column"
-            borderRadius="xl"
-            bgColor="white"
-            shadow="xl"
-          >
-            <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
-              <MKTypography variant="h5">Success</MKTypography>
-              <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={handleCloseModal} />
-            </MKBox>
-            <Divider sx={{ my: 0 }} />
-            <MKBox p={2}>
-              <MKTypography variant="body2" color="secondary" fontWeight="regular">
-                Thank your for your registration
-              </MKTypography>
-            </MKBox>
-            <Divider sx={{ my: 0 }} />
-            <MKBox display="flex" justifyContent="center" p={1.5}>
-              <MKButton variant="gradient" color="info" onClick={handleCloseModal}>
-                enter
-              </MKButton>
-            </MKBox>
-          </MKBox>
-        </Slide>
-      </Modal>
     </Card>
   );
 }

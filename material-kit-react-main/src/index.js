@@ -5,14 +5,11 @@ import App from "App";
 
 // Material Dashboard 2 React Context Provider
 import { MaterialUIControllerProvider } from "context/mui-provider";
-import { AppProviders } from 'context/app-provider'
 
 ReactDOM.render(
   <BrowserRouter>
     <MaterialUIControllerProvider>
-      <AppProviders>
-        <App />
-      </AppProviders>
+      <App />
     </MaterialUIControllerProvider>
   </BrowserRouter>,
   document.getElementById("root")
