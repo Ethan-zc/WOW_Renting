@@ -69,7 +69,7 @@ public class AccountController {
             profile.setFName(indiCust.getFName());
             profile.setLicenseNum(indiCust.getLicenseNum());
             profile.setInsName(indiCust.getInsName());
-            profile.setInsNum(indiCust.getInsNumber());
+            profile.setInsNum(indiCust.getInsNum());
         } else if (custType.equals("C")) {
             CorpCustEntry corpCust = customerService.findCorpCustById(account.getCustId());
             profile.setCorpName(corpCust.getCorpName());

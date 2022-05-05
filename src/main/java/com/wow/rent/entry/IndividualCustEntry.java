@@ -11,5 +11,5 @@ public class IndividualCustEntry {
     private String fName;
     private String licenseNum;
     private String insName;
-    private String insNumber;
+    private String insNum;
 }
