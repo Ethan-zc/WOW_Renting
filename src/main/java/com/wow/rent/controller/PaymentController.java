@@ -48,6 +48,10 @@ public class PaymentController {
             PaymentEntry payment = paymentService.findPaymentListByInvoiceId(invoiceId);
             paymentList.add(payment);
         }
+        if(paymentList.isEmpty()) {
+            result.setResultSuccess("empty", paymentList);
+            return result;
+        }
         result.setResultSuccess("Success!", paymentList);
         return result;
 
