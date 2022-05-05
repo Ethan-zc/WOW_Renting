@@ -32,29 +32,15 @@
 
 import { useEffect, useState } from "react";
 
-// react-router-dom components
-import { Link, useNavigate } from "react-router-dom";
-
 // @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-
-// @mui icons
-import CloseIcon from "@mui/icons-material/Close";
-import Modal from "@mui/material/Modal";
-import Divider from "@mui/material/Divider";
-import Slide from "@mui/material/Slide";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-
-// Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
 
 
 // Services
@@ -65,8 +51,6 @@ export default function OrderDetail(props) {
   // const navigate = useNavigate();
   const {orderDetail, handleOnSubmit} = props;
 
-  // let orderDetail = JSON.parse(sessionStorage.getItem("orderDetail"));
-  // sessionStorage.removeItem("orderDetail");
   // order data package
   const [labelOrder] = useState(orderDetail.dataHead);
   const [dataOrder] = useState(orderDetail.data);
@@ -87,11 +71,10 @@ export default function OrderDetail(props) {
   }
 
   const handleOnClickSubmit = () => {
-    // check if filled all blanks
     console.log("[OrderDetail] post data package");
     console.log();
 
-    // TODO:date formate error
+    // FIXME: date format error
     let dataPost = {
       accName: localStorage.getItem("__account__"),
       carId: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("carId")],
@@ -109,12 +92,11 @@ export default function OrderDetail(props) {
         console.info(response.data);
         if (response.data.success === true) {
           console.info("[OrderDetail] postCreateOrder success");
-          sessionStorage.removeItem("orderDetail");
           handleOnSubmit();
         } else {
           console.error("[OrderDetail] postCreateOrder fail");
-          setErrorMessage(response.data.message);
           console.error(response.data.message)
+          setErrorMessage(response.data.message);
         }
       })
       .catch(error => {

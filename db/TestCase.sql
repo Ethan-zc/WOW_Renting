@@ -9,6 +9,7 @@ update zzz_order set endodo=1500 where orderid=6; -- 17004 * 0.6 = 10202.4
 select * from zzz_account;
 select * from zzz_discindi;
 select * from zzz_customer;
+select * from zzz_individual;
 select * from zzz_order;
 select * from zzz_invoice;
 
