@@ -9,7 +9,7 @@ public class PaymentEntry {
 
     private int paymId;
     private String method;
-    private int amount;
+    private double amount;
     private Date paymDate;
     private String cardNum;
     private int invoiceId;

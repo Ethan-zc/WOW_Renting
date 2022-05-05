@@ -175,6 +175,7 @@ CREATE TABLE zzz_invoice (
     invoiceid   BIGINT NOT NULL COMMENT 'Unique ID for invoice.',
     invoicedate DATETIME NOT NULL COMMENT 'Invoice data.',
     amount      DECIMAL(10, 2) NOT NULL COMMENT 'Invoice amount.',
+    remain      DECIMAL(10, 2) NOT NULL COMMENT 'Remain amount.',
     ispaid      CHAR(1) NOT NULL DEFAULT 'N' COMMENT 'Boolean to check if the invoice is paid.',
     orderid     BIGINT NOT NULL
 );
@@ -314,11 +315,11 @@ BEGIN
 
         -- Insert the new record to invoice
         IF (NEW.OdoLimit <=> NULL) THEN
-            INSERT INTO zzz_invoice(invoiceid, invoicedate, amount, orderid) values 
-                (NEW.orderid, CURDATE(), @RegularAmount, NEW.orderid);
+            INSERT INTO zzz_invoice(invoiceid, invoicedate, amount, remain, orderid) values
+                (NEW.orderid, CURDATE(), @RegularAmount, @RegularAmount, NEW.orderid);
         ELSE
-            INSERT INTO zzz_invoice(invoiceid, invoicedate, amount, orderid) values 
-                (NEW.orderid, CURDATE(), (@RegularAmount + @OverAmount) * @DiscountPerc, NEW.orderid);
+            INSERT INTO zzz_invoice(invoiceid, invoicedate, amount, remain, orderid) values
+                (NEW.orderid, CURDATE(), (@RegularAmount + @OverAmount) * @DiscountPerc, (@RegularAmount + @OverAmount) * @DiscountPerc, NEW.orderid);
         END IF;
         
     END IF;

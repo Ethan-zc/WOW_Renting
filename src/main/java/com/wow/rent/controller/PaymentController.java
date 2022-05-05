@@ -46,8 +46,10 @@ public class PaymentController {
             PaymentEntry payment = paymentService.findPaymentListByInvoiceId(invoiceId);
             paymentList.add(payment);
         }
-        result.setResultSuccess("success", paymentList);
+        result.setResultSuccess("Success!", paymentList);
         return result;
 
     }
+
+
 }
