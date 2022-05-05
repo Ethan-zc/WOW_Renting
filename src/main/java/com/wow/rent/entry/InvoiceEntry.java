@@ -9,7 +9,8 @@ public class InvoiceEntry {
 
     private int invoiceId;
     private Date invoiceDate;
-    private int amount;
+    private double amount;
+    private double remain;
     private String isPaid;
     private int orderId;
 }

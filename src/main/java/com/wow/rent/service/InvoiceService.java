@@ -10,4 +10,8 @@ public interface InvoiceService {
     InvoiceEntry findInvoiceByOrderId(int orderId);
 
     Result<List<InvoiceEntry>> findInvoiceListByAccName(String accName);
+
+    InvoiceEntry findInvoiceByInvoiceId(int invoiceId);
+
+    void updateRemainByInvoiceId(int invoiceId, double remain);
 }

@@ -52,4 +52,20 @@ public class InvoiceServiceImpl implements InvoiceService {
         result.setResultSuccess("Success!", invoiceList);
         return result;
     }
+
+    @Override
+    public InvoiceEntry findInvoiceByInvoiceId(int invoiceId) {
+        return invoiceMapper.findInvoiceByInvoiceId(invoiceId);
+    }
+
+    @Override
+    public void updateRemainByInvoiceId(int invoiceId, double remain) {
+        invoiceMapper.updateRemainByInvoiceId(invoiceId, remain);
+        InvoiceEntry invoice = findInvoiceByInvoiceId(invoiceId);
+        if (invoice.getRemain() == 0) {
+            invoiceMapper.markFinishedByInvoiceId(invoiceId);
+        }
+    }
+
+
 }

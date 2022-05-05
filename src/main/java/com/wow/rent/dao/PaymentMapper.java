@@ -13,6 +13,6 @@ public interface PaymentMapper {
     @Select("SELECT * from zzz_payment WHERE invoiceid = #{invoiceId}")
     PaymentEntry findPaymentByInvoiceId(int invoidId);
 
-    @Insert("INSERT INTO zzz_payment VALUES (#{method}, #{amount}, #{paymDate}, #{cardNum}, #{invoiceId})")
-    void createNewPayment(String method, double amount, Date paymDate, String cardNum, int invoiceId);
+    @Insert("INSERT INTO zzz_payment (method, amount, paymdate, cardnum, invoiceid) VALUES (#{method}, #{amount}, #{paymDate}, #{cardNum}, #{invoiceId})")
+    Integer createNewPayment(String method, double amount, Date paymDate, String cardNum, int invoiceId);
 }

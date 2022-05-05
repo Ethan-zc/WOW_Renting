@@ -2,6 +2,7 @@ package com.wow.rent.controller;
 
 import com.wow.rent.entry.InvoiceEntry;
 import com.wow.rent.entry.PaymentEntry;
+import com.wow.rent.entry.PaymentRequestEntry;
 import com.wow.rent.model.Result;
 import com.wow.rent.service.AccountServie;
 import com.wow.rent.service.InvoiceService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -47,6 +49,28 @@ public class PaymentController {
             paymentList.add(payment);
         }
         result.setResultSuccess("Success!", paymentList);
+        return result;
+
+    }
+
+    @RequestMapping(value = "/pay", method = RequestMethod.POST)
+    public Result<String> makePayment(@RequestBody PaymentRequestEntry paymentRequest) {
+        Result<String> result = new Result<>();
+        InvoiceEntry invoice = invoiceService.findInvoiceByInvoiceId(paymentRequest.getInvoiceId());
+        double payAmount = paymentRequest.getAmount();
+        if (payAmount <= 0 || payAmount > invoice.getRemain() || invoice.getIsPaid().equals("Y")) {
+            result.setResultFailed("Invalid Payment!");
+            return result;
+        }
+
+        double remain = invoice.getRemain();
+        double remainAfterPay = remain - payAmount;
+        invoiceService.updateRemainByInvoiceId(invoice.getInvoiceId(), remainAfterPay);
+        Date current = new Date();
+        String method = paymentRequest.getMethod();
+        String cardNum = paymentRequest.getCardNum();
+        paymentService.createNewPayment(method, payAmount, current, cardNum, invoice.getInvoiceId());
+        result.setResultSuccess("Success!", null);
         return result;
 
     }
