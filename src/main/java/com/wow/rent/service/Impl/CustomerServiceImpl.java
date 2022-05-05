@@ -2,7 +2,9 @@ package com.wow.rent.service.Impl;
 
 import com.wow.rent.dao.AddressMapper;
 import com.wow.rent.dao.CustomerMapper;
+import com.wow.rent.entry.CorpCustEntry;
 import com.wow.rent.entry.CustomerEntry;
+import com.wow.rent.entry.IndividualCustEntry;
 import com.wow.rent.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +43,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int addCorpCustomer(int custId, String corpName, String regNum, String empId) {
         return customerMapper.addCorpCustomer(custId, "C", corpName, regNum, empId);
+    }
+
+    @Override
+    public IndividualCustEntry findIndiCustById(int custId) {
+        return customerMapper.findIndiCustById(custId);
+    }
+
+    @Override
+    public CorpCustEntry findCorpCustById(int custId) {
+        return customerMapper.findCorpCustById(custId);
     }
 }

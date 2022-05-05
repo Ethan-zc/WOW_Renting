@@ -1,6 +1,7 @@
 package com.wow.rent.dao;
 
 import com.wow.rent.entry.AccountEntry;
+import com.wow.rent.entry.AddressEntry;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

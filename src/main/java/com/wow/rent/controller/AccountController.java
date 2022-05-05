@@ -43,6 +43,43 @@ public class AccountController {
         return result;
     }
 
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public Result<ProfileEntry> getAccountProfile(@RequestParam(value = "accName")String accName) {
+        Result<ProfileEntry> result = new Result<>();
+        if (accountServie.findAccountByAccName(accName) == null) {
+            result.setResultFailed("Account does not exist!");
+            return result;
+        }
+        AccountEntry account = accountServie.findAccountByAccName(accName);
+        String custType = accountServie.findCustTypeByAccName(accName);
+        ProfileEntry profile = new ProfileEntry();
+        profile.setAccName(accName);
+        profile.setCustType(custType);
+        CustomerEntry customer = customerService.findCustomerById(account.getCustId());
+        profile.setEmail(customer.getEmail());
+        profile.setPhone(customer.getPhone());
+        AddressEntry address = addressService.findAddressById(customer.getAddrId());
+        profile.setStreet(address.getStreet());
+        profile.setState(address.getState());
+        profile.setCountry(address.getCountry());
+        profile.setZipcode(address.getZipcode());
+        if (custType.equals("I")) {
+            IndividualCustEntry indiCust = customerService.findIndiCustById(account.getCustId());
+            profile.setLName(indiCust.getLName());
+            profile.setFName(indiCust.getFName());
+            profile.setLicenseNum(indiCust.getLicenseNum());
+            profile.setInsName(indiCust.getInsName());
+            profile.setInsNum(indiCust.getInsNumber());
+        } else if (custType.equals("C")) {
+            CorpCustEntry corpCust = customerService.findCorpCustById(account.getCustId());
+            profile.setCorpName(corpCust.getCorpName());
+            profile.setRegNum(corpCust.getRegNum());
+            profile.setEmpId(corpCust.getEmpId());
+        }
+        result.setResultSuccess("Success!", profile);
+        return result;
+    }
+
     @RequestMapping(value = "/indi/register", method = RequestMethod.POST)
     public Object indiRegister(@RequestBody IndiRegisterRequestEntry request) {
         String accName = request.getAccname();

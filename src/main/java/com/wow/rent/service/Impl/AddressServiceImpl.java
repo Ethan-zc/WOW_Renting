@@ -39,4 +39,9 @@ public class AddressServiceImpl implements AddressService {
     public Integer findAddressIdByInfo(String street, String state, String country, int zipcode) {
         return addressMapper.findAddressIdByInfo(street, state, country, zipcode);
     }
+
+    @Override
+    public AddressEntry findAddressById(int addrId) {
+        return addressMapper.findAddressById(addrId);
+    }
 }

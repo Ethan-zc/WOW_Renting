@@ -13,7 +13,7 @@ public interface CustomerMapper {
     @Select("SELECT * FROM zzz_customer WHERE custid = #{custid}")
     CustomerEntry findCustomerById(int custid);
 
-    @Select("SELECT * FROM zzz_individual WHERE cusid = #{cusiId}")
+    @Select("SELECT * FROM zzz_individual WHERE custid = #{custId}")
     IndividualCustEntry findIndiCustById(int custId);
 
     @Select("SELECT * FROM zzz_corporative WHERE custid = #{custId}")

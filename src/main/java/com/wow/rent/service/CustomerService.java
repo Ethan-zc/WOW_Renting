@@ -1,6 +1,8 @@
 package com.wow.rent.service;
 
+import com.wow.rent.entry.CorpCustEntry;
 import com.wow.rent.entry.CustomerEntry;
+import com.wow.rent.entry.IndividualCustEntry;
 
 public interface CustomerService {
 
@@ -15,5 +17,9 @@ public interface CustomerService {
     int addIndividualCustomer(int custId, String lName, String fName, String licenseNum, String insName, String insNum);
 
     int addCorpCustomer(int custId, String corpName, String regNum, String empId);
+
+    IndividualCustEntry findIndiCustById(int custId);
+
+    CorpCustEntry findCorpCustById(int custId);
 
 }

@@ -20,4 +20,7 @@ public interface AddressMapper {
     @Select("SELECT addrid FROM zzz_address WHERE street = #{street} AND state = #{state} AND country = #{country} AND zipcode = #{zipcode}")
     Integer findAddressIdByInfo(String street, String state, String country, int zipcode);
 
+    @Select("SELECT * FROM zzz_address WHERE addrid = #{addrId}")
+    AddressEntry findAddressById(int addrId);
+
 }

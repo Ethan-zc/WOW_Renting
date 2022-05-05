@@ -9,5 +9,5 @@ public class CustomerEntry {
     private String custType;
     private String email;
     private String phone;
-    private long addrId;
+    private int addrId;
 }
