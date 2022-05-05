@@ -103,11 +103,13 @@ export default function TableViewCars(props) {
     imgUrls,
     imgNames,
     imgInfos,
-    onChangeOrderBy
+    onChangeOrderBy,
+    onClickCreateOrder,
   } = props;
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowIndex, setRowIndex] = React.useState(0);
   const [imgBg, setImageBg] = React.useState("");
   const [imgName, setImageName] = React.useState("");
   const [imgInfo, setImageInfo] = React.useState("");
@@ -129,11 +131,17 @@ export default function TableViewCars(props) {
     setImageBg(imgUrls[page * rowsPerPage + e]);
     setImageName(imgNames[page * rowsPerPage + e]);
     setImageInfo(imgInfos[page * rowsPerPage + e]);
+    setRowIndex(page * rowsPerPage + e);
   };
 
   const handleOnChangeOrderBy = (e) => {
     console.log("[TableViewCars] handleOnChangeOrderBy: " + e)
     onChangeOrderBy(e);
+  }
+
+  const handleOnClickCreateOrder = (e) => {
+    console.log("[TableViewCars] handleOnChangeOrderBy: " + e)
+    onClickCreateOrder(e);
   }
 
   return (
@@ -237,10 +245,7 @@ export default function TableViewCars(props) {
             </MKTypography>
           </MKBox>
           :
-          <Link to={"/authentication/sign-in"}>
-            {/* FIXME: check authentication */}
-            <ExampleCar image={imgBg} name={imgName} info={imgInfo}/>
-          </Link>
+          <ExampleCar image={imgBg} name={imgName} info={imgInfo} onClick={() => handleOnClickCreateOrder(rowIndex)}/>
         }
       </Grid>
     </Grid>

@@ -30,12 +30,14 @@ export default function FormSearchCars(props) {
   }
 
   const handleOnChangePdate = (e) => {
-    setPdate(new Date(e).toLocaleDateString());
+    let date = new Date(e).toLocaleDateString();
+    setPdate(date);
     onChangePdate(e);
   }
 
   const handleOnChangeDdate = (e) => {
-    setDdate(new Date(e).toLocaleDateString());
+    let date = new Date(e).toLocaleDateString();
+    setDdate(date);
     onChangeDdate(e);
   }
   

@@ -38,12 +38,11 @@ import PageLayout from "pages/welcome/components/PageLayout";
 // Images
 import bgImage from "assets/images/bg-welcome.jpg";
 
-import { useAuth } from "context/auth-context";
 import unauthRoutes from "routes/unauth.routes";
 import authNavRoutes from "routes/auth.nav.routes";
 
 function Welcome() {
-  const user = useAuth();
+  let user = localStorage.getItem("__account__");
   return (
     <PageLayout>
       <DefaultNavbar routes={user?authNavRoutes:unauthRoutes} sticky />

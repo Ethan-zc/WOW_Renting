@@ -69,13 +69,13 @@ const authRoutes = [
   //   icon: <Icon fontSize="small">dashboard</Icon>,
   //   route: "/dashboard",
   // },
-  // {
-  //   type: "collapse",
-  //   name: "Notifications",
-  //   key: "notifications",
-  //   icon: <Icon fontSize="small">notifications</Icon>,
-  //   route: "/notifications",
-  // },
+  {
+    type: "collapse",
+    name: "Notifications",
+    key: "notifications",
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: "/notifications",
+  },
   {
     type: "collapse",
     name: "Trip",

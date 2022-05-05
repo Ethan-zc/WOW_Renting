@@ -81,15 +81,16 @@ export default function SignIn() {
     setRememberMe(!rememberMe);
   }
 
+
   const handleOnClickSignIn = () => {
     console.log("[SignIn] clicked! account: " + account);
     localStorage.setItem("isSubmit", true);
     localStorage.setItem("rememberMe", rememberMe);
     localStorage.setItem("account", rememberMe ? account : "");
 
-    // TODO: authentication verification
+    // TODO: authentication verification => seem not right
     localStorage.setItem("__account__", account);
-    navigate("/dashboard");
+    window.location.reload()
 
     // console.log("[SignIn] handleOnClickSignIn account: ");
     // let data = {

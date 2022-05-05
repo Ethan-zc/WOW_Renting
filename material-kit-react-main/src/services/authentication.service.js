@@ -32,6 +32,10 @@ class AuthDataService {
   logoutCookie(header) {
     return http.get("/account/logout", header);
   }
+
+  getCustType(data) {
+    return http.get("/account/type?accName=" + data);
+  }
   // get(id) {
   //   return http.get(`/cars/carid/${id}`);
   // }
