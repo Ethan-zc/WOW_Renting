@@ -36,33 +36,51 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React sections
-import Dashboard from "sections/pages/account/userdashboard";
-import Tables from "sections/pages/account/usertables";
-import Billing from "sections/pages/account/userbilling";
-import RTL from "sections/pages/account/userrtl";
-import Notifications from "sections/pages/account/usernotifications";
-import Profile from "sections/pages/account/userprofile";
-import Logout from "sections/pages/account/userlogout";
+import Welcome from "pages/welcome";
+import Trip from "pages/trip";
+import Profile from "pages/account/user/profile";
+import Order from "pages/account/user/order";
+import OrderAdmin from "pages/account/admin/order";
+import Billing from "pages/account/user/billing";
+import Logout from "pages/account/user/logout";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import CarRentalIcon from "@mui/icons-material/CarRental";
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const authRoutes = [
   {
     type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
+    name: "Welcome",
+    key: "welcome",
+    route: "/welcome",
+    component: <Welcome />,
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
+    name: "Trip",
+    key: "trip",
+    icon: <CarRentalIcon />,
+    route: "/trip",
+    component: <Trip />,
+  },
+  {
+    type: "collapse",
+    name: "Order",
+    key: "orderUser",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
+    route: "/user/order",
+    component: <Order />,
+  },
+  {
+    type: "collapse",
+    name: "OrderAdmin",
+    key: "adminOrder",
+    icon: <SummarizeIcon />,
+    route: "/user/admin",
+    component: <OrderAdmin />,
   },
   {
     type: "collapse",
@@ -71,22 +89,6 @@ const authRoutes = [
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
     component: <Billing />,
-  },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
   },
   {
     type: "collapse",
@@ -100,10 +102,18 @@ const authRoutes = [
     type: "collapse",
     name: "Logout",
     key: "logout",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/profile",
+    icon: <Icon fontSize="small">logout</Icon>,
+    route: "/logout",
     component: <Logout />,
+  },
+  {
+    type: "collapse",
+    name: "Github",
+    key: "github",
+    icon: <GitHubIcon />,
+    href: "https://github.com/Ethan-zc/WOW_Renting/tree/master",
   },
 ];
 
 export default authRoutes;
+

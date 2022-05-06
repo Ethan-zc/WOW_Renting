@@ -30,7 +30,7 @@ import AuthFooter from "sections/Footers/AuthFooter";
 import PageLayout from "pages/authentication/components/PageLayout";
 
 import unauthRoutes from "routes/unauth.routes";
-import authNavRoutes from "routes/auth.nav.routes";
+import authNavRoutes from "routes/auth.nav.user.routes";
 
 export default function SignInUpLayout({ image, children }) {
   let user = localStorage.getItem("__account__");

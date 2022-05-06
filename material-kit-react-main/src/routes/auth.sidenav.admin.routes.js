@@ -38,50 +38,16 @@ Coded by www.creative-tim.com
 // @mui icons
 import Icon from "@mui/material/Icon";
 import CarRentalIcon from "@mui/icons-material/CarRental";
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const authRoutes = [
   {
     type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-  },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-  },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-  },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
+    name: "OrderAdmin",
+    key: "adminOrder",
+    icon: <SummarizeIcon />,
+    route: "/user/admin",
   },
   {
     type: "collapse",

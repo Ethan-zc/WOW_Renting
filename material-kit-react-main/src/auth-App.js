@@ -7,14 +7,6 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-
-// Material Kit 2 React pages
-import Welcome from "pages/welcome";
-import Profile from "pages/account/profile";
 
 // Material Dashboard 2 React example components
 import Sidenav from "sections/Sidenav";
@@ -27,23 +19,26 @@ import theme from "assets/theme";
 import themeDark from "assets/theme-dark";
 
 // Material Dashboard 2 React routes
-import authRoutes from "routes/auth.routes";
-import authSideNavRoutes from "routes/auth.sidenav.user.routes";
+import authUserRoutes from "routes/auth.user.routes";
+import authSideNavUserRoutes from "routes/auth.sidenav.user.routes";
+import authAdminRoutes from "routes/auth.user.routes";
+import authSideNavAdminRoutes from "routes/auth.sidenav.user.routes";
 
 // Material Dashboard 2 React contexts
-import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context/mui-provider";
+import { useMaterialUIController, setMiniSidenav } from "context/mui-provider";
 
 // Images
-import brandWhite from "assets/images/logo-ct.png";
-import brandDark from "assets/images/logo-ct-dark.png";
+import brandWhite from "assets/images/logo-zzz.png";
+import brandDark from "assets/images/logo-zzz.png";
 
 export default function AuthenticatedApp() {
+  const user = localStorage.getItem("__account__");
+
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,
     direction,
     layout,
-    openConfigurator,
     sidenavColor,
     transparentSidenav,
     whiteSidenav,
@@ -68,9 +63,6 @@ export default function AuthenticatedApp() {
     }
   };
 
-  // Change the openConfigurator state
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
-
   // Setting the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
@@ -88,34 +80,10 @@ export default function AuthenticatedApp() {
         return getRoutes(route.collapse);
       }
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route} />;
+        return <Route path={route.route} element={route.component} key={route} />;
       }
       return null;
     });
-
-  const configsButton = (
-    <MDBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="3.25rem"
-      height="3.25rem"
-      bgColor="white"
-      shadow="sm"
-      borderRadius="50%"
-      position="fixed"
-      right="2rem"
-      bottom="2rem"
-      zIndex={99}
-      color="dark"
-      sx={{ cursor: "pointer" }}
-      onClick={handleConfiguratorOpen}
-    >
-      <Icon fontSize="small" color="inherit">
-        settings
-      </Icon>
-    </MDBox>
-  );
 
   return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
@@ -126,20 +94,17 @@ export default function AuthenticatedApp() {
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="ZZZ Car Rental"
-            routes={authSideNavRoutes}
+            routes={user === "admin" ? authSideNavAdminRoutes : authSideNavUserRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
           <Configurator />
-          {configsButton}
         </>
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {getRoutes(authRoutes)}
-        <Route path="/welcome" element={<Welcome />} />
+        {getRoutes(user === "admin" ? authAdminRoutes : authUserRoutes)}
         <Route path="/*" element={<Navigate to="/welcome" />} />
-        <Route path="/*/profile/*" element={<Profile />} />
       </Routes>
     </ThemeProvider>
   );

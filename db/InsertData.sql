@@ -160,6 +160,7 @@ values
 ('aa', '11', 1, 'I');
 
 -- add an invoice
-update zzz_order set endodo=1500 where orderid=1;
+update zzz_order set endodo=1100 where orderid=1; -- 4
+update zzz_order set endodo=1500 where orderid=2; -- 17004
 
 commit;

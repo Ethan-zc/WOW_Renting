@@ -38,6 +38,8 @@ Coded by www.creative-tim.com
 // @mui icons
 import Icon from "@mui/material/Icon";
 import CarRentalIcon from "@mui/icons-material/CarRental";
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const authRoutes = [
@@ -52,14 +54,14 @@ const authRoutes = [
     type: "collapse",
     name: "Order",
     key: "userOrder",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <FormatListBulletedIcon />,
     route: "/user/order",
   },
   {
     type: "collapse",
     name: "OrderAdmin",
     key: "adminOrder",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <SummarizeIcon />,
     route: "/user/admin",
   },
   {
@@ -69,13 +71,6 @@ const authRoutes = [
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
   },
-  // {
-  //   type: "collapse",
-  //   name: "Dashboard",
-  //   key: "dashboard",
-  //   icon: <Icon fontSize="small">dashboard</Icon>,
-  //   route: "/dashboard",
-  // },
   {
     type: "collapse",
     name: "Notifications",

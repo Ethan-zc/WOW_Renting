@@ -12,6 +12,7 @@ select * from zzz_customer;
 select * from zzz_individual;
 select * from zzz_order;
 select * from zzz_invoice;
+select * from zzz_payment;
 
 -- TODO: payment
 -- insert data to payment
