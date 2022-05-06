@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PaymentService {
 
-    PaymentEntry findPaymentListByInvoiceId(int invoiceId);
+    List<PaymentEntry> findPaymentListByInvoiceId(int invoiceId);
 
     void createNewPayment(String method, double amount, Date paymDate, String cardNum, int invoiceId);
 }

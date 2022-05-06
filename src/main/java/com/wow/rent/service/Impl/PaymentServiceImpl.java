@@ -17,7 +17,7 @@ public class PaymentServiceImpl implements PaymentService {
     PaymentMapper paymentMapper;
 
     @Override
-    public PaymentEntry findPaymentListByInvoiceId(int invoiceId) {
+    public List<PaymentEntry> findPaymentListByInvoiceId(int invoiceId) {
         return paymentMapper.findPaymentByInvoiceId(invoiceId);
     }
 
