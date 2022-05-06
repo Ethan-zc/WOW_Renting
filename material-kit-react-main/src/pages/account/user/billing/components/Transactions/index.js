@@ -46,7 +46,7 @@ function Transactions() {
   const getCustPaymData = () => {
     PaymentDataService.getCustPaymList(account)
       .then((response) => {
-        console.log(response.data.data);
+        console.log(response.data);
         setPaymData(response.data.data);
       });
   }
@@ -72,17 +72,18 @@ function Transactions() {
           m={0}
           sx={{ listStyle: "none" }}
         >
-          {/* {paymData.map((e, index) => {
-            return (
+          {paymData.map((e, index) => {
+            return ( 
+            e &&
             <Transaction
               key={index}
               color="error"
               icon="expand_more"
-              name={e.invoiceId}
+              name={e.invoiceId.toString()}
               description={new Date(e.paymDate).toLocaleString()}
-              value={e.amount}
+              value={e.amount.toString()}
             />);
-          })} */}
+          })}
         </MDBox>
       </MDBox>
     </Card>

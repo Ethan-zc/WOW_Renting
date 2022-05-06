@@ -52,8 +52,6 @@ import { useNavigate } from "react-router-dom";
 // Services
 import CarDataService from "services/trip.service";
 
-
-
 export default function SearchCars() {
   const navigate = useNavigate();
   const dataHead = {
@@ -82,7 +80,7 @@ export default function SearchCars() {
   useEffect(() => {
     // console.log("[SearchCars] useEffect called!")
     postGetCarData();
-  }, [isComplete]);
+  }, [isComplete, pickUp]);
 
   const postGetCarData = (orderBy) => {
     const dataFilter = {
@@ -181,7 +179,9 @@ export default function SearchCars() {
       if (true) {
         sessionStorage.setItem("orderDetail", JSON.stringify(orderDetail));
         console.log(orderDetail);
-        navigate("/user/order");
+        // FIXME: ASAP
+        navigate("/authentication/sign-in")
+        // navigate("/user/order");
       }
     }
   }

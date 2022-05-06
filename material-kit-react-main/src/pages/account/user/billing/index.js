@@ -28,6 +28,7 @@ import Invoices from "pages/account/user/billing/components/Invoices";
 import Transactions from "pages/account/user/billing/components/Transactions";
 
 function Billing() {
+  // TODO: update Transactions
   return (
     <DashboardLayout>
       <DashboardNavbar isMini />

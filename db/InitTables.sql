@@ -189,7 +189,7 @@ ALTER TABLE zzz_invoice ADD CONSTRAINT zzz_invoice_pk PRIMARY KEY ( invoiceid );
 CREATE TABLE zzz_payment (
     paymid    BIGINT NOT NULL COMMENT 'Unique ID for payment.',
     method    VARCHAR(20) NOT NULL COMMENT 'Payment method.',
-    amount    DECIMAL(5, 2) NOT NULL COMMENT 'Payment amount.',
+    amount    DECIMAL(10, 2) NOT NULL COMMENT 'Payment amount.',
     paymdate  DATETIME NOT NULL COMMENT 'Payment date.',
     cardnum   VARCHAR(50) NOT NULL COMMENT 'Card number.',
     invoiceid BIGINT NOT NULL

@@ -62,7 +62,7 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
 // Authentication layout components
-import SignInUpLayout from "pages/authentication/components/SignInUpLayout";
+import SignUpLayout from "pages/authentication/components/SignUpLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
@@ -186,7 +186,6 @@ export default function SignUp() {
 
     return AuthDataService.postIndiRegister(dataIndi)
       .then((response) => {
-        // TODO: if success, pop out message
         if (response.data.status.includes("success")) {
           console.info("[SignUp] postIndiData success");
           setIsSubmit(!isSubmit);
@@ -271,7 +270,7 @@ export default function SignUp() {
   }
 
   return (
-    <SignInUpLayout image={bgImage}>
+    <SignUpLayout image={bgImage}>
       <Card sx={{ minWidth: 400 }}>
         <MDBox
           variant="gradient"
@@ -510,6 +509,6 @@ export default function SignUp() {
           </Slide>
         </Modal>
       </Card>
-    </SignInUpLayout>
+    </SignUpLayout>
   );
 }

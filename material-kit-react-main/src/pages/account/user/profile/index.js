@@ -64,6 +64,7 @@ export default function Profile() {
         console.log(data);
         setUserInfo(data);
         setName(data["fullName"]);
+        // TODO: update var of fullname
         setIntro(info["custType"] === "I" ? "Individual User" : "Corporation User");
       });
   }, []);

@@ -108,7 +108,6 @@ function Invoices() {
         && !isNaN(cardNum)
         && method !== "")
     {
-      console.log("submit pay")
       let data = {
         amount: amount,
         cardNum: cardNum,

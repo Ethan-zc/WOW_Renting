@@ -157,7 +157,8 @@ values
 -- insert data to zzz_account
 insert into zzz_account (accname, pwd, custid, custtype)
 values
-('aa', '11', 1, 'I');
+('aa', '11', 1, 'I'),
+('bb', '11', 7, 'C');
 
 -- add an invoice
 update zzz_order set endodo=1100 where orderid=1; -- 4

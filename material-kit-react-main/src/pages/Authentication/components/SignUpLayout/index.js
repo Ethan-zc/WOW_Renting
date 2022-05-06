@@ -32,7 +32,7 @@ import PageLayout from "pages/authentication/components/PageLayout";
 import unauthRoutes from "routes/unauth.routes";
 import authNavRoutes from "routes/auth.nav.user.routes";
 
-export default function SignInUpLayout({ image, children }) {
+export default function SignUpLayout({ image, children }) {
   let user = localStorage.getItem("__account__");
   return (
     <PageLayout>
@@ -59,7 +59,7 @@ export default function SignInUpLayout({ image, children }) {
       />
       <MDBox px={0} width="100%" height="100vh" mx="auto">
         <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
-          <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
+          <Grid item xs={11} sm={9} md={9} lg={9} xl={9}>
             {children}
           </Grid>
         </Grid>
@@ -70,7 +70,7 @@ export default function SignInUpLayout({ image, children }) {
 }
 
 // Typechecking props for the BasicLayout
-SignInUpLayout.propTypes = {
+SignUpLayout.propTypes = {
   image: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
