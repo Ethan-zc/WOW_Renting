@@ -140,10 +140,7 @@ public class OrderController {
 
         if (custType.equals("I") && distNum != null) {
             IndiDiscountEntry indiDiscount = orderService.findIndiDiscountByCoupNum(distNum);
-            if (indiDiscount == null) {
-                result.setResultFailed("Discount not valid!");
-                return result;
-            } else {
+            if (indiDiscount != null) {
                 Date current = new Date();
                 if (current.after(indiDiscount.getValidStart()) && current.before(indiDiscount.getValidEnd())) {
                     distId = indiDiscount.getDiscId();
@@ -155,14 +152,12 @@ public class OrderController {
             }
         }
 
+
         if (custType.equals("C") && distNum != null ) {
-            CorpDiscountEntry corpDiscountEntry = orderService.findCorpDiscountBySetNum(distNum);
-            if (corpDiscountEntry == null) {
-                result.setResultFailed("Discount not valid!");
-                return result;
-            } else {
-                distId = corpDiscountEntry.getDiscId();
-                distType = corpDiscountEntry.getDiscType();
+            CorpDiscountEntry corpDiscount = orderService.findCorpDiscountBySetNum(distNum);
+            if (corpDiscount != null) {
+                distId = corpDiscount.getDiscId();
+                distType = corpDiscount.getDiscType();
             }
         }
 
