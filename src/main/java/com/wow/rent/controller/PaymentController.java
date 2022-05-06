@@ -43,10 +43,13 @@ public class PaymentController {
         }
 
         List<PaymentEntry> paymentList = new ArrayList<>();
+
         for (InvoiceEntry invoice : invoiceList) {
             int invoiceId = invoice.getInvoiceId();
             PaymentEntry payment = paymentService.findPaymentListByInvoiceId(invoiceId);
-            paymentList.add(payment);
+            if (payment != null) {
+                paymentList.add(payment);
+            }
         }
         if(paymentList.isEmpty()) {
             result.setResultSuccess("empty", paymentList);
