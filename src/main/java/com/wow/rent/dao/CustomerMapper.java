@@ -16,7 +16,7 @@ public interface CustomerMapper {
     @Select("SELECT * FROM zzz_individual WHERE custid = #{custId}")
     IndividualCustEntry findIndiCustById(int custId);
 
-    @Select("SELECT * FROM zzz_corporative WHERE custid = #{custId}")
+    @Select("SELECT * FROM zzz_corporate WHERE custid = #{custId}")
     CorpCustEntry findCorpCustById(int custId);
 
     @Insert("INSERT INTO zzz_customer (custtype, email, phone, addrid) VALUES (#{custType}, #{email}, #{phone}, #{addrid})")
