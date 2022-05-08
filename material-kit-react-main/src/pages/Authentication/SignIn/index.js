@@ -88,27 +88,28 @@ export default function SignIn() {
     localStorage.setItem("rememberMe", rememberMe);
     localStorage.setItem("account", rememberMe ? account : "");
 
-    // TODO: authentication verification => seem not right
-    localStorage.setItem("__account__", account);
-    window.location.reload()
-
-    // console.log("[SignIn] handleOnClickSignIn account: ");
-    // let data = {
-    //   accName: account,
-    //   pwd: password
-    // }
-    // console.log(data);
-    // AuthDataService.login(data)
-    //   .then((response) => {
-    //     if (response.success === "true") {
-    //       // login success
-    //       localStorage.setItem("__account__", account);
-    //       // navigate("/dashboard");
-    //     } else {
-    //       // login fail
-    //     }
-    //   });
+    // // TODO: authentication verification => seem not right
+    // localStorage.setItem("__account__", account);
     
+
+    console.log("[SignIn] handleOnClickSignIn account: ");
+    let data = {
+      accName: account,
+      pwd: password
+    }
+    console.log(data);
+    AuthDataService.login(data)
+      .then((response) => {
+        console.log(response);
+        if (response.data.success === true) {
+          // login success
+          localStorage.setItem("__account__", account);
+          // navigate("/dashboard");
+          // window.location.reload();
+        } else {
+          // login fail
+        }
+      });
   }
 
   return (

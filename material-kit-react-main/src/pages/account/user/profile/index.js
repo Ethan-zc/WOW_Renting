@@ -37,8 +37,8 @@ export default function Profile() {
   const [name, setName] = useState("");
   const [intro, setIntro] = useState("");
   useEffect(() => {
-    let acc = localStorage.getItem("__account__");
-    AuthDataService.getCustInfo(acc)
+    // let acc = localStorage.getItem("__account__");
+    AuthDataService.getCustInfo()
       .then((response) => {
         console.log(response.data);
         console.log(response.data);

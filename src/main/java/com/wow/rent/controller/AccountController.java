@@ -43,12 +43,19 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public Result<ProfileEntry> getAccountProfile(@RequestParam(value = "accName")String accName) {
+    public Result<ProfileEntry> getAccountProfile(HttpServletRequest request, HttpServletResponse response) {
         Result<ProfileEntry> result = new Result<>();
-        if (accountServie.findAccountByAccName(accName) == null) {
-            result.setResultFailed("Account does not exist!");
+
+        // is login?
+        if (!this.isLogin(request, response).isSuccess()) {
+            result.setResultFailed("No login info！");
             return result;
         }
+
+        // get user account name
+        AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
+        String accName = sessionUser.getAccName();
+
         AccountEntry account = accountServie.findAccountByAccName(accName);
         String custType = accountServie.findCustTypeByAccName(accName);
         ProfileEntry profile = new ProfileEntry();
