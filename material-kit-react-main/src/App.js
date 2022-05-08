@@ -3,11 +3,9 @@ import React, { useState, useEffect } from "react";
 import UnauthenticatedApp from "unauth-App";
 import AuthenticatedApp from "auth-App";
 
-// import { useMaterialUIController } from "context/mui-provider";
+// import { useMaterialUIController } from "context";
 
 // import { useClient } from "context/auth-context";
-
-import { useAuth } from "context/auth-context";
 
 export default function App() {
   // const {test} = useMaterialUIController();

@@ -25,7 +25,7 @@ import authAdminRoutes from "routes/auth.user.routes";
 import authSideNavAdminRoutes from "routes/auth.sidenav.user.routes";
 
 // Material Dashboard 2 React contexts
-import { useMaterialUIController, setMiniSidenav } from "context/mui-provider";
+import { useMaterialUIController, setMiniSidenav } from "context";
 
 // Images
 import brandWhite from "assets/images/logo-zzz.png";
