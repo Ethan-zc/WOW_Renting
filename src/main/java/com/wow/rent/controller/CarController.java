@@ -21,7 +21,7 @@ public class CarController {
 
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public List<CarEntry> findCars(@RequestBody TripRequestEntry tripRequest){
-//        TODO: filter by pdate and ddate.
+
         if (tripRequest.getOrderBy().equals("") || tripRequest.getOrderBy() == null) {
             tripRequest.setOrderBy("dailyrate");
         }

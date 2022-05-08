@@ -1,5 +1,6 @@
 package com.wow.rent.controller;
 
+import com.wow.rent.entry.AccountEntry;
 import com.wow.rent.entry.InvoiceEntry;
 import com.wow.rent.entry.PaymentEntry;
 import com.wow.rent.entry.PaymentRequestEntry;
@@ -11,9 +12,13 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.wow.rent.controller.AccountController.SESSION_NAME;
 
 @CrossOrigin
 @RestController
@@ -27,10 +32,22 @@ public class PaymentController {
     AccountServie accountServie;
     @Autowired
     InvoiceService invoiceService;
+    @Autowired
+    AccountController accountController;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Result<List<PaymentEntry>> getPaymentList(@RequestParam(value = "accName")String accName) {
+    public Result<List<PaymentEntry>> getPaymentList(HttpServletRequest request, HttpServletResponse response) {
         Result<List<PaymentEntry>> result = new Result<>();
+
+        if (!accountController.isLogin(request, response).isSuccess()) {
+            result.setResultFailed("No login info！");
+            return result;
+        }
+
+        // get user account name
+        AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
+        String accName = sessionUser.getAccName();
+
         if (accountServie.findAccountByAccName(accName) == null) {
             result.setResultFailed("Account does not exist!");
             return result;
@@ -62,8 +79,19 @@ public class PaymentController {
     }
 
     @RequestMapping(value = "/pay", method = RequestMethod.POST)
-    public Result<String> makePayment(@RequestBody PaymentRequestEntry paymentRequest) {
+    public Result<String> makePayment(@RequestBody PaymentRequestEntry paymentRequest,
+                                      HttpServletRequest request, HttpServletResponse response) {
         Result<String> result = new Result<>();
+
+        if (!accountController.isLogin(request, response).isSuccess()) {
+            result.setResultFailed("No login info！");
+            return result;
+        }
+
+        // get user account name
+        AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
+        String accName = sessionUser.getAccName();
+
         InvoiceEntry invoice = invoiceService.findInvoiceByInvoiceId(paymentRequest.getInvoiceId());
         double payAmount = paymentRequest.getAmount();
         if (payAmount <= 0 || payAmount > invoice.getRemain() || invoice.getIsPaid().equals("Y")) {

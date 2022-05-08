@@ -216,9 +216,6 @@ public class AccountController {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Origin",request.getHeader("Origin"));
         HttpSession session = request.getSession();
-        System.out.println(session);
-
-        System.out.println(request.getSession().getId());
 
         Result<AccountEntry> result = new Result<>();
         // get user info from session
@@ -244,13 +241,5 @@ public class AccountController {
         return result;
     }
 
-//    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-//    public Result<AccountEntry> getProfile(@RequestParam(value = "accName")String accName) {
-//        Result<List<PaymentEntry>> result = new Result<>();
-//        if (accountServie.findAccountByAccName(accName) == null) {
-//            result.setResultFailed("Account does not exist!");
-//            return result;
-//        }
-//    }
 
 }
