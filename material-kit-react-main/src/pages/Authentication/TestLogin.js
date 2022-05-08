@@ -66,6 +66,28 @@ export default function TestLogin() {
     }
 }
 
+  // const handleLoginNoCookie = async () => {
+  //   // TODO: change account name
+  //   console.log("[handleLoginNoCookie] account: ");
+  //   let data = {
+  //     accName: account,
+  //     pwd: password
+  //   }
+
+  //   console.log("[handleLoginNoCookie] account: ");
+  //   console.log(data);
+  //   const resp = await AuthDataService.login(data);
+  //   console.log(resp);
+  //   console.log("[handleLoginNoCookie] resp.headers: ");
+  //   console.log(resp.headers);
+  //   const [cookie] = resp.headers["set-cookie"]; // getting cookie from request
+  //   AuthDataService.defaults.headers.Cookie = cookie; // attaching cookie to axiosInstance for future requests
+  //   console.log("[handleLoginNoCookie] cookie: ");
+  //   console.log(cookie);
+  //   console.log("[handleLoginNoCookie] AuthDataService.defaults.headers.Cookie: ");
+  //   console.log(AuthDataService.defaults.headers.Cookie);
+  // }
+
   const handleLoginNoCookie = () => {
     // TODO: change account name
     console.log("[handleLoginNoCookie] account: ");
@@ -130,7 +152,7 @@ export default function TestLogin() {
     const header = {
       headers: {
         "Content-type": "application/json",
-        "Cookie": document.cookie,
+        "Cookie": "JSESSIONID=MjVmY2ZiYjUtYmIyZC00MjdkLWEyZTItYzEzYmJkOWU3ODcz",
         },
       withCredentials: true
     };
@@ -261,7 +283,7 @@ export default function TestLogin() {
                 fullWidth
                 onClick={handleLogoutNoCookie}
               >
-                Loginout (no cookie)
+                Logout (no cookie)
               </MDButton>
             </MDBox>
 
@@ -292,7 +314,7 @@ export default function TestLogin() {
                 fullWidth
                 onClick={handleLogoutWithCookie}
               >
-                Loginout (with cookie)
+                Logout (with cookie)
               </MDButton>
             </MDBox>
             <MDBox mt={4} mb={1}>

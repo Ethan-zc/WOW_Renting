@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import javax.xml.ws.RequestWrapper;
 import java.util.List;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/account")
 @Api(tags = "Account")
@@ -180,7 +179,6 @@ public class AccountController {
         }
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000", "null"})
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(@RequestBody LoginRequestEntry loginRequest, HttpServletRequest httpRequest, HttpServletResponse response) {
         Result<AccountEntry> result;
@@ -196,7 +194,6 @@ public class AccountController {
         return result;
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000", "null"})
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public Object logout(HttpServletRequest request,HttpServletResponse response) {
         Result result = new Result();
@@ -207,7 +204,6 @@ public class AccountController {
         return result;
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000", "null"})
     @RequestMapping(value = "/islogin", method = RequestMethod.GET)
     public Result<AccountEntry> isLogin(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Credentials", "true");

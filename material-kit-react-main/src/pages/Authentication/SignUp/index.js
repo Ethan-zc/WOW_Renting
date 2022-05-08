@@ -138,6 +138,7 @@ export default function SignUp() {
   const [isNumIndi, setIsNumIndi] = useState(initIndiNum);
   const [isUnique, setIsUnique] = useState(initUnique);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const clearCorp = () => {
     setDataCorp(initCorpData);
@@ -191,13 +192,12 @@ export default function SignUp() {
           setIsSubmit(!isSubmit);
           setIsUnique(initUnique);
         } else {
-          console.info("[SignUp] postIndiData fail");
+          console.error("[SignUp] postIndiData fail");
           console.error(response.data.status);
           console.error(response.data.message);
           let currState = Object.assign({}, isUnique);
           Array.from(Object.keys(labelUnique)).forEach((prop) => {
-            console.error(response.data.message.toLowerCase());
-            if (response.data.message.toLowerCase().includes(labelUnique[prop].toLowerCase())) {
+            if (response.data.message.toLowerCase().includes(prop)) {
               if (currState[prop]) { currState[prop] = false };
             } else { currState[prop] = true; }
           });
