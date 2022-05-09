@@ -11,6 +11,6 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-### Swagger开关配置参数
+### Swagger open or not.
 swagger:
   enable: true
