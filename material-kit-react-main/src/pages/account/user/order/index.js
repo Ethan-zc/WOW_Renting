@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -31,7 +31,7 @@ import OrderDetail from "pages/account/user/order/sessions/OrderDetail";
 import OrderList from "pages/account/user/order/sessions/OrderList";
 
 function Tables() {
-  const [orderDetail, setOrderDetail] = useState(JSON.parse(sessionStorage.getItem("orderDetail")));
+  const [orderDetail, setOrderDetail] = useState(JSON.parse(sessionStorage.getItem("__orderDetail__")));
   const [successSB, setSuccessSB] = useState(false);
 
   const openSuccessSB = () => setSuccessSB(true);
@@ -51,11 +51,14 @@ function Tables() {
     />
   );
 
-  const handleOnSubmit = (e) => {
-    sessionStorage.removeItem("orderDetail");
+  useEffect(() => {
+    
+  }, [orderDetail]);
+
+  const handleOnSubmit = () => {
+    sessionStorage.removeItem("__orderDetail__");
     openSuccessSB();
     setOrderDetail(null);
-    console.log("here");
   }
 
   return (
@@ -69,7 +72,7 @@ function Tables() {
           </Grid> : null}
           {renderSuccessSB}
           <Grid item xs={12}>
-            <OrderList />
+            <OrderList orderDetail={orderDetail} />
           </Grid>
         </Grid>
       </MDBox>

@@ -20,9 +20,11 @@ import themeDark from "assets/theme-dark";
 
 // Material Dashboard 2 React routes
 import authUserRoutes from "routes/auth.user.routes";
+import authNavUserRoutes from "routes/auth.nav.user.routes";
 import authSideNavUserRoutes from "routes/auth.sidenav.user.routes";
-import authAdminRoutes from "routes/auth.user.routes";
-import authSideNavAdminRoutes from "routes/auth.sidenav.user.routes";
+import authAdminRoutes from "routes/auth.admin.routes";
+import authNavAdminRoutes from "routes/auth.nav.admin.routes";
+import authSideNavAdminRoutes from "routes/auth.sidenav.admin.routes";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav } from "context";
@@ -31,8 +33,36 @@ import { useMaterialUIController, setMiniSidenav } from "context";
 import brandWhite from "assets/images/logo-zzz.png";
 import brandDark from "assets/images/logo-zzz.png";
 
+// common pages
+import Welcome from "pages/welcome";
+import Trip from "pages/trip";
+
+import AccountDataService from "services/account.service";
+
 export default function AuthenticatedApp() {
-  const user = localStorage.getItem("__account__");
+  const [status, setStatus] = useState(false);
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    AccountDataService.isLogin()
+      .then((response) => {
+        console.log("[AuthenticatedApp] ", response.data.message);
+        if (response.data.success) {
+          setStatus(true);
+        }
+      });
+  }, []);
+  console.log("status ", status);
+  useEffect(() => {
+    if (status) {
+      AccountDataService.getRole()
+        .then((response) => {
+          setRole(response.data.data);
+        });
+    }
+  }, [status]);
+  console.log("role ", role);
+
+  // const user = localStorage.getItem("__account__");
 
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -94,7 +124,7 @@ export default function AuthenticatedApp() {
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="ZZZ Car Rental"
-            routes={user === "admin" ? authSideNavAdminRoutes : authSideNavUserRoutes}
+            routes={role === "customer" ? authSideNavUserRoutes : authSideNavAdminRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
@@ -103,8 +133,10 @@ export default function AuthenticatedApp() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {getRoutes(user === "admin" ? authAdminRoutes : authUserRoutes)}
-        <Route path="/*" element={<Navigate to="/welcome" />} />
+        {getRoutes(role === "customer" ? authUserRoutes : authAdminRoutes)}
+        <Route path="/welcome" element={<Welcome routes={role === "customer" ? authNavUserRoutes : authNavAdminRoutes}/>} />
+        <Route path="/trip" element={<Trip routes={role === "customer" ? authNavUserRoutes : authNavAdminRoutes}/>} />
+        <Route path="/material-kit-react" element={<Navigate to="/welcome" />} />
       </Routes>
     </ThemeProvider>
   );

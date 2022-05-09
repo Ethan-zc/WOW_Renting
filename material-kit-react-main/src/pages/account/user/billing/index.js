@@ -13,6 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { useState } from "react";
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 
@@ -28,18 +30,22 @@ import Invoices from "pages/account/user/billing/components/Invoices";
 import Transactions from "pages/account/user/billing/components/Transactions";
 
 function Billing() {
-  // TODO: update Transactions
+  const [isUpdate, setIsUpdate] = useState(false);
+  const handleUpdate = () => {
+    console.log("handleUpdate");
+    setIsUpdate(!isUpdate);
+  }
   return (
     <DashboardLayout>
-      <DashboardNavbar isMini />
+      <DashboardNavbar />
       <MDBox mt={2}>
         <MDBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={7}>
-              <Invoices />
+              <Invoices handleUpdate={handleUpdate} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <Transactions />
+              <Transactions isUpdate={isUpdate}/>
             </Grid>
           </Grid>
         </MDBox>

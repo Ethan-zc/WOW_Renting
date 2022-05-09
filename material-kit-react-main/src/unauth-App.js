@@ -12,9 +12,11 @@ import theme from "assets/theme";
 
 // Material Kit 2 React pages
 import Welcome from "pages/welcome";
+import Trip from "pages/trip";
 
 // Material Dashboard 2 React routes
 import unauthRoutes from "routes/unauth.routes";
+import unauthNavRoutes from "routes/unauth.nav.routes";
 
 export default function UnauthenticatedApp() {
  
@@ -42,9 +44,10 @@ export default function UnauthenticatedApp() {
       <CssBaseline />
       <Routes>
         {getRoutes(unauthRoutes)}
-        <Route path="/welcome" element={<Welcome />} />
-        {/* <Route path="/dashboard" element={<Navigate to="/dashboard" />} /> */}
-        <Route path="/*" element={<Navigate to="/welcome" />} />
+        <Route path="/welcome" element={<Welcome routes={unauthNavRoutes}/>} />
+        <Route path="/trip" element={<Trip routes={unauthNavRoutes}/>} />
+        <Route path="/logout" element={<Navigate to="/welcome" />} />
+        <Route path="/material-kit-react" element={<Navigate to="/welcome" />} />
       </Routes>
     </ThemeProvider>
   );

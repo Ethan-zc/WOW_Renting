@@ -1,14 +1,22 @@
 // Material Dashboard 2 React sections
-import Profile from "pages/account/user/profile";
-import Order from "pages/account/user/order";
-import Billing from "pages/account/user/billing";
+import Profile from "pages/account/admin/profile";
+import Order from "pages/account/admin/order";
 import Logout from "pages/account/logout";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const authRoutes = [
+  {
+    type: "collapse",
+    name: "Orders",
+    key: "order",
+    icon: <SummarizeIcon />,
+    route: "/order",
+    component: <Order />,
+  },
   {
     type: "collapse",
     name: "Profile",
@@ -16,22 +24,6 @@ const authRoutes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
     component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "Order",
-    key: "order",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/order",
-    component: <Order />,
-  },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
   },
   {
     type: "collapse",

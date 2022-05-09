@@ -6,12 +6,11 @@ export default function Logout() {
     .then((response) => {
       console.log(response);
       if (response.data.success) {
-        
+        console.log("[logout] logout success");
         window.location.reload();
-        return true;
       }
       console.log("[logout] logout failed");
-      return false;
     });
+  return <></>;
 }
 

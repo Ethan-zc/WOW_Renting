@@ -157,8 +157,8 @@ values
 -- insert data to zzz_account
 insert into zzz_account (accname, pwd, custid, custtype)
 values
-('admin', '6512bd43d9caa6e02c990b0a82652dca', 1, 'I'),
-('aa', '6512bd43d9caa6e02c990b0a82652dca', 2, 'I'),
+('admin', '6512bd43d9caa6e02c990b0a82652dca', 2, 'I'),
+('aa', '6512bd43d9caa6e02c990b0a82652dca', 1, 'I'),
 ('bb', '6512bd43d9caa6e02c990b0a82652dca', 7, 'C');
 
 insert into zzz_role (rid, role)

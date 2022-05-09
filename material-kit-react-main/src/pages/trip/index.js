@@ -35,15 +35,11 @@ import PageLayout from "pages/welcome/components/PageLayout";
 // Images
 import bgImage from "assets/images/bg-welcome.jpg";
 
-import unauthRoutes from "routes/unauth.routes";
-import authNavUserRoutes from "routes/auth.nav.user.routes";
-import authNavAdminRoutes from "routes/auth.nav.user.routes";
-
-function Trip() {
-  let user = localStorage.getItem("__account__");
+function Trip(props) {
+  const {routes} = props;
   return (
     <PageLayout>
-      <DefaultNavbar routes={user ? (user === "admin" ? authNavAdminRoutes : authNavUserRoutes) : unauthRoutes} sticky />
+      <DefaultNavbar routes={routes} sticky />
       <MKBox
         minHeight="70vh"
         width="100%"

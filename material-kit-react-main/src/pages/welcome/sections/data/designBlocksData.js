@@ -16,7 +16,6 @@ Coded by www.creative-tim.com
 const imagesPrefix =
   "https://media.zipcar.com/images/model-image?model_id=";
 
-// TODO: find pics of cars
 // eslint-disable-next-line
 export default [
   {

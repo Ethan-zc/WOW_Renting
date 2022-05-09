@@ -59,7 +59,7 @@ import Invoice from "pages/account/user/billing/components/Invoice";
 import InvoiceDataService from "services/invoice.service";
 import PaymentDataService from "services/payment.service";
 
-function Invoices() {
+function Invoices({ handleUpdate }) {
   const [account] = useState(localStorage.getItem("__account__"));
   const [invoiceData, setInvoiceData] = useState([]);
   const[invoiceId, setInvoiceId] = useState("");
@@ -75,6 +75,7 @@ function Invoices() {
   const getCustInvoiceData = () => {
     InvoiceDataService.getCustInvoiceList(account)
       .then((response) => {
+        
         setInvoiceData(response.data.data);
       });
   }
@@ -135,6 +136,7 @@ function Invoices() {
       setCardNum("");
       setMethod("");
       setErrorMsg("");
+      handleUpdate();
     }
     setIsShow(!isShow)
   };
@@ -149,7 +151,7 @@ function Invoices() {
       <Divider sx={{ margin: 1 }} />
       <MDBox px={3}>
         <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-          {invoiceData.map((e, index) => {
+          {(invoiceData !== null && invoiceData.length !== 0) ? invoiceData.map((e, index) => {
             return (
             <Invoice 
               key={index}
@@ -159,7 +161,7 @@ function Invoices() {
               remain={e.remain.toString()}
               handleOnClickPay={handleOnClickPay}
             />);
-          })}
+          }) : null}
         </MDBox>
       </MDBox>
       <Modal open={isShow} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>

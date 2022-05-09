@@ -1,14 +1,14 @@
 // @mui icons
+import CarRentalIcon from "@mui/icons-material/CarRental";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
-// Pages
-import SignIn from "pages/authentication/signin";
-import SignUp from "pages/authentication/signup";
-import TestLogin from "pages/authentication/TestLogin.js";
-
-const unauthRoutes = [
+const unauthNavRoutes = [
+  {
+    name: "trip",
+    icon: <CarRentalIcon />,
+    route: "/trip",
+  },
   {
     name: "account",
     icon: <AccountCircleIcon />,
@@ -16,17 +16,14 @@ const unauthRoutes = [
       {
         name: "sign in",
         route: "/authentication/sign-in",
-        component: <SignIn />,
       },
       {
         name: "sign up",
         route: "/authentication/sign-up",
-        component: <SignUp />,
       },
       {
         name: "test login",
         route: "/authentication/test-login",
-        component: <TestLogin />,
       },
     ],
   },
@@ -37,4 +34,4 @@ const unauthRoutes = [
   },
 ];
 
-export default unauthRoutes;
+export default unauthNavRoutes;

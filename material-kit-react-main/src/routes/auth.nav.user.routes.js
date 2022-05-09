@@ -44,7 +44,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 const authNavRoutes = [
   {
     type: "collapse",
-    name: "User:"+localStorage.getItem("__account__"),
+    name: "User:" + localStorage.getItem("__account__"),
     key: "profile",
     icon: <FaceIcon />,
     route: "/profile",
@@ -62,6 +62,13 @@ const authNavRoutes = [
     key: "logout",
     icon: <Icon fontSize="small">logout</Icon>,
     route: "/logout",
+  },
+  {
+    type: "collapse",
+    name: "Github",
+    key: "github",
+    icon: <GitHubIcon />,
+    href: "https://github.com/Ethan-zc/WOW_Renting/tree/master",
   },
 ];
 
