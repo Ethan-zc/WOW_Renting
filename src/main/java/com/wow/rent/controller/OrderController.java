@@ -81,7 +81,7 @@ public class OrderController {
 
     }
 
-    @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateOrder", method = RequestMethod.PUT)
     public Object updateEndOdo(@RequestBody OrderUpdateRequestEntry request,
                                HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
         JSONObject jsonObject = new JSONObject();
