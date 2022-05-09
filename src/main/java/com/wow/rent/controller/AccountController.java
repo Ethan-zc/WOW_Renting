@@ -241,5 +241,49 @@ public class AccountController {
         return result;
     }
 
+    @RequestMapping(value = "/getAccName", method = RequestMethod.GET)
+    public Result<String> getCookieAccName(HttpServletRequest request) {
+        Result<String> result = new Result<>();
+        HttpSession session = request.getSession();
+        AccountEntry sessionUser = (AccountEntry) session.getAttribute(SESSION_NAME);
+
+        // if get null from session, is not logged.
+        if (sessionUser == null) {
+            result.setResultFailed("No login info！");
+            return result;
+        }
+        // if logged, verify password using db info.
+        AccountEntry getUser = null;
+        try {
+            getUser = accountServie.findAccountByAccName(sessionUser.getAccName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (getUser!= null) {
+            result.setResultSuccess("Success!", getUser.getAccName());
+            return result;
+        }
+        result.setResultFailed("Failed");
+        return result;
+    }
+
+    @RequestMapping(value = "/getRole", method = RequestMethod.GET)
+    public Result<String> getCookieRole(HttpServletRequest request, HttpServletResponse response) {
+        Result<String> result = new Result<>();
+        HttpSession session = request.getSession();
+
+        if (!this.isLogin(request, response).isSuccess()) {
+            result.setResultFailed("No login info！");
+            return result;
+        }
+
+        // get user account name
+        AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
+        String accName = sessionUser.getAccName();
+        String role = accountServie.getRoleByAccName(accName);
+        result.setResultSuccess("Success!", role);
+        return result;
+    }
+
 
 }

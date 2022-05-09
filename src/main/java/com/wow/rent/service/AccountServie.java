@@ -13,4 +13,6 @@ public interface AccountServie {
     String findCustTypeByAccName(String accName);
 
     Result<AccountEntry> login(LoginRequestEntry loginRequest);
+
+    String getRoleByAccName(String accName);
 }

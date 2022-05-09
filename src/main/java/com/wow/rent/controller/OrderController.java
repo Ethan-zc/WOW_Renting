@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
+import static com.wow.rent.controller.AccountController.SESSION_NAME;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/order")
@@ -27,16 +29,42 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private AccountServie accountServie;
+    @Autowired
+    private AccountController accountController;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<OrderEntry> findAllOrders() {
-        return orderService.findAllOrders();
+    public Result<List<OrderEntry>> findAllOrders(HttpServletRequest request, HttpServletResponse response) {
+        Result<List<OrderEntry>> result = new Result<>();
+        // is login?
+        if (!accountController.isLogin(request, response).isSuccess()) {
+            result.setResultFailed("No login info！");
+            return result;
+        }
+
+        // get user account name
+        AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
+        String accName = sessionUser.getAccName();
+        if (!accName.equals("admin")) {
+            result.setResultFailed("No Permission!");
+            return result;
+        }
+
+        result.setResultSuccess("Success!", orderService.findAllOrders());
+        return result;
     }
 
-    // TODO: Admin only
     @RequestMapping(value = "/custlist", method = RequestMethod.GET)
-    public Result<List<OrderEntry>> findOrderByAccName(@RequestParam(value = "accName")String accName) {
+    public Result<List<OrderEntry>> findOrderByAccName(HttpServletRequest request, HttpServletResponse response) {
         Result<List<OrderEntry>> result = new Result<>();
+        // is login?
+        if (!accountController.isLogin(request, response).isSuccess()) {
+            result.setResultFailed("No login info！");
+            return result;
+        }
+
+        // get user account name
+        AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
+        String accName = sessionUser.getAccName();
         AccountEntry account = accountServie.findAccountByAccName(accName);
         if (account == null) {
             result.setResultFailed("Account does not exist!");

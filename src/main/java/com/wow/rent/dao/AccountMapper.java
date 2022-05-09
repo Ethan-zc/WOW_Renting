@@ -19,4 +19,7 @@ public interface AccountMapper {
     @Select("SELECT custtype FROM zzz_account WHERE accname = #{accName}")
     String findCustTypeByAccName(String accName);
 
+    @Select("SELECT role FROM zzz_account NATURAL JOIN zzz_acc_role NATURAL JOIN zzz_role WHERE accname = #{accName}")
+    String getRoleByAccName(String accName);
+
 }

@@ -63,7 +63,7 @@ ALTER TABLE zzz_account MODIFY accid BIGINT AUTO_INCREMENT;
 -- Table role
 CREATE TABLE zzz_role (
     rid  BIGINT NOT NULL COMMENT 'Unique ID for role.',
-    role VARCHAR(5) NOT NULL COMMENT 'Role name.'
+    role VARCHAR(10) NOT NULL COMMENT 'Role name.'
 );
 ALTER TABLE zzz_role ADD CONSTRAINT zzz_role_pk PRIMARY KEY ( rid );
 

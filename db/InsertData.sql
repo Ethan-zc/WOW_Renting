@@ -157,8 +157,21 @@ values
 -- insert data to zzz_account
 insert into zzz_account (accname, pwd, custid, custtype)
 values
-('aa', '11', 1, 'I'),
-('bb', '11', 7, 'C');
+('admin', '6512bd43d9caa6e02c990b0a82652dca', 1, 'I'),
+('aa', '6512bd43d9caa6e02c990b0a82652dca', 2, 'I'),
+('bb', '6512bd43d9caa6e02c990b0a82652dca', 7, 'C');
+
+insert into zzz_role (rid, role)
+values
+(1, 'customer'),
+(2, 'admin');
+
+insert into zzz_acc_role (accid, rid)
+values
+(1, 2),
+(2, 1),
+(3, 1);
+
 
 -- add an invoice
 update zzz_order set endodo=1100 where orderid=1; -- 4

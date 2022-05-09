@@ -13,19 +13,19 @@ import java.util.concurrent.ConcurrentHashMap;
 @EnableSpringHttpSession
 public class SessionConfig {
     /**
-     * 设定cookie序列化器的属性
+     * Set serializer properties
      */
     @Bean
     public CookieSerializer cookieSerializer() {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
         serializer.setCookieName("JSESSIONID");
-        // 用正则表达式配置匹配的域名，可以兼容 localhost、127.0.0.1 等各种场景
+        // match localhost、127.0.0.1 ...
         serializer.setDomainNamePattern("^.+?\\\\.(\\\\w+\\\\.[a-z]+)$");
-        // cookie生效路径
+        // root for cookie
         serializer.setCookiePath("/");
-        // 设置是否只能服务器修改，浏览器端不能修改
+        // set if only server could change it
         serializer.setUseHttpOnlyCookie(false);
-        // 最大生命周期的单位是分钟
+        // set the life time for cookie
         serializer.setCookieMaxAge(60*60*2);
         return serializer;
     }

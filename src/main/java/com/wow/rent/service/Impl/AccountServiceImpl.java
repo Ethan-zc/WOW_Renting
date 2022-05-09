@@ -5,6 +5,7 @@ import com.wow.rent.entry.AccountEntry;
 import com.wow.rent.entry.LoginRequestEntry;
 import com.wow.rent.model.Result;
 import com.wow.rent.service.AccountServie;
+import lombok.Builder;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,11 @@ public class AccountServiceImpl implements AccountServie {
         }
         result.setResultSuccess("Login Successfully！", getAccount);
         return result;
+    }
+
+    @Override
+    public String getRoleByAccName(String accName) {
+        return accountMapper.getRoleByAccName(accName);
     }
 
 }

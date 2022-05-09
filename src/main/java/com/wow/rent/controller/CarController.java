@@ -30,9 +30,7 @@ public class CarController {
         }
         String state = tripRequest.getPickUp();
         String orderBy = tripRequest.getOrderBy();
-        List<CarEntry> testing = carService.findCarsWithPickUp(state, orderBy);
 
-        System.out.println(testing);
         return carService.findCarsWithPickUp(state, orderBy);
     }
 

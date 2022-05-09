@@ -11,15 +11,15 @@ public class CorsConfig {
     private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.addAllowedOrigin("http://localhost:3000"); // 允许任何域名使用
-        corsConfiguration.addAllowedHeader("*"); // 允许任何头
-        corsConfiguration.addAllowedMethod("*"); // 允许任何方法（post、get等）
+        corsConfiguration.addAllowedOrigin("http://localhost:3000"); // Allow any hots to use
+        corsConfiguration.addAllowedHeader("*"); // Allow any header
+        corsConfiguration.addAllowedMethod("*"); // Allow any methods（post、get...）
         return corsConfiguration;
     }
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", buildConfig()); // 对接口配置跨域设置
+        source.registerCorsConfiguration("/**", buildConfig()); // CORS set for APIs.
         return new CorsFilter(source);
     }
 }
