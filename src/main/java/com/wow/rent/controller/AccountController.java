@@ -128,6 +128,11 @@ public class AccountController {
             String insNum = String.valueOf(request.getInsnum());
             customerService.addIndividualCustomer(custId, lName, fName, licenseNum, insName, insNum);
             accountServie.Register(accName, pwd, custId, "I");
+            // Add role entry
+            AccountEntry account = accountServie.findAccountByAccName(accName);
+            int accId = account.getAccId();
+            accountServie.addAccRole(accId);
+
             jsonObject.put("status", "success");
             jsonObject.put("message","Account registered successfully. ");
             return jsonObject;
@@ -170,17 +175,16 @@ public class AccountController {
 
             customerService.addNewCustomer(custType, email, phone, addrId);
             int custId = customerService.findCustomerByInfo(custType, email, phone);
-            String corpName = request.getCorpname();
-            String regNum = request.getRegnum();
-            String empId = request.getEmpid();
-            if (customerService.addCorpCustomer(custId, corpName, regNum, empId)>0) {
-                System.out.println("success");
-            } else {
-                System.out.println("failed");
-            }
+
             accountServie.Register(accName, pwd, custId, "C");
             jsonObject.put("status", "success");
             jsonObject.put("message","Account registered successfully. ");
+
+            // Add role entry
+            AccountEntry account = accountServie.findAccountByAccName(accName);
+            int accId = account.getAccId();
+            accountServie.addAccRole(accId);
+
             return jsonObject;
             
         }

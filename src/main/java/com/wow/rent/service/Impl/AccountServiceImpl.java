@@ -63,4 +63,9 @@ public class AccountServiceImpl implements AccountServie {
         return getRoleByAccName(accName).equals("admin");
     }
 
+    @Override
+    public void addAccRole(int accId) {
+        accountMapper.addAccRole(accId);
+    }
+
 }

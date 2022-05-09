@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AccountEntry {
 
-    private long accId;
+    private int accId;
     private String accName;
     private String pwd;
     private int custId;

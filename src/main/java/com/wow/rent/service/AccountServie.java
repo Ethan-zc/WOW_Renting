@@ -17,4 +17,6 @@ public interface AccountServie {
     String getRoleByAccName(String accName);
 
     Boolean isAdmin(String accName);
+
+    void addAccRole(int accId);
 }
