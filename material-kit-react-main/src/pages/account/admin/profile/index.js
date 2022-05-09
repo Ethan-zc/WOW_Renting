@@ -52,27 +52,15 @@ export default function Profile() {
     AccountDataService.getProfile()
       .then((response) => {
         let info = response.data.data;
-        let basicInfo = {
+        let data = {
           account: `${info.accName}`,
           mobile: `${info.phone}`,
           email: `${info.email}`,
           address: `${info.street}, ${info.state} ${info.zipcode}, ${info.country}`,
         };
-        let extraInfo = (response.data.data.custType === "I") ? 
-          {
-            licenseNumber: `${info.licenseNum}`,
-            insuranceName: `${info.insName}`,
-            insuranceNumber: `${info.insNum ? info.insNum : ""}`,
-          } : 
-          {
-            employeeId: `${info.empId}`,
-            corporationName: `${info.corpName}`,
-            registerNumber: `${info.regNum}`,
-          };
-        let data = {...basicInfo, ...extraInfo};
         setUserInfo(data);
-        setName(info["custType"] === "I" ? `${info.fname} ${info.lname}` : `${info.corpName}`);
-        setIntro(info["custType"] === "I" ? "Individual User" : "Corporation User");
+        setName(`${info.fname} ${info.lname}`);
+        setIntro("Administrator");
       });
   }, []);
 

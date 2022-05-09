@@ -28,6 +28,7 @@
 */
 
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -43,17 +44,13 @@ import MKInput from "components/MKInput";
 // Trip page components
 import TableViewCars from "pages/trip/components/TableViewCars";
 
-// FIXME: use another table if have time
-// import TableCars from "pages/Trip/components/TableCars";
-// import TableSample from "pages/Trip/components/TableSample";
-
-import { useNavigate } from "react-router-dom";
-
 // Services
 import CarDataService from "services/trip.service";
+import AccountDataService from "services/account.service";
 
 export default function SearchCars() {
   const navigate = useNavigate();
+
   const dataHead = {
     carType: "Car Type",
     dailyRate: "Daily Price($)",
@@ -77,10 +74,23 @@ export default function SearchCars() {
   const [dataCars, setDataCars] = React.useState([]);
   const [dataCarsExtra, setDataCarsExtra] = React.useState([]);
   const [isComplete, setIsComplete] = React.useState(null);
+
+  const [status, setStatus] = useState(false);
+
   useEffect(() => {
     // console.log("[SearchCars] useEffect called!")
     postGetCarData();
-  }, [isComplete, pickUp]);
+  }, []);
+
+  useEffect(() => {
+    AccountDataService.isLogin()
+    .then((response) => {
+        console.log("[App] ", response.data.message);
+        if (response.data.success) {
+        setStatus(true);
+        }
+    });
+  }, []);
 
   const postGetCarData = (orderBy) => {
     const dataFilter = {
@@ -89,11 +99,10 @@ export default function SearchCars() {
       pdate: pdate,
       pickUp: pickUp
     };
-    return CarDataService.post(dataFilter)
+    CarDataService.post(dataFilter)
       .then(response => {
         console.log("[SearchCars] postGetCarData dataFilter: " + Object.values(dataFilter));
         console.log(response);
-        // console.log("[SearchCars] postGetCarData response data: " + response.data);
         let carData = [];
         let carDataExtra = [];
         let imgUrlData = [];
@@ -175,13 +184,15 @@ export default function SearchCars() {
       setIsComplete(false);
     } else {
       console.log("[SearchCars] onClickCreateOrder: success")
-      // TODO: authentication
       if (true) {
-        sessionStorage.setItem("orderDetail", JSON.stringify(orderDetail));
+        sessionStorage.setItem("__orderDetail__", JSON.stringify(orderDetail));
         console.log(orderDetail);
-        // FIXME: ASAP
-        navigate("/authentication/sign-in")
-        // navigate("/user/order");
+        if (status) {
+          navigate("/order")
+        }
+        else {
+          navigate("/authentication/sign-in")
+        }
       }
     }
   }

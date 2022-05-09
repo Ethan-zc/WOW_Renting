@@ -24,7 +24,6 @@ import MKBox from "components/MKBox";
 // Material Kit 2 React view
 import DefaultCounterCard from "sections/Cards/CounterCards/DefaultCounterCard";
 
-// TODO: counters info?
 function Counters() {
   return (
     <MKBox component="section" py={1}>

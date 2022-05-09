@@ -44,7 +44,7 @@ import MDButton from "components/MDButton";
 
 // Services
 import OrderDataService from "services/order.service";
-import AuthDataService from "services/authentication.service";
+import AccountDataService from "services/account.service";
 
 export default function OrderDetail(props) {
   // const navigate = useNavigate();
@@ -53,13 +53,12 @@ export default function OrderDetail(props) {
   // order data package
   const [labelOrder] = useState(orderDetail.dataHead);
   const [dataOrder] = useState(orderDetail.data);
-  const [isSubmit, setIsSubmit] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [distNum, setDistNum] = useState("");
   const [custType, setCustType] = useState("");
 
   useEffect(() => {
-    AuthDataService.getCustType(localStorage.getItem("__account__"))
+    AccountDataService.getCustType(localStorage.getItem("__account__"))
       .then((response) => {
         console.log(response.data);
         setCustType(response.data.data)})
@@ -73,7 +72,6 @@ export default function OrderDetail(props) {
     console.log("[OrderDetail] post data package");
     console.log();
 
-    // FIXME: date format error
     let dataPost = {
       accName: localStorage.getItem("__account__"),
       carId: dataOrder[Array.from(Object.keys(labelOrder)).indexOf("carId")],
@@ -85,7 +83,6 @@ export default function OrderDetail(props) {
     }
     console.log(dataPost);
 
-    // TODO: cannot identify empty coupon
     return OrderDataService.postCreateOrder(dataPost)
       .then((response) => {
         console.info(response.data);
@@ -166,8 +163,7 @@ export default function OrderDetail(props) {
           </MDBox>
           <MDBox mt={3} mb={1}>
             <Grid container justifyContent="right" rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}> 
-              <MDButton variant="gradient" color="dark" width="30%" disabled={isSubmit}
-                onClick={handleOnClickSubmit}>
+              <MDButton variant="gradient" color="dark" width="30%" onClick={handleOnClickSubmit}>
                 Submit
               </MDButton>
             </Grid>

@@ -34,7 +34,7 @@
 ? what is it?
 */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // react-router-dom components
 import { Link, useNavigate } from "react-router-dom";
@@ -68,7 +68,7 @@ import SignUpLayout from "pages/authentication/components/SignUpLayout";
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
 // Services
-import AuthDataService from "services/authentication.service";
+import AccountDataService from "services/account.service";
 
 const labelCorp = {
   accname: "Account",
@@ -106,7 +106,7 @@ const labelUnique = {
 };
 
 export default function SignUp() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // corp data package
   const initCorpData = JSON.parse(JSON.stringify(labelCorp));
@@ -133,11 +133,12 @@ export default function SignUp() {
   const [isCorp, setIsCorp] = useState(false);
   const [dataCorp, setDataCorp] = useState(initCorpData);
   const [dataIndi, setDataIndi] = useState(initIndiData);
+  const [isSubmit, setIsSubmit] = useState(false);
+  
   const [isComplete, setIsComplete] = useState(null);
   const [isNumCorp, setIsNumCorp] = useState(initCorpNum);
   const [isNumIndi, setIsNumIndi] = useState(initIndiNum);
   const [isUnique, setIsUnique] = useState(initUnique);
-  const [isSubmit, setIsSubmit] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const clearCorp = () => {
@@ -156,7 +157,7 @@ export default function SignUp() {
     console.log("[SignUp] postCorpData data package");
     console.log(dataCorp);
 
-    return AuthDataService.postCorpRegister(dataCorp)
+    return AccountDataService.postCorpRegister(dataCorp)
       .then((response) => {
         if (response.data.status.includes("success")) {
           console.info("[SignUp] postCorpData success");
@@ -185,7 +186,7 @@ export default function SignUp() {
     console.log("[SignUp] postIndiData data package");
     console.log(dataIndi);
 
-    return AuthDataService.postIndiRegister(dataIndi)
+    return AccountDataService.postIndiRegister(dataIndi)
       .then((response) => {
         if (response.data.status.includes("success")) {
           console.info("[SignUp] postIndiData success");
@@ -237,6 +238,7 @@ export default function SignUp() {
     isCorp ? clearCorp() : clearIndi();
     setIsComplete(null);
     setIsCorp(!isCorp);
+    setErrorMsg("");
   }
 
   const handleOnClickRegister = () => {
@@ -250,23 +252,51 @@ export default function SignUp() {
 
     if (!isFilled) {
       setIsComplete(false);
-    }
-    else {
+      setIsUnique(initUnique);
+      setErrorMsg("");
+    } else {
+      console.log("is filled!");
       setIsComplete(true);
+      let uppercaseRegExp   = /(?=.*?[A-Z])/;
+      let lowercaseRegExp   = /(?=.*?[a-z])/;
+      let digitsRegExp      = /(?=.*?[0-9])/;
+      let specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+      let minLengthRegExp   = /.{6,}/;
+
+      let password = isCorp ? dataCorp.pwd : dataIndi.pwd;
+      console.log("password ", password);
+      let uppercasePassword = uppercaseRegExp.test(password);
+      let lowercasePassword = lowercaseRegExp.test(password);
+      let digitsPassword = digitsRegExp.test(password);
+      let specialCharPassword = specialCharRegExp.test(password);
+      let minLengthPassword = minLengthRegExp.test(password);
+
       // check if required blanks are number
       if (isCorp && !Object.values(isNumCorp).includes(false)) {
-        postCorpData();
+        // check if valid password
+        if (!uppercasePassword || !lowercasePassword || !digitsPassword || !specialCharPassword || !minLengthPassword) {
+          setErrorMsg("Password must be more than 6 characters and have at least one upper case, one lower case, one digit and one special character");
+        } else {
+          setErrorMsg("");
+          postCorpData();
+        }
       } else if (!isCorp && !Object.values(isNumIndi).includes(false)){
-        postIndiData();
+        // check if valid password
+        if (!uppercasePassword || !lowercasePassword || !digitsPassword || !specialCharPassword || !minLengthPassword) {
+          setErrorMsg("Password must be more than 6 characters and have at least one upper case, one lower case, one digit and one special character");
+        } else {
+          setErrorMsg("");
+          postIndiData();
+        }
       }
+
     }
   }
 
   const handleCloseModal = () => {
-    // TODO: login account with tonken
     console.log("[SignUp] handleCloseModal");
     setIsSubmit(!isSubmit);
-    // navigate("/dashboard");
+    navigate("/authentication/sign-in")
   }
 
   return (
@@ -310,6 +340,12 @@ export default function SignUp() {
                 : null
               )})
             }
+            {errorMsg &&
+            <MDBox display="flex" justifyContent="left" alignItems="center" mt={-1} mb={1}>
+              <MDTypography variant="caption" color="error" >
+                *{errorMsg}
+              </MDTypography>
+            </MDBox>}
             {isCorp ?
               (
                 Object.keys(isNumCorp).map((prop) => {

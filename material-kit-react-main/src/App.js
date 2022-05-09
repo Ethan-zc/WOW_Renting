@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import UnauthenticatedApp from "unauth-App";
 import AuthenticatedApp from "auth-App";
 
-// import { useMaterialUIController } from "context";
-
-// import { useClient } from "context/auth-context";
+import AccountDataService from "services/account.service";
 
 export default function App() {
-  // const {test} = useMaterialUIController();
-  // const {test} = useClient();
-  let user = localStorage.getItem("__account__");
-  // console.log(test);
-  // const user = true;
-  // document.cookie;
-  // localStorige
-  // useEffect(() => {
-    //   console.log(user);
-    // }, [user]);
-  // let user = false;
-  console.log(user);
+  // check login status
+  const [status, setStatus] = useState(false);
+  useEffect(() => {
+    AccountDataService.isLogin()
+      .then((response) => {
+        console.log("[App] ", response.data.message);
+        if (response.data.success) {
+          setStatus(true);
+        }
+      });
+  }, [status]);
+
   return (
     <>
-      {user && user !== "" ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      { status ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </>
   );
 }

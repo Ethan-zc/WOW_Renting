@@ -38,7 +38,8 @@ import DataTable from "pages/account/user/order/sessions/DataTable";
 // Services
 import OrderDataService from "services/order.service";
 
-export default function OrderList() {
+export default function OrderList(props) {
+  const {orderDetail} = props;
   const [account] = useState(localStorage.getItem("__account__"));
   const initColumns= [
     { Header: "Order#", accessor: "order",  align: "left"},
@@ -56,14 +57,13 @@ export default function OrderList() {
 
   useEffect(() => {
     getCustOrderData();
-  }, []);
+  }, [orderDetail]);
 
   const getCustOrderData = () => {
     OrderDataService.getCustOrderList(account)
       .then((response) => {
         console.log(response.data.data);
         let newRows = [];
-        // TODO: check if succeed
         response.data.data.forEach((order) => {
           console.log(order.endOdo)
           newRows.push({
@@ -99,7 +99,6 @@ export default function OrderList() {
             ),
             status: (
               <MDBox ml={-1}>
-                {/* TODO: get invoice remains by order? */}
                 <MDBadge 
                   badgeContent={(order.endOdo !== 0) ? "completed": "in progress" } 
                   color={(order.endOdo !== 0) ? "success" : "info"} 

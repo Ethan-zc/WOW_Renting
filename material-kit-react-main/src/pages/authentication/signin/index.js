@@ -41,7 +41,7 @@ import SignInLayout from "pages/authentication/components/SignInLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-cover.jpeg";
 
-import AuthDataService from "services/authentication.service";
+import AccountDataService from "services/account.service";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -49,6 +49,7 @@ export default function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     let isSubmit = localStorage.getItem("isSubmit");
@@ -81,16 +82,11 @@ export default function SignIn() {
     setRememberMe(!rememberMe);
   }
 
-
   const handleOnClickSignIn = () => {
     console.log("[SignIn] clicked! account: " + account);
     localStorage.setItem("isSubmit", true);
     localStorage.setItem("rememberMe", rememberMe);
     localStorage.setItem("account", rememberMe ? account : "");
-
-    // // TODO: authentication verification => seem not right
-    // localStorage.setItem("__account__", account);
-    
 
     console.log("[SignIn] handleOnClickSignIn account: ");
     let data = {
@@ -98,16 +94,23 @@ export default function SignIn() {
       pwd: password
     }
     console.log(data);
-    AuthDataService.login(data)
+    AccountDataService.login(data)
       .then((response) => {
         console.log(response);
         if (response.data.success === true) {
           // login success
           localStorage.setItem("__account__", account);
-          // navigate("/dashboard");
+          if (sessionStorage.getItem("__orderDetail__")) {
+            console.log("1")
+            navigate("/order")
+          } else {
+            console.log("2")
+            navigate("/profile")
+          }
           window.location.reload();
         } else {
           // login fail
+          setErrorMsg(response.data.message);
         }
       });
   }
@@ -149,6 +152,12 @@ export default function SignIn() {
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
+            {errorMsg &&
+            <MDBox display="flex" justifyContent="left" alignItems="center" mt={-2} mb={2}>
+              <MDTypography variant="caption" color="error" >
+                *{errorMsg}
+              </MDTypography>
+            </MDBox>}
             <MDBox mb={2}>
               <MDInput 
                 type="text" 

@@ -119,9 +119,9 @@ export default function OrderList() {
 
   function getData(){
     OrderDataService.getOrderList()
-      .then(function (response) {
+      .then((response) => {
         let newRows = [];
-        response.data.forEach(order => {
+        response.data.data.forEach(order => {
           newRows.push({
             Order: ( 
               <MDTypography name="OrderId" component="a" variant="caption" color="text" fontWeight="medium" data-orderid={order.orderId}>

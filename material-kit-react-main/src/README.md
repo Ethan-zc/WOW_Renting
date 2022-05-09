@@ -48,7 +48,7 @@ material-kit-react-main
     │   └── Welcome
     ├── routes.js               <-- config routing urls
     ├── services                <-- handle request and backend interface
-    │   ├── authentication.service.js
+    │   ├── account.service.js
     │   └── trip.service.js
     ├── user.routes.js          <-- config routing urls for specific users
     └── view                    <-- commonly used tools?

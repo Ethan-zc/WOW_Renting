@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-class AuthDataService {
+class AccountDataService {
   postCorpRegister(data) {
     return http.post("/account/corp/register", data);
   }
@@ -37,12 +37,18 @@ class AuthDataService {
     return http.get("/account/type?accName=" + data);
   }
 
-//   getCustInfo(data) {
-//     return http.get("/account/profile?accName=" + data);
-//   }
-  getCustInfo() {
+  getProfile() {
     return http.get("/account/profile");
   }
+
+  getRole() {
+    return http.get("/account/getRole");
+  }
+
+  getAccountName() {
+    return http.get("/account/getAccName");
+  }
+
 }
 
-export default new AuthDataService();
+export default new AccountDataService();

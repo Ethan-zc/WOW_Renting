@@ -29,17 +29,15 @@ import AuthFooter from "sections/Footers/AuthFooter";
 // Authentication components
 import PageLayout from "pages/authentication/components/PageLayout";
 
-import unauthRoutes from "routes/unauth.routes";
-import authNavRoutes from "routes/auth.nav.user.routes";
+import unauthNavRoutes from "routes/unauth.nav.routes";
 
 export default function SignInLayout({ image, children }) {
-  let user = localStorage.getItem("__account__");
   return (
     <PageLayout>
       <DefaultNavbar 
         light
         transparent
-        routes={user && user !== ""? authNavRoutes : unauthRoutes}
+        routes={unauthNavRoutes}
       />
       <MDBox
         position="absolute"

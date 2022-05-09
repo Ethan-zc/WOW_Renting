@@ -38,7 +38,7 @@ import SignInLayout from "pages/authentication/components/SignInLayout";
 // Images
 import bgImage from "assets/images/bg-sign-in-cover.jpeg";
 
-import AuthDataService from "services/authentication.service";
+import AccountDataService from "services/account.service";
 
 export default function TestLogin() {
 
@@ -66,30 +66,7 @@ export default function TestLogin() {
     }
 }
 
-  // const handleLoginNoCookie = async () => {
-  //   // TODO: change account name
-  //   console.log("[handleLoginNoCookie] account: ");
-  //   let data = {
-  //     accName: account,
-  //     pwd: password
-  //   }
-
-  //   console.log("[handleLoginNoCookie] account: ");
-  //   console.log(data);
-  //   const resp = await AuthDataService.login(data);
-  //   console.log(resp);
-  //   console.log("[handleLoginNoCookie] resp.headers: ");
-  //   console.log(resp.headers);
-  //   const [cookie] = resp.headers["set-cookie"]; // getting cookie from request
-  //   AuthDataService.defaults.headers.Cookie = cookie; // attaching cookie to axiosInstance for future requests
-  //   console.log("[handleLoginNoCookie] cookie: ");
-  //   console.log(cookie);
-  //   console.log("[handleLoginNoCookie] AuthDataService.defaults.headers.Cookie: ");
-  //   console.log(AuthDataService.defaults.headers.Cookie);
-  // }
-
   const handleLoginNoCookie = () => {
-    // TODO: change account name
     console.log("[handleLoginNoCookie] account: ");
     let data = {
       accName: account,
@@ -99,7 +76,7 @@ export default function TestLogin() {
     console.log(data);
     console.log("[handleLoginNoCookie] document.cookie before: ");
     console.log(document.cookie);
-    AuthDataService.login(data)
+    AccountDataService.login(data)
       .then((response) => {
         console.log("[handleLoginNoCookie] response: ");
         console.log(response);
@@ -125,7 +102,7 @@ export default function TestLogin() {
         },
       withCredentials: true
     };
-    AuthDataService.loginCookie(data, header)
+    AccountDataService.loginCookie(data, header)
       .then((response) => {
           console.log("[handleLoginWithCookie] response: ");
           console.log(response);
@@ -137,7 +114,7 @@ export default function TestLogin() {
   const handleIsLoginNoCookie = () => {
     console.log("[handleIsLoginNoCookie] document.cookie before: ");
     console.log(document.cookie);
-    AuthDataService.isLogin()
+    AccountDataService.isLogin()
       .then((response) => {
         console.log("[handleIsLoginNoCookie] response: ");
         console.log(response);
@@ -156,7 +133,7 @@ export default function TestLogin() {
         },
       withCredentials: true
     };
-    AuthDataService.isLoginCookie(header)
+    AccountDataService.isLoginCookie(header)
       .then((response) => {
         console.log("[handleIsLoginWithCookie] response: ");
         console.log(response);
@@ -168,7 +145,7 @@ export default function TestLogin() {
   const handleLogoutNoCookie = () => {
     console.log("[handleLogoutNoCookie] document.cookie before: ");
     console.log(document.cookie);
-    AuthDataService.logout()
+    AccountDataService.logout()
       .then((response) => {
         console.log("[handleLogoutNoCookie] response: ");
         console.log(response);
@@ -187,7 +164,7 @@ export default function TestLogin() {
         },
       withCredentials: true
     };
-    AuthDataService.logoutCookie(header)
+    AccountDataService.logoutCookie(header)
       .then((response) => {
         console.log("[handleLogoutWithCookie] response: ");
         console.log(response);

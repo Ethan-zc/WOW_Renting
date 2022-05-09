@@ -21,8 +21,6 @@ import { useEffect, useState } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
-// import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -35,13 +33,13 @@ import Transaction from "pages/account/user/billing/components/Transaction";
 // Services
 import PaymentDataService from "services/payment.service";
 
-function Transactions() {
+function Transactions({ isUpdate }) {
   const [account] = useState(localStorage.getItem("__account__"));
   const [paymData, setPaymData] = useState([]);
 
   useEffect(() => {
     getCustPaymData();
-  }, []);
+  }, [isUpdate]);
 
   const getCustPaymData = () => {
     PaymentDataService.getCustPaymList(account)
@@ -60,8 +58,8 @@ function Transactions() {
       </MDBox>
       <MDBox pt={3} pb={2} px={2}>
         <MDBox mb={2}>
-          <MDTypography variant="caption" color="text" fontWeight="bold" textTransform="uppercase">
-            newest
+          <MDTypography variant="caption" color="text" fontWeight="bold" textTransform="capitalize">
+            group by invoice ID
           </MDTypography>
         </MDBox>
         <MDBox
@@ -72,7 +70,7 @@ function Transactions() {
           m={0}
           sx={{ listStyle: "none" }}
         >
-          {paymData.map((e, index) => {
+          {(paymData !== null && paymData.length !== 0) ? paymData.map((e, index) => {
             return ( 
             e &&
             <Transaction
@@ -83,7 +81,7 @@ function Transactions() {
               description={new Date(e.paymDate).toLocaleString()}
               value={e.amount.toString()}
             />);
-          })}
+          }) : null}
         </MDBox>
       </MDBox>
     </Card>
