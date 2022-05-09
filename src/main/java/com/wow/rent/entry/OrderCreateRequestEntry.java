@@ -19,6 +19,5 @@ public class OrderCreateRequestEntry {
     private int carId;
     private String distNum;
 
-    private String accName;
 
 }
