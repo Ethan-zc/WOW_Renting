@@ -58,4 +58,9 @@ public class AccountServiceImpl implements AccountServie {
         return accountMapper.getRoleByAccName(accName);
     }
 
+    @Override
+    public Boolean isAdmin(String accName) {
+        return getRoleByAccName(accName).equals("admin");
+    }
+
 }

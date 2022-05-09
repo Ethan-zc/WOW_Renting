@@ -15,4 +15,6 @@ public interface AccountServie {
     Result<AccountEntry> login(LoginRequestEntry loginRequest);
 
     String getRoleByAccName(String accName);
+
+    Boolean isAdmin(String accName);
 }

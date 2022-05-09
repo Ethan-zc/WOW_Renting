@@ -44,7 +44,7 @@ public class OrderController {
         // get user account name
         AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
         String accName = sessionUser.getAccName();
-        if (!accName.equals("admin")) {
+        if (!accountServie.isAdmin(accName)) {
             result.setResultFailed("No Permission!");
             return result;
         }
@@ -81,12 +81,31 @@ public class OrderController {
 
     }
 
-    // TODO: Admin only
     @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
-    public Object updateEndOdo(@RequestBody OrderUpdateRequestEntry request) {
+    public Object updateEndOdo(@RequestBody OrderUpdateRequestEntry request,
+                               HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
         JSONObject jsonObject = new JSONObject();
         int orderId;
         double endOdo;
+        // is login?
+
+        if (!accountController.isLogin(httpRequest, httpResponse).isSuccess()) {
+            jsonObject.put("message", "No login info!");
+            jsonObject.put("success", false);
+            jsonObject.put("data", null);
+            return jsonObject;
+        }
+
+        // get user account name
+        AccountEntry sessionUser = (AccountEntry) (httpRequest.getSession()).getAttribute(SESSION_NAME);
+        String accName = sessionUser.getAccName();
+
+        if (!accountServie.isAdmin(accName)) {
+            jsonObject.put("message", "No Permission!");
+            jsonObject.put("success", false);
+            jsonObject.put("data", null);
+            return jsonObject;
+        }
 
         try {
             orderId = request.getOrderId();

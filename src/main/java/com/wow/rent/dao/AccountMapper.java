@@ -22,4 +22,6 @@ public interface AccountMapper {
     @Select("SELECT role FROM zzz_account NATURAL JOIN zzz_acc_role NATURAL JOIN zzz_role WHERE accname = #{accName}")
     String getRoleByAccName(String accName);
 
+
+
 }
