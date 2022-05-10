@@ -17,12 +17,7 @@ select * from zzz_office;
 select * from zzz_car;
 select * from zzz_address;
 
--- TODO: payment
--- insert data to payment
-show columns from zzz_payment;
-insert into zzz_payment (payid, method, amount, paydate, cardnum, invoiceid)
-values
-();
 
-
-
+SELECT TABLE_NAME "Table Name", TABLE_ROWS "Total Number of Records"
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA = "WOW";
