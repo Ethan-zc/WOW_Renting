@@ -137,6 +137,7 @@ export default function AuthenticatedApp() {
         <Route path="/welcome" element={<Welcome routes={role === "customer" ? authNavUserRoutes : authNavAdminRoutes}/>} />
         <Route path="/trip" element={<Trip routes={role === "customer" ? authNavUserRoutes : authNavAdminRoutes}/>} />
         <Route path="/material-kit-react" element={<Navigate to="/welcome" />} />
+        <Route path="/" element={<Navigate to="/welcome" />} />
       </Routes>
     </ThemeProvider>
   );
