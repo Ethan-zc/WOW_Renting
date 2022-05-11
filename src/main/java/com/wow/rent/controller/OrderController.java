@@ -197,6 +197,9 @@ public class OrderController {
                     result.setResultFailed("Discount not valid!");
                     return result;
                 }
+            } else {
+                result.setResultFailed("Invalid Discount!");
+                return result;
             }
         }
 
@@ -206,6 +209,9 @@ public class OrderController {
             if (corpDiscount != null) {
                 distId = corpDiscount.getDiscId();
                 distType = corpDiscount.getDiscType();
+            } else {
+                result.setResultFailed("Invalid Discount!");
+                return result;
             }
         }
 
