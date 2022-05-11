@@ -13,9 +13,6 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-const imagesPrefix =
-  "https://media.zipcar.com/images/model-image?model_id=";
-
 // eslint-disable-next-line
 export default [
   {
@@ -23,40 +20,57 @@ export default [
     description: "Luxury vehicle",
     items: [
       {
-        image: `${imagesPrefix}64790058`,
-        name: "Page Headers",
-        count: 10,
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/SUVS/CFAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1618262879339.png",
+        name: "Compact SUV",
+        count: 2,
         route: "/trip",
       },
       {
-        image: `${imagesPrefix}94567`,
-        name: "Features",
-        count: 14,
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/SUVS/IFAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1618262879727.png",
+        name: "Midsize SUV",
+        count: 4,
         route: "/trip",
       },
       {
-        image: `${imagesPrefix}2297323015`,
-        name: "Pricing",
-        count: 8,
-        pro: true,
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/SUVS/SFAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1551905658879.png",
+        name: "Standard SUV",
+        count: 3,
         route: "/trip",
       },
     ],
   },
   {
-    title: "Sedan",
-    description: "Normal car",
+    title: "Cars",
+    description: "Normal cars",
     items: [
       {
-        image: `${imagesPrefix}475722000`,
-        name: "Navbars",
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/CARS/ECAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1492780366644.png",
+        name: "Economy",
         count: 4,
         route: "/trip",
       },
       {
-        image: `${imagesPrefix}64790058`,
-        name: "Nav Tabs",
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/CARS/CCAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1611777286679.png",
+        name: "Compact",
+        count: 8,
+        route: "/trip",
+      },
+      {
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/CARS/SCAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1544210775124.png",
+        name: "Standard",
+        count: 4,
+        route: "/trip",
+      },
+      {
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/CARS/STAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1543605919377.png",
+        name: "Convertible",
         count: 2,
+        route: "/trip",
+      },
+      {
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/CARS/WCAE.doi.352.high.imageSmallThreeQuarterNodePath.png/1554931356778.png",
+        name: "Luxury Electric",
+        count: 1,
         route: "/trip",
       },
     ]
@@ -67,22 +81,15 @@ export default [
     description: "For delivering goods",
     items: [
       {
-        image: `${imagesPrefix}94567`,
-        name: "Alerts",
-        count: 4,
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/TRUCKS/SPAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1618263047434.png",
+        name: "Standard Pickup",
+        count: 1,
         route: "/trip",
       },
       {
-        image: `${imagesPrefix}1651832377`,
-        name: "Notifications",
-        count: 3,
-        pro: true,
-        route: "/trip",
-      },
-      {
-        image: `${imagesPrefix}475722000`,
-        name: "Tooltips & Popovers",
-        count: 2,
+        image: "https://assets.gcs.ehi.com/content/enterprise_cros/data/vehicle/bookingCountries/US/TRUCKS/PPAR.doi.352.high.imageSmallThreeQuarterNodePath.png/1512427309887.png",
+        name: "1/2 Ton Pickup",
+        count: 1,
         route: "/trip",
       },
     ],

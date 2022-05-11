@@ -13,8 +13,8 @@ class OrderDataService {
     return http.post("/order/createOrder", data);
   }
 
-  postUpdateEndOdo(data) {
-    return http.post("/order/updateOrder", data);
+  putUpdateEndOdo(data) {
+    return http.put("/order/updateOrder", data);
   }
 }
 

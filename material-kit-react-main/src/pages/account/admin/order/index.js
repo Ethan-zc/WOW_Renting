@@ -98,7 +98,7 @@ export default function OrderList() {
       "startOdo": startOdo
     }
     console.log(updateOrderData);
-    OrderDataService.postUpdateEndOdo(updateOrderData)
+    OrderDataService.putUpdateEndOdo(updateOrderData)
       .then((response) => {
         if(response.data.message.includes("Error")) {
           setErrorMsg(response.data.message);
@@ -140,34 +140,34 @@ export default function OrderList() {
             ),
             EndOdo: (
               <MDBox ml={0}>
-                { order.endOdo!=0 &&
+                { order.endOdo!==0 &&
                   <MDTypography name="EndOdo" component="a" variant="caption" color="text" fontWeight="medium" data-orderid={order.orderId}>
                     {order.endOdo} 
                   </MDTypography>
                 }
-                { order.endOdo==0 &&
+                { order.endOdo===0 &&
                   <MDInput type="text" name="EndOdo" label="Update End Odometer" variant="standard" data-orderid={order.orderId}/>
                 }
               </MDBox>
             ),
             status: (
               <MDBox ml={-1}>
-                { order.endOdo!=0 &&
+                { order.endOdo!==0 &&
                   <MDBadge badgeContent="Completed" color="dark" variant="gradient" size="sm" />
                 }
-                { order.endOdo==0 &&
+                { order.endOdo===0 &&
                   <MDBadge badgeContent="In Progess" color="success" variant="gradient" size="sm" />
                 }
               </MDBox>
             ),
             action: (
               <MDBox mt={1} mb={1}>
-                { order.endOdo!=0 &&
+                { order.endOdo!==0 &&
                   <MDTypography component="a" variant="caption" color="text" fontWeight="medium" data-orderid={order.orderId}>
                     No Action Required
                   </MDTypography>
                 }
-                { order.endOdo==0 &&
+                { order.endOdo===0 &&
                   <MDButton variant="gradient" color="info" data-orderid={order.orderId} onClick={self => updateEndOdo(self)}>
                     Submit
                   </MDButton>

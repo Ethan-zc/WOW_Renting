@@ -48,6 +48,7 @@ export default function UnauthenticatedApp() {
         <Route path="/trip" element={<Trip routes={unauthNavRoutes}/>} />
         <Route path="/logout" element={<Navigate to="/welcome" />} />
         <Route path="/material-kit-react" element={<Navigate to="/welcome" />} />
+        <Route path="/" element={<Navigate to="/welcome" />} />
       </Routes>
     </ThemeProvider>
   );
