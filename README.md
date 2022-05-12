@@ -25,3 +25,16 @@ WOW_Renting/src/main/java/com/wow/rent/
 ├── model                     <-- Result class for sending formatted messages to frontend
 └── service                   <-- Service implementations
 ```
+
+# Features
+
+- RESTful API
+- Swagger UI for API testing
+- Separating privileges for different roles of users
+- Prevent SQL injection using Mybatis PreparedStatement
+- Prevent XSS
+- Request validation 
+- Password Encryption 
+- Session evaluation for identification
+- Mybatis projects java method to SQL statement
+- Handle most logics
