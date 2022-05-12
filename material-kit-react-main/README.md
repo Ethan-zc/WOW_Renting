@@ -1,3 +1,18 @@
+# Run
+
+Install all dependencies
+
+```
+npm install
+```
+
+Start the app, and it will be runninig on `localhost:3000`
+
+```
+npm start
+```
+
+
 # Directory
 
 ```
@@ -7,96 +22,53 @@ material-kit-react-main
 ├── README.md
 ├── jsconfig.json
 ├── package-lock.json
-├── package.json                <-- to install node_modules
+├── package.json              <-- Node module dependencies
 ├── public
-└── src                         <-- source codes
-    ├── App.js                  <-- main
+└── src                       <-- Source codes
+    ├── App.js                <-- Main
     ├── README.md
-    ├── assets                  <-- resources: images, theme etc.
-    ├── components              <-- basic components in two templates
-    ├── context                 <-- [unknown] used in dashboard
-    │   └── index.js
-    ├── examples                <-- [remove] examples to show how to use comps
-    │   ├── Breadcrumbs
-    │   ├── Cards
-    │   ├── Charts
-    │   ├── Configurator
-    │   ├── Footer
-    │   ├── Items
-    │   ├── LayoutContainers
-    │   ├── Lists
-    │   ├── Navbars
-    │   ├── Sidenav
-    │   ├── Tables
-    │   └── Timeline
-    ├── http-common.js          <-- config backend url to connect with
-    ├── index.js                <-- main entry
-    ├── layouts                 <-- [remove] pages entry: pages, sections
-    │   ├── billing
-    │   ├── dashboard
-    │   ├── notifications
-    │   ├── pages
-    │   ├── profile
-    │   ├── rtl
-    │   ├── sections
-    │   └── tables
-    ├── pages                   <-- pages
-    │   ├── Account
-    │   ├── Authentication
-    │   ├── Dashboard
-    │   ├── Trip
-    │   └── Welcome
-    ├── routes.js               <-- config routing urls
-    ├── services                <-- handle request and backend interface
-    │   ├── account.service.js
-    │   └── trip.service.js
-    ├── user.routes.js          <-- config routing urls for specific users
-    └── view                    <-- commonly used tools?
-        ├── Breadcrumbs
-        ├── Cards
-        ├── Footers
-        ├── Navbars
-        └── TableList
+    ├── assets                <-- Images and theme
+    ├── auth-App.js           <-- Entry for registered users
+    ├── components            <-- Basic components
+    ├── context               <-- Material UI provider
+    ├── http-common.js        <-- Config of backend url
+    ├── index.js              <-- Main
+    ├── pages
+    │   ├── account           <-- Account page including profile, order, billing
+    │   ├── authentication    <-- Sign in and sign up pages
+    │   ├── trip              <-- Trip page
+    │   └── welcome           <-- Welcome page
+    ├── routes                <-- Routes
+    ├── sections              <-- Worksheet
+    ├── services              <-- Methods sending requests to backend API
+    └── unauth-App.js         <-- Entry for guests
 ```
 
-# Functions
+# Features
 
-Navigation
+- Basic functions
+    - Navigation
+    - Forms
+    - Registration
+- Multiple route settings for different roles
+- Authentication
+- Precheck on inputs
+    - Password validation
+    - Empty blank check
+    - Input format check
+- Cache
+    - Remember me option using localStorage
+    - Order detail using sessionStorage
+Communicate with the backend through HTTP
+    - Send CRUD requests
 
-- Pages
-- Menu bar, side bar
-- Button, link
+# References and Resources
 
-Interact with the backend
-
-- Send GET request
-- Send POST request, for example, display suitable cars for users by their preferences (pick up location, etc.)
-
-Authentication
-
-- Sign in & sign up
-- Use local storage to achieve remember me option, probably workable in storing token
-- Filling form check if they are valid
-
-# Authentication flow
+- [Material Kit Material-UI v4](https://www.creative-tim.com/product/material-kit-material-ui-v4)
+- [Material Dashboard 2 React](https://www.creative-tim.com/product/material-dashboard-react#)
 - [React-Navigation with Login Screen](https://stackoverflow.com/questions/42876690/react-navigation-with-login-screen)
 - [React-Navigation Authentication flows](https://reactnavigation.org/docs/auth-flow/)
-
-# Templates
-
-- Use [Material Kit Material-UI v4](https://www.creative-tim.com/product/material-kit-material-ui-v4) to create car rental pages
-- Use  [Material Dashboard 2 React](https://www.creative-tim.com/product/material-dashboard-react#) to create account pages for users
-- Alternative template [Material Dashboard Material-UI v4](https://www.creative-tim.com/product/material-dashboard-material-ui-v4)
-
-# Spring boot + React + MySQL
-
-- Overall: [spring boot + react + mysql tut & codes](https://www.githubcode.com/spring-boot-react-project-github/#Springboot_React_MySQL)
-- Backend codes: [spring-boot-data-jpa-mysql](https://github.com/bezkoder/spring-boot-data-jpa-mysql)
-- Tut for backend: [spring-boot-jpa-crud-rest-api](https://www.bezkoder.com/spring-boot-jpa-crud-rest-api/)
-- Frontend codes: [react-crud-web-api](https://github.com/bezkoder/react-crud-web-api)
-- Tut for overall project: [react-spring-boot-crud](https://www.bezkoder.com/react-spring-boot-crud/)
-
-# Resources
-
+- [Authentication in React Applications](https://kentcdodds.com/blog/authentication-in-react-applications)
+- [spring boot + react + mysql tut & codes](https://www.githubcode.com/spring-boot-react-project-github/#Springboot_React_MySQL)
 - [Material UI Documents](https://mui.com/material-ui/getting-started/installation/)
 
