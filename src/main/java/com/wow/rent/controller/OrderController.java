@@ -186,7 +186,7 @@ public class OrderController {
             return result;
         }
 
-        if (custType.equals("I") && distNum != null) {
+        if (custType.equals("I") && !distNum.equals("")) {
             IndiDiscountEntry indiDiscount = orderService.findIndiDiscountByCoupNum(distNum);
             if (indiDiscount != null) {
                 Date current = new Date();
@@ -204,7 +204,7 @@ public class OrderController {
         }
 
 
-        if (custType.equals("C") && distNum != null ) {
+        if (custType.equals("C") && !distNum.equals("") ) {
             CorpDiscountEntry corpDiscount = orderService.findCorpDiscountBySetNum(distNum);
             if (corpDiscount != null) {
                 distId = corpDiscount.getDiscId();

@@ -90,7 +90,6 @@ public class PaymentController {
 
         // get user account name
         AccountEntry sessionUser = (AccountEntry) (request.getSession()).getAttribute(SESSION_NAME);
-        String accName = sessionUser.getAccName();
 
         InvoiceEntry invoice = invoiceService.findInvoiceByInvoiceId(paymentRequest.getInvoiceId());
         double payAmount = paymentRequest.getAmount();
